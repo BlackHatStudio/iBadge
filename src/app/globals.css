@@ -1,5 +1,5 @@
 /* src/app/globals.css — Tailwind v4 */
-@import "tailwindcss";
+@import "tailwindcss" source("../");
 @plugin "tailwindcss-animate";
 
 /* ─────────────────────────  TweakCN palette (SAFE TO OVERWRITE)  ─────────────────────────
@@ -169,7 +169,21 @@ html, body { height: 100%; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+html {
+  background: #07121f;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }
 
 /* ─────────────────────────  DataTable zebra styles  ───────────────────────── */
@@ -264,3 +278,4 @@ body {
     --p9-muted: 160 174 192;
   }
 }
+

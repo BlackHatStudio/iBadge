@@ -1,0 +1,47 @@
+name: windows-package
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  package:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
+            server/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Install API dependencies
+        run: npm --prefix server ci
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+
+      - name: Publish and package
+        shell: powershell
+        run: .\deployment\scripts\publish-all.ps1 -IsccPath 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
+
+      - name: Upload installer artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: |
+            deployment/output/**
+            deployment/staging/package/**

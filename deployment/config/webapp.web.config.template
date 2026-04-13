@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="ReverseProxyToNode" stopProcessing="true">
+          <match url="(.*)" />
+          <action type="Rewrite" url="http://127.0.0.1:__APP_PORT__/{R:1}" logRewrittenUrl="true" />
+          <serverVariables>
+            <set name="HTTP_X_FORWARDED_PROTO" value="{REQUEST_SCHEME}" />
+            <set name="HTTP_X_FORWARDED_HOST" value="{HTTP_HOST}" />
+          </serverVariables>
+        </rule>
+      </rules>
+    </rewrite>
+    <proxy preserveHostHeader="true" reverseRewriteHostInResponseHeaders="false" />
+  </system.webServer>
+</configuration>

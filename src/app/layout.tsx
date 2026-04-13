@@ -1,16 +1,35 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
+import type { Metadata } from "next";
+import Script from "next/script";
+import type { ReactNode } from "react";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Project Template',
-  description: 'Next.js + Express + Tailwind v4 template',
+  title: "iBadge Attendance Kiosk",
+  description: "Offline-ready badge attendance kiosk with event-based device logging and admin review.",
+  manifest: "/manifest.webmanifest",
+  applicationName: "iBadge",
+  appleWebApp: {
+    capable: true,
+    title: "iBadge",
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full">
       <body className="min-h-full antialiased">
+        <Script src="/runtime-config.js" strategy="beforeInteractive" />
+        <Script id="ibadge-sw-register" strategy="afterInteractive">
+          {`if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function (error) { console.warn('Service worker registration failed', error); }); }); }`}
+        </Script>
         {children}
       </body>
     </html>

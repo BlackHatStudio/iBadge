@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <clear />
+        <add value="index.html" />
+      </files>
+    </defaultDocument>
+    <staticContent>
+      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="7.00:00:00" />
+      <remove fileExtension=".webmanifest" />
+      <mimeMap fileExtension=".webmanifest" mimeType="application/manifest+json" />
+    </staticContent>
+    <rewrite>
+      <rules>
+        <rule name="API Reverse Proxy" stopProcessing="true">
+          <match url="^api/(.*)" />
+          <action type="Rewrite" url="http://127.0.0.1:__API_PORT__/api/{R:1}" logRewrittenUrl="true" />
+        </rule>
+        <rule name="Route Html Rewrite" stopProcessing="true">
+          <match url="^(.*)$" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_URI}" pattern="^/api/" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+            <add input="{URL}" pattern="\.[^./]+$" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="{R:1}/index.html" />
+        </rule>
+        <rule name="Root Document" stopProcessing="true">
+          <match url="^$" />
+          <action type="Rewrite" url="index.html" />
+        </rule>
+      </rules>
+    </rewrite>
+    <httpProtocol>
+      <customHeaders>
+        <add name="Cache-Control" value="no-store" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+  <location path="runtime-config.js">
+    <system.webServer>
+      <httpProtocol>
+        <customHeaders>
+          <clear />
+          <add name="Cache-Control" value="no-store, no-cache, must-revalidate, max-age=0" />
+        </customHeaders>
+      </httpProtocol>
+    </system.webServer>
+  </location>
+</configuration>

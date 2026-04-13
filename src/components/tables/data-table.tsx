@@ -71,6 +71,8 @@ export function DataTable<TData, TValue>({
       .find((c) => typeof c?.accessorKey === 'string')
       ?.accessorKey?.toString() as string | undefined);
 
+  // TanStack Table returns unstable function refs; React Compiler skips memo here — safe for our usage.
+  // eslint-disable-next-line react-hooks/incompatible-library -- useReactTable is the supported API
   const table = useReactTable({
     data,
     columns,

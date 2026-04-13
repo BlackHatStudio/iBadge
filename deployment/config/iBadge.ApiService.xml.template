@@ -1,0 +1,18 @@
+<service>
+  <id>__SERVICE_ID__</id>
+  <name>__SERVICE_NAME__</name>
+  <description>iBadge backend API service</description>
+  <executable>__NODE_EXE__</executable>
+  <arguments>__BACKEND_ENTRY__</arguments>
+  <workingdirectory>__BACKEND_WORKDIR__</workingdirectory>
+  <env name="IBADGE_ENV_FILE" value="__BACKEND_ENV_FILE__" />
+  <env name="IBADGE_VERSION" value="__APP_VERSION__" />
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>8</keepFiles>
+    <pattern>yyyyMMdd</pattern>
+  </log>
+  <onfailure action="restart" delay="10 sec" />
+  <onfailure action="restart" delay="30 sec" />
+  <stoptimeout>15 sec</stoptimeout>
+</service>

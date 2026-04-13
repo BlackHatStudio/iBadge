@@ -1,0 +1,23 @@
+{
+  "application": {
+    "name": "iBadge",
+    "version": "__APP_VERSION__"
+  },
+  "app": {
+    "serviceName": "iBadgeWebApp",
+    "displayName": "iBadge Web App Service",
+    "listenPort": 4300
+  },
+  "runtime": {
+    "apiBaseUrl": "/api",
+    "referenceRefreshHours": 12,
+    "queueRetryMinutes": 2,
+    "duplicateWindowSeconds": 30
+  },
+  "database": {
+    "server": "localhost",
+    "databaseName": "ibadge",
+    "username": "ibadge",
+    "password": "BadgeThis"
+  }
+}

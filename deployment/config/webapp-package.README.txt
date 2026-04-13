@@ -1,0 +1,20 @@
+iBadge Web Update Package
+=========================
+
+Contents
+- app\ : Next.js standalone web application, bundled Node runtime, WinSW service wrapper, and rendered runtime files
+- config\deploy.settings.template.json : fallback settings template for first-time installs
+- scripts\install-web-package.ps1 : run as Administrator on the customer server
+
+Update Install
+1. Copy this package folder to the customer server.
+2. If this server already has iBadge installed and `C:\ProgramData\iBadge\config\deploy.settings.json` exists, leave the packaged template alone.
+3. If this is a first-time install or the server does not yet have `deploy.settings.json`, edit `config\deploy.settings.template.json` for that environment.
+4. Open PowerShell as Administrator.
+5. Run `.\scripts\install-web-package.ps1`
+
+Behavior
+- Existing server settings in `C:\ProgramData\iBadge\config\deploy.settings.json` are used automatically when present.
+- The packaged template is only used as a fallback.
+- The service is reinstalled from this package folder, so keep the deployed package in the final server location before running the installer script.
+- IIS URL Rewrite and ARR proxy must already be installed on the target server.
