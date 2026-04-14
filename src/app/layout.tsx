@@ -14,8 +14,12 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: [
+      { url: "/ibadge-favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/ibadge-favicon.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/ibadge-favicon.png",
+    apple: "/ibadge-favicon.png",
   },
   formatDetection: {
     telephone: false,

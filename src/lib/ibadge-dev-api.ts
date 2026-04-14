@@ -1,4 +1,5 @@
 import type { DeviceConfig, EventRecord, RefreshResponse } from "@/lib/kiosk-types";
+import { createUuid } from "@/lib/uuid";
 
 export const LOCAL_DEFAULT_EVENT_ID = "ibadge-local-default";
 
@@ -42,6 +43,7 @@ function createDefaultDevice(deviceId: string, deviceGuid: string): DeviceConfig
     DeviceName: "Local Dev Kiosk",
     ActiveEventId: event.EventId,
     ActiveEventName: event.EventName,
+    ClassDurationHours: 1,
     RegisteredUTC: now,
     LastUpdatedUTC: now,
   };
@@ -72,7 +74,7 @@ export function devEventsList() {
 
 export function createDevEvent(name: string) {
   const event: EventRecord = {
-    EventId: crypto.randomUUID(),
+    EventId: createUuid(),
     EventName: name,
     IsActive: true,
     LastUpdatedUTC: nowUtcIso(),
@@ -84,9 +86,25 @@ export function createDevEvent(name: string) {
   return cloneEvent(event);
 }
 
+export function updateDevEvent(eventId: string, updates: { name?: string; isActive?: boolean }) {
+  const store = getStore();
+  const nextEvents = store.events.map((event) =>
+    event.EventId === eventId
+      ? {
+          ...event,
+          EventName: updates.name?.trim() || event.EventName,
+          IsActive: updates.isActive ?? event.IsActive,
+          LastUpdatedUTC: nowUtcIso(),
+        }
+      : event
+  );
+  store.events = nextEvents.sort((a, b) => a.EventName.localeCompare(b.EventName));
+  return cloneEvent(store.events.find((event) => event.EventId === eventId) ?? defaultEvent());
+}
+
 export function devDeviceFromRequest(request: Request) {
   const url = new URL(request.url);
-  const deviceId = url.searchParams.get("deviceId")?.trim() || crypto.randomUUID();
+  const deviceId = url.searchParams.get("deviceId")?.trim() || createUuid();
   const deviceGuid = url.searchParams.get("deviceGuid")?.trim() || deviceId;
   const store = getStore();
   const existing = store.devices.get(deviceId);
@@ -124,6 +142,7 @@ export function upsertDevDevice(partial: Partial<DeviceConfig> & Pick<DeviceConf
       partial.ActiveEventName === undefined
         ? existing?.ActiveEventName ?? fallbackEvent?.EventName ?? null
         : partial.ActiveEventName,
+    ClassDurationHours: partial.ClassDurationHours ?? existing?.ClassDurationHours ?? 1,
     RegisteredUTC: partial.RegisteredUTC ?? existing?.RegisteredUTC ?? now,
     LastUpdatedUTC: now,
   };

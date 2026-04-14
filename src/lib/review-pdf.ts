@@ -1,23 +1,28 @@
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import type { AttendanceScan, ReviewFilters } from "@/lib/kiosk-types";
 import { formatScanTimeCentralOnly } from "@/lib/kiosk-utils";
 
-const PAGE_W = 612;
-const PAGE_H = 792;
-const MARGIN = 48;
-const HEADER_BAND_H = 76;
-const TABLE_FONT = 8;
-const TABLE_HEADER_FONT = 8.5;
+const PAGE_W = 792;
+const PAGE_H = 612;
+const MARGIN = 40;
+const HEADER_BAND_H = 92;
+const TABLE_FONT = 7.2;
+const TABLE_HEADER_FONT = 8;
 const ROW_H = 15;
 const HEADER_ROW_H = 20;
-const BOTTOM_SAFE = 56;
+const BOTTOM_SAFE = 44;
+const LOGO_PATH = path.join(process.cwd(), "public", "ibadge-full.png");
 
 const COLS = [
-  { w: 72, label: "Scan time", maxChars: 14 },
-  { w: 52, label: "Badge", maxChars: 11 },
-  { w: 105, label: "Employee", maxChars: 26 },
-  { w: 100, label: "Event", maxChars: 24 },
-  { w: 100, label: "Device", maxChars: 24 },
+  { w: 86, label: "Scan time", maxChars: 18 },
+  { w: 58, label: "Badge", maxChars: 12 },
+  { w: 122, label: "Employee", maxChars: 28 },
+  { w: 150, label: "Email", maxChars: 34 },
+  { w: 70, label: "Company#", maxChars: 12 },
+  { w: 110, label: "Event", maxChars: 24 },
+  { w: 116, label: "Device", maxChars: 25 },
 ] as const;
 
 function formatCalendarDate(iso: string) {
@@ -35,7 +40,7 @@ function buildReportPeriodLine(filters: ReviewFilters): string {
   const from = filters.dateFrom?.trim();
   const to = filters.dateTo?.trim();
   if (from && to) {
-    return `${formatCalendarDate(from)} – ${formatCalendarDate(to)}`;
+    return `${formatCalendarDate(from)} - ${formatCalendarDate(to)}`;
   }
   if (from) {
     return `From ${formatCalendarDate(from)}`;
@@ -51,7 +56,7 @@ function truncateCell(text: string, maxChars: number) {
   if (t.length <= maxChars) {
     return t;
   }
-  return `${t.slice(0, Math.max(0, maxChars - 1))}…`;
+  return `${t.slice(0, Math.max(0, maxChars - 3))}...`;
 }
 
 function colXs() {
@@ -72,9 +77,11 @@ export async function buildReviewPdfBuffer(args: {
   const pdfDoc = await PDFDocument.create();
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  const logoBytes = existsSync(LOGO_PATH) ? readFileSync(LOGO_PATH) : null;
+  const logo = logoBytes ? await pdfDoc.embedPng(logoBytes) : null;
   const periodLine = buildReportPeriodLine(args.filters);
   const generated = new Date();
-  const generatedText = `Generated: ${generated.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })} · Scan times: US Central`;
+  const generatedText = `Generated: ${generated.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })} | Scan times: US Central`;
   const xs = colXs();
   const tableRight = MARGIN + COLS.reduce((s, c) => s + c.w, 0);
 
@@ -89,6 +96,20 @@ export async function buildReviewPdfBuffer(args: {
       height: HEADER_BAND_H,
       color: rgb(0.09, 0.16, 0.28),
     });
+
+    if (logo) {
+      const maxLogoWidth = 180;
+      const maxLogoHeight = HEADER_BAND_H - 24;
+      const scale = Math.min(maxLogoWidth / logo.width, maxLogoHeight / logo.height);
+      const scaled = logo.scale(scale);
+      page.drawImage(logo, {
+        x: PAGE_W - MARGIN - scaled.width,
+        y: PAGE_H - HEADER_BAND_H + (HEADER_BAND_H - scaled.height) / 2,
+        width: scaled.width,
+        height: scaled.height,
+      });
+    }
+
     page.drawText("Attendance report", {
       x: MARGIN,
       y: PAGE_H - 26,
@@ -98,14 +119,14 @@ export async function buildReviewPdfBuffer(args: {
     });
     page.drawText(`Event: ${args.eventDisplayName}`, {
       x: MARGIN,
-      y: PAGE_H - 46,
+      y: PAGE_H - 48,
       size: 15,
       font: fontBold,
       color: rgb(1, 1, 1),
     });
     page.drawText(`Report period: ${periodLine}`, {
       x: MARGIN,
-      y: PAGE_H - 66,
+      y: PAGE_H - 68,
       size: 10.5,
       font,
       color: rgb(0.88, 0.92, 0.98),
@@ -115,7 +136,7 @@ export async function buildReviewPdfBuffer(args: {
   const drawFooter = () => {
     page.drawText(`Page ${pageNum}`, {
       x: MARGIN,
-      y: 36,
+      y: 24,
       size: 8,
       font,
       color: rgb(0.45, 0.48, 0.52),
@@ -197,31 +218,31 @@ export async function buildReviewPdfBuffer(args: {
     drawHeaderBand();
     page.drawText(generatedText, {
       x: MARGIN,
-      y: PAGE_H - HEADER_BAND_H - 22,
+      y: PAGE_H - HEADER_BAND_H - 18,
       size: 9,
       font,
       color: rgb(0.38, 0.42, 0.48),
     });
     page.drawText("(continued)", {
-      x: tableRight - 72,
-      y: PAGE_H - HEADER_BAND_H - 22,
+      x: tableRight - 64,
+      y: PAGE_H - HEADER_BAND_H - 18,
       size: 9,
       font,
       color: rgb(0.38, 0.42, 0.48),
     });
-    return PAGE_H - HEADER_BAND_H - 52;
+    return PAGE_H - HEADER_BAND_H - 42;
   };
 
   drawHeaderBand();
   page.drawText(generatedText, {
     x: MARGIN,
-    y: PAGE_H - HEADER_BAND_H - 22,
+    y: PAGE_H - HEADER_BAND_H - 18,
     size: 9,
     font,
     color: rgb(0.38, 0.42, 0.48),
   });
 
-  let y = PAGE_H - HEADER_BAND_H - 52;
+  let y = PAGE_H - HEADER_BAND_H - 42;
 
   if (args.scans.length === 0) {
     page.drawText("No attendance records match the current filters.", {
@@ -254,11 +275,13 @@ export async function buildReviewPdfBuffer(args: {
     }
 
     const cells = [
-      formatScanTimeCentralOnly(scan.ScanUTC) || "—",
+      formatScanTimeCentralOnly(scan.ScanUTC) || "-",
       scan.BadgeNumberRaw,
-      scan.EmployeeNameSnapshot ?? "—",
-      scan.EventNameSnapshot ?? "—",
-      scan.DeviceDisplayName ?? "—",
+      scan.EmployeeNameSnapshot ?? "-",
+      scan.Email ?? "-",
+      scan.CompanyNum ?? "-",
+      scan.EventNameSnapshot ?? "-",
+      scan.DeviceDisplayName ?? "-",
     ];
 
     if (rowIndex % 2 === 1) {
@@ -290,8 +313,8 @@ export async function buildReviewPdfBuffer(args: {
   }
 
   page.drawLine({
-    start: { x: MARGIN, y: y },
-    end: { x: tableRight, y: y },
+    start: { x: MARGIN, y },
+    end: { x: tableRight, y },
     thickness: 0.8,
     color: rgb(0.55, 0.6, 0.68),
   });

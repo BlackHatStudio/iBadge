@@ -65,6 +65,13 @@ export async function createEvent(name: string) {
   });
 }
 
+export async function updateEvent(eventId: string, payload: { name: string; isActive: boolean }) {
+  return request<EventRecord>("/events", {
+    method: "PUT",
+    body: JSON.stringify({ eventId, ...payload }),
+  });
+}
+
 export async function getCurrentDevice(deviceId?: string, deviceGuid?: string) {
   return request<unknown>(`/devices/current${deviceQuery(deviceId, deviceGuid)}`, { method: "GET" });
 }

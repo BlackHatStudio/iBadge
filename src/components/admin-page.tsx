@@ -6,11 +6,12 @@ import { ArrowLeft, RefreshCcw, Search, Wifi, WifiOff, X } from "lucide-react";
 import { AdminGuard } from "@/components/admin-guard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { createEvent, updateEvent } from "@/lib/api";
 import {
   bootstrapKiosk,
-  createAndCacheEvent,
   refreshReferenceData,
   retryPendingQueue,
+  updateDeviceClassDuration,
   updateDeviceConfiguration,
 } from "@/lib/kiosk-data";
 import type { AttendanceScan, DeviceConfig, EmployeeRecord, EventRecord, SyncMetadata } from "@/lib/kiosk-types";
@@ -34,6 +35,13 @@ const EMPTY_ADMIN_STATE: AdminState = {
   recentScans: [],
   syncMetadata: null,
 };
+
+function formatDurationLabel(hours: number) {
+  if (hours < 1) {
+    return `${Math.round(hours * 60)} min`;
+  }
+  return `${hours % 1 === 0 ? hours.toFixed(0) : hours} hrs`;
+}
 
 function EmployeeSearchField({
   id,
@@ -118,7 +126,15 @@ function AdminPageInner() {
   const [newEventName, setNewEventName] = useState("");
   const [isPending, startTransition] = useTransition();
   const [employeeListOpen, setEmployeeListOpen] = useState(false);
+  const [scanListOpen, setScanListOpen] = useState(false);
   const [employeeSearchQuery, setEmployeeSearchQuery] = useState("");
+  const [classDurationHours, setClassDurationHours] = useState("0.5");
+  const [eventFilter, setEventFilter] = useState<"active" | "inactive">("active");
+  const [eventListOpen, setEventListOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<EventRecord | null>(null);
+  const [eventEditorOpen, setEventEditorOpen] = useState(false);
+  const [eventEditName, setEventEditName] = useState("");
+  const [eventEditIsActive, setEventEditIsActive] = useState(true);
 
   const sortedEmployees = useMemo(
     () => [...state.employees].sort((a, b) => a.EmployeeName.localeCompare(b.EmployeeName, undefined, { sensitivity: "base" })),
@@ -139,6 +155,29 @@ function AdminPageInner() {
   }, [sortedEmployees, employeeSearchQuery]);
 
   const searchHasFilter = employeeSearchQuery.trim().length > 0;
+  const filteredEvents = useMemo(
+    () => state.events.filter((event) => (eventFilter === "active" ? event.IsActive : !event.IsActive)),
+    [eventFilter, state.events]
+  );
+  const visibleEvents = useMemo(() => filteredEvents.slice(0, 5), [filteredEvents]);
+  const currentEventScans = useMemo(() => {
+    if (!state.device) {
+      return [];
+    }
+
+    return state.recentScans.filter(
+      (scan) =>
+        scan.DeviceId === state.device?.DeviceId &&
+        (scan.EventId ?? null) === (state.device?.ActiveEventId ?? null)
+    );
+  }, [state.device, state.recentScans]);
+
+  const openEventEditor = useCallback((event: EventRecord) => {
+    setSelectedEvent(event);
+    setEventEditName(event.EventName);
+    setEventEditIsActive(event.IsActive);
+    setEventEditorOpen(true);
+  }, []);
 
   const refreshState = useCallback(async (forceRefresh = false) => {
     const snapshot = await bootstrapKiosk(forceRefresh);
@@ -152,6 +191,7 @@ function AdminPageInner() {
     });
     setDeviceNameDraft(snapshot.device.DeviceName);
     setActiveEventId(snapshot.device.ActiveEventId ?? "none");
+    setClassDurationHours(String(snapshot.device.ClassDurationHours ?? 0.5));
     setIsOnline(navigator.onLine);
   }, []);
 
@@ -192,6 +232,43 @@ function AdminPageInner() {
       document.body.style.overflow = previousOverflow;
     };
   }, [employeeListOpen]);
+
+  useEffect(() => {
+    if (!scanListOpen) {
+      return;
+    }
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setScanListOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [scanListOpen]);
+
+  useEffect(() => {
+    if (!eventListOpen && !eventEditorOpen) {
+      return;
+    }
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setEventEditorOpen(false);
+        setEventListOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [eventEditorOpen, eventListOpen]);
 
   return (
     <div className="min-h-screen bg-[linear-gradient(155deg,#07121f_0%,#0f2436_35%,#124055_100%)] px-4 py-4 text-slate-100 md:px-8 md:py-6">
@@ -259,7 +336,7 @@ function AdminPageInner() {
                 <p className="text-sm text-slate-400">Persistent device identity stays cached offline.</p>
               </div>
 
-              <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_0.8fr]">
+              <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_0.8fr_0.6fr]">
                 <div>
                   <label className="text-sm font-medium text-cyan-100">Device name</label>
                   <Input
@@ -287,6 +364,21 @@ function AdminPageInner() {
                   </select>
                   <p className="mt-2 text-sm text-slate-400">Each device keeps one active event assignment at a time.</p>
                 </div>
+                <div>
+                  <label className="text-sm font-medium text-cyan-100">Event Duration</label>
+                  <select
+                    value={classDurationHours}
+                    onChange={(event) => setClassDurationHours(event.target.value)}
+                    className="mt-2 h-14 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-base text-white outline-none"
+                  >
+                    {Array.from({ length: 8 }, (_, index) => 0.5 + index * 0.5).map((hours) => (
+                      <option key={hours} value={String(hours)}>
+                        {formatDurationLabel(hours)}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-2 text-sm text-slate-400">Duplicate badge scans are blocked only within this event window.</p>
+                </div>
               </div>
 
               <div className="mt-5 flex flex-wrap gap-3">
@@ -300,6 +392,7 @@ function AdminPageInner() {
                         activeEventId === "none" ? null : activeEventId,
                         state.events
                       );
+                      await updateDeviceClassDuration(Number(classDurationHours));
                       setStatusMessage(`Device settings saved for ${updatedDevice.DeviceName}.`);
                       await refreshState(false);
                     })
@@ -318,6 +411,10 @@ function AdminPageInner() {
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Assigned Event</p>
                   <p className="mt-2 text-sm text-white">{state.device?.ActiveEventName ?? "No event selected"}</p>
                 </div>
+                <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4 md:col-span-2">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Event Duration</p>
+                  <p className="mt-2 text-sm text-white">{formatDurationLabel(state.device?.ClassDurationHours ?? 0.5)}</p>
+                </div>
               </div>
             </div>
 
@@ -327,7 +424,7 @@ function AdminPageInner() {
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Event Management</p>
                   <h2 className="mt-2 text-2xl font-semibold text-white">Central event catalog</h2>
                 </div>
-                <p className="text-sm text-slate-400">Events are sourced from backend APIs, not typed on the kiosk page.</p>
+                <p className="text-sm text-slate-400">Manage your site event catalog</p>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 lg:flex-row">
@@ -343,9 +440,9 @@ function AdminPageInner() {
                   onClick={() =>
                     startTransition(async () => {
                       try {
-                        const result = await createAndCacheEvent(newEventName.trim());
+                        const created = await createEvent(newEventName.trim());
                         setNewEventName("");
-                        setStatusMessage(`Created event "${result.created.EventName}".`);
+                        setStatusMessage(`Created event "${created.EventName}".`);
                         await refreshState(true);
                       } catch (error) {
                         setStatusMessage(error instanceof Error ? error.message : "Unable to create event.");
@@ -361,21 +458,59 @@ function AdminPageInner() {
                 <p className="mt-3 text-sm text-amber-100/90">Creating new events requires the backend API to be reachable.</p>
               )}
 
-              <div className="mt-5 grid gap-3 md:grid-cols-2">
-                {state.events.map((event) => (
-                  <div key={event.EventId} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="text-base font-semibold text-white">{event.EventName}</p>
-                        <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500">{event.EventId}</p>
-                      </div>
-                      <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${event.IsActive ? "bg-emerald-400/15 text-emerald-100" : "bg-slate-700 text-slate-300"}`}>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Button
+                  type="button"
+                  variant={eventFilter === "active" ? "default" : "outline"}
+                  className={eventFilter === "active" ? "h-11 rounded-2xl bg-cyan-400 px-5 text-slate-950 hover:bg-cyan-300" : "h-11 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-white hover:bg-slate-800"}
+                  onClick={() => setEventFilter("active")}
+                >
+                  Active Events
+                </Button>
+                <Button
+                  type="button"
+                  variant={eventFilter === "inactive" ? "default" : "outline"}
+                  className={eventFilter === "inactive" ? "h-11 rounded-2xl bg-cyan-400 px-5 text-slate-950 hover:bg-cyan-300" : "h-11 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-white hover:bg-slate-800"}
+                  onClick={() => setEventFilter("inactive")}
+                >
+                  Inactive Events
+                </Button>
+              </div>
+
+              <div className="mt-5 space-y-3">
+                {visibleEvents.length === 0 ? (
+                  <div className="rounded-[1.4rem] border border-dashed border-white/10 px-4 py-5 text-sm text-slate-400">
+                    No {eventFilter} events found.
+                  </div>
+                ) : (
+                  visibleEvents.map((event) => (
+                    <button
+                      key={event.EventId}
+                      type="button"
+                      onClick={() => openEventEditor(event)}
+                      className="flex w-full items-center justify-between gap-3 rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:border-cyan-400/35 hover:bg-white/[0.08]"
+                    >
+                      <p className="truncate text-base font-semibold text-white">{event.EventName}</p>
+                      <span className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${event.IsActive ? "bg-emerald-400/15 text-emerald-100" : "bg-slate-700 text-slate-300"}`}>
                         {event.IsActive ? "Active" : "Inactive"}
                       </span>
-                    </div>
-                  </div>
-                ))}
+                    </button>
+                  ))
+                )}
               </div>
+
+              {filteredEvents.length > 0 ? (
+                <div className="mt-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="h-11 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800"
+                    onClick={() => setEventListOpen(true)}
+                  >
+                    View Full Event List
+                  </Button>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -519,8 +654,13 @@ function AdminPageInner() {
                     No local scan history has been captured yet.
                   </div>
                 ) : (
-                  state.recentScans.slice(0, 8).map((scan) => (
-                    <div key={scan.DeviceScanGuid} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                  currentEventScans.slice(0, 3).map((scan) => (
+                    <button
+                      key={scan.DeviceScanGuid}
+                      type="button"
+                      onClick={() => setScanListOpen(true)}
+                      className="w-full rounded-[1.4rem] border border-white/10 bg-white/5 p-4 text-left transition hover:border-cyan-400/35 hover:bg-white/[0.08]"
+                    >
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <p className="text-base font-semibold text-white">{scan.EmployeeNameSnapshot ?? "Unknown"}</p>
@@ -535,10 +675,22 @@ function AdminPageInner() {
                         <p>Scan status: {scan.ScanStatus}</p>
                         <p>Captured: {formatDisplayDate(scan.ScanUTC)}</p>
                       </div>
-                    </div>
+                    </button>
                   ))
                 )}
               </div>
+              {currentEventScans.length > 0 ? (
+                <div className="mt-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="h-12 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800"
+                    onClick={() => setScanListOpen(true)}
+                  >
+                    View Full Current Event Scan List
+                  </Button>
+                </div>
+              ) : null}
             </div>
           </div>
         </section>
@@ -624,6 +776,216 @@ function AdminPageInner() {
                   )}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {scanListOpen ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          role="presentation"
+          onClick={() => setScanListOpen(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="scan-list-title"
+            className="flex min-h-0 max-h-[min(85vh,720px)] w-full max-w-4xl flex-col rounded-[1.75rem] border border-white/10 bg-slate-950 shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-5 py-4">
+              <div>
+                <h3 id="scan-list-title" className="text-lg font-semibold text-white">
+                  Current event scans
+                </h3>
+                <p className="mt-1 text-sm text-slate-400">
+                  {state.device?.ActiveEventName ?? "No event selected"} on {state.device?.DeviceName ?? "this kiosk"}
+                </p>
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="shrink-0 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white"
+                aria-label="Close scan list"
+                onClick={() => setScanListOpen(false)}
+              >
+                <X className="size-5" />
+              </Button>
+            </div>
+            <div className="min-h-0 flex-1 overflow-auto px-5 py-4">
+              {currentEventScans.length === 0 ? (
+                <div className="rounded-[1.4rem] border border-dashed border-white/10 px-4 py-5 text-sm text-slate-400">
+                  No scans are currently stored for this event on this kiosk.
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {currentEventScans.map((scan) => (
+                    <div key={scan.DeviceScanGuid} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-base font-semibold text-white">{scan.EmployeeNameSnapshot ?? "Unknown"}</p>
+                          <p className="mt-1 text-sm text-slate-300">{scan.BadgeNumberRaw}</p>
+                        </div>
+                        <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.SyncStatus === "SYNCED" ? "bg-emerald-400/15 text-emerald-100" : "bg-amber-400/15 text-amber-100"}`}>
+                          {scan.SyncStatus}
+                        </span>
+                      </div>
+                      <div className="mt-3 grid gap-2 text-sm text-slate-300 md:grid-cols-2">
+                        <p>Scan status: {scan.ScanStatus}</p>
+                        <p>Captured: {formatDisplayDate(scan.ScanUTC)}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {eventListOpen ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          role="presentation"
+          onClick={() => setEventListOpen(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="event-list-title"
+            className="flex min-h-0 max-h-[min(85vh,720px)] w-full max-w-3xl flex-col rounded-[1.75rem] border border-white/10 bg-slate-950 shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-5 py-4">
+              <div>
+                <h3 id="event-list-title" className="text-lg font-semibold text-white">
+                  {eventFilter === "active" ? "Active" : "Inactive"} events
+                </h3>
+                <p className="mt-1 text-sm text-slate-400">{filteredEvents.length} event{filteredEvents.length === 1 ? "" : "s"}</p>
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="shrink-0 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white"
+                aria-label="Close event list"
+                onClick={() => setEventListOpen(false)}
+              >
+                <X className="size-5" />
+              </Button>
+            </div>
+            <div className="min-h-0 flex-1 overflow-auto px-5 py-4">
+              <div className="space-y-3">
+                {filteredEvents.map((event) => (
+                  <button
+                    key={event.EventId}
+                    type="button"
+                    onClick={() => {
+                      setEventListOpen(false);
+                      openEventEditor(event);
+                    }}
+                    className="flex w-full items-center justify-between gap-3 rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:border-cyan-400/35 hover:bg-white/[0.08]"
+                  >
+                    <p className="truncate text-base font-semibold text-white">{event.EventName}</p>
+                    <span className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${event.IsActive ? "bg-emerald-400/15 text-emerald-100" : "bg-slate-700 text-slate-300"}`}>
+                      {event.IsActive ? "Active" : "Inactive"}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {eventEditorOpen && selectedEvent ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          role="presentation"
+          onClick={() => setEventEditorOpen(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="event-editor-title"
+            className="w-full max-w-2xl rounded-[1.75rem] border border-white/10 bg-slate-950 shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-5 py-4">
+              <div>
+                <h3 id="event-editor-title" className="text-lg font-semibold text-white">
+                  Edit event
+                </h3>
+                <p className="mt-1 text-sm text-slate-400">{selectedEvent.EventId}</p>
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="shrink-0 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white"
+                aria-label="Close event editor"
+                onClick={() => setEventEditorOpen(false)}
+              >
+                <X className="size-5" />
+              </Button>
+            </div>
+            <div className="space-y-5 px-5 py-5">
+              <div>
+                <label className="text-sm font-medium text-cyan-100">Event name</label>
+                <Input
+                  value={eventEditName}
+                  onChange={(event) => setEventEditName(event.target.value)}
+                  className="mt-2 h-12 rounded-2xl border-white/10 bg-slate-900/80 px-4 text-base text-white"
+                />
+              </div>
+              <div className="flex items-center justify-between rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-4">
+                <div>
+                  <p className="text-sm font-medium text-white">Event status</p>
+                  <p className="mt-1 text-sm text-slate-400">Inactive events stay in the catalog but will not be shown as active.</p>
+                </div>
+                <Button
+                  type="button"
+                  variant={eventEditIsActive ? "default" : "outline"}
+                  className={eventEditIsActive ? "h-10 rounded-2xl bg-emerald-400 px-4 text-slate-950 hover:bg-emerald-300" : "h-10 rounded-2xl border-white/10 bg-slate-900/80 px-4 text-white hover:bg-slate-800"}
+                  onClick={() => setEventEditIsActive((current) => !current)}
+                >
+                  {eventEditIsActive ? "Active" : "Inactive"}
+                </Button>
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-end gap-3 border-t border-white/10 px-5 py-4">
+              <Button
+                type="button"
+                variant="outline"
+                className="h-11 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800"
+                onClick={() => setEventEditorOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="button"
+                className="h-11 rounded-2xl bg-cyan-400 px-5 text-base font-semibold text-slate-950 hover:bg-cyan-300"
+                disabled={isPending || !eventEditName.trim()}
+                onClick={() =>
+                  startTransition(async () => {
+                    try {
+                      const updated = await updateEvent(selectedEvent.EventId, {
+                        name: eventEditName.trim(),
+                        isActive: eventEditIsActive,
+                      });
+                      setStatusMessage(`Updated event "${updated.EventName}".`);
+                      setEventEditorOpen(false);
+                      await refreshState(true);
+                    } catch (error) {
+                      setStatusMessage(error instanceof Error ? error.message : "Unable to update event.");
+                    }
+                  })
+                }
+              >
+                Save Event
+              </Button>
             </div>
           </div>
         </div>

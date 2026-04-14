@@ -1,5 +1,6 @@
 import { assignDevDeviceEvent } from "@/lib/ibadge-dev-api";
 import { forwardToUpstream } from "@/lib/ibadge-upstream";
+import { createUuid } from "@/lib/uuid";
 
 export async function PUT(request: Request) {
   const proxied = await forwardToUpstream(request);
@@ -13,7 +14,7 @@ export async function PUT(request: Request) {
     DeviceId?: string;
     EventId?: string | null;
   };
-  const deviceId = String(body.deviceId ?? body.DeviceId ?? crypto.randomUUID());
+  const deviceId = String(body.deviceId ?? body.DeviceId ?? createUuid());
   const eventId =
     body.eventId === null || body.EventId === null
       ? null

@@ -15,9 +15,15 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "landscape",
     icons: [
       {
-        src: "/icon.svg",
-        sizes: "any",
-        type: "image/svg+xml",
+        src: "/ibadge-favicon.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/ibadge-favicon.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any maskable",
       },
     ],
   };

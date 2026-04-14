@@ -1,4 +1,3 @@
-import { appConfig } from "@/lib/app-config";
 import {
   createEvent,
   getCurrentDevice,
@@ -24,6 +23,8 @@ import type {
 } from "@/lib/kiosk-types";
 import {
   buildReviewSummary,
+  clampClassDurationHours,
+  centralDateKey,
   employeeMatchForBadge,
   eventLabel,
   formatDisplayDate,
@@ -31,6 +32,7 @@ import {
   normalizeBadge,
   nowUtcIso,
 } from "@/lib/kiosk-utils";
+import { createUuid } from "@/lib/uuid";
 import {
   deletePendingScans,
   readDeviceConfig,
@@ -64,18 +66,19 @@ function isBrowserOnline() {
 }
 
 function createDeviceName() {
-  return `Attendance Kiosk ${crypto.randomUUID().slice(0, 4).toUpperCase()}`;
+  return `Attendance Kiosk ${createUuid().slice(0, 4).toUpperCase()}`;
 }
 
 function makeLocalDeviceConfig(existing?: Partial<DeviceConfig>): DeviceConfig {
   const now = nowUtcIso();
-  const guid = existing?.DeviceGuid ?? crypto.randomUUID();
+  const guid = existing?.DeviceGuid ?? createUuid();
   return {
     DeviceId: existing?.DeviceId ?? guid,
     DeviceGuid: guid,
     DeviceName: existing?.DeviceName ?? createDeviceName(),
     ActiveEventId: existing?.ActiveEventId ?? null,
     ActiveEventName: existing?.ActiveEventName ?? null,
+    ClassDurationHours: clampClassDurationHours(existing?.ClassDurationHours ?? 0.5),
     RegisteredUTC: existing?.RegisteredUTC ?? now,
     LastUpdatedUTC: now,
   };
@@ -97,6 +100,8 @@ function normalizeEmployee(raw: unknown): EmployeeRecord | null {
 
   const emailRaw = candidate.Email ?? candidate.email ?? candidate.EmailAddress ?? candidate.WorkEmail ?? candidate.PrimaryEmail;
   const email = emailRaw == null || emailRaw === "" ? null : String(emailRaw).trim() || null;
+  const companyNumRaw = candidate.CompanyNum ?? candidate.companyNum ?? candidate.CompanyNumber ?? candidate.companyNumber;
+  const companyNum = companyNumRaw == null || companyNumRaw === "" ? null : String(companyNumRaw).trim() || null;
 
   return {
     EmpID: candidate.EmpID ? String(candidate.EmpID) : candidate.empId ? String(candidate.empId) : null,
@@ -104,6 +109,7 @@ function normalizeEmployee(raw: unknown): EmployeeRecord | null {
     BadgeNumberNormalized: normalizedBadge,
     EmployeeName: String(candidate.EmployeeName ?? candidate.FullName ?? candidate.Name ?? candidate.employeeName ?? "Unknown"),
     Email: email,
+    CompanyNum: companyNum,
     IsActive: candidate.IsActive === false || candidate.active === false ? false : true,
     LastUpdatedUTC: candidate.LastUpdatedUTC ? String(candidate.LastUpdatedUTC) : nowUtcIso(),
   };
@@ -155,6 +161,9 @@ function normalizeDevice(raw: unknown, fallback?: Partial<DeviceConfig>): Device
       candidate.ActiveEventName === null || candidate.activeEventName === null
         ? null
         : String(candidate.ActiveEventName ?? candidate.activeEventName ?? fallback?.ActiveEventName ?? "").trim() || null,
+    ClassDurationHours: clampClassDurationHours(
+      candidate.ClassDurationHours ?? candidate.classDurationHours ?? fallback?.ClassDurationHours ?? 0.5
+    ),
     RegisteredUTC: String(candidate.RegisteredUTC ?? candidate.registeredUtc ?? fallback?.RegisteredUTC ?? nowUtcIso()),
   });
 }
@@ -192,6 +201,18 @@ export function normalizeReviewScan(raw: unknown): AttendanceScan | null {
       candidate.EmployeeNameSnapshot === null || candidate.employeeNameSnapshot === null
         ? null
         : String(candidate.EmployeeNameSnapshot ?? candidate.employeeNameSnapshot ?? "").trim() || null,
+    Email:
+      candidate.Email === null || candidate.email === null
+        ? null
+        : String(candidate.Email ?? candidate.email ?? "").trim() || null,
+    CompanyNum:
+      candidate.CompanyNum === null || candidate.companyNum === null
+        ? null
+        : String(candidate.CompanyNum ?? candidate.companyNum ?? "").trim() || null,
+    ClassDurationHours:
+      candidate.ClassDurationHours === null || candidate.classDurationHours === null
+        ? null
+        : clampClassDurationHours(candidate.ClassDurationHours ?? candidate.classDurationHours),
     ScanStatus: String(candidate.ScanStatus ?? candidate.scanStatus ?? "UNKNOWN").toUpperCase() as AttendanceScan["ScanStatus"],
     SyncStatus: String(candidate.SyncStatus ?? candidate.syncStatus ?? "SYNCED").toUpperCase() as AttendanceScan["SyncStatus"],
     ScanUTC: String(candidate.ScanUTC ?? candidate.scanUtc ?? candidate.timestamp ?? nowUtcIso()),
@@ -429,32 +450,31 @@ export async function refreshReferenceData(forceRefresh: boolean, device?: Devic
   };
 }
 
-function duplicateWindowMs() {
-  return appConfig.duplicateWindowSeconds * 1000;
-}
-
 export function findSuppressedDuplicate(
   recentScans: AttendanceScan[],
-  params: { badgeRaw: string; deviceId: string; eventId: string | null; scanUtc?: string }
+  params: { badgeRaw: string; eventId: string | null; scanUtc?: string; classDurationHours: number }
 ) {
   const normalizedBadge = normalizeBadge(params.badgeRaw);
-  const scanTime = new Date(params.scanUtc ?? nowUtcIso()).getTime();
+  const scanUtc = params.scanUtc ?? nowUtcIso();
+  const scanTime = new Date(scanUtc).getTime();
+  const scanDay = centralDateKey(scanUtc);
+  const windowMs = clampClassDurationHours(params.classDurationHours) * 60 * 60 * 1000;
 
   return (
     recentScans.find((scan) => {
-      if (scan.DeviceId !== params.deviceId) {
-        return false;
-      }
-
       if ((scan.EventId ?? null) !== (params.eventId ?? null)) {
         return false;
       }
 
-      if (scan.BadgeNumberNormalized !== normalizedBadge) {
+      if (normalizeBadge(scan.BadgeNumberRaw) !== normalizedBadge) {
         return false;
       }
 
-      return scanTime - new Date(scan.ScanUTC).getTime() <= duplicateWindowMs();
+      if (centralDateKey(scan.ScanUTC) !== scanDay) {
+        return false;
+      }
+
+      return scanTime - new Date(scan.ScanUTC).getTime() <= windowMs;
     }) ?? null
   );
 }
@@ -472,7 +492,7 @@ export function createScanRecord(
   const scanStatus = !matchedEmployee ? "UNKNOWN" : matchedEmployee.IsActive ? "MATCHED" : "INACTIVE";
 
   const record: AttendanceScan = {
-    DeviceScanGuid: crypto.randomUUID(),
+    DeviceScanGuid: createUuid(),
     DeviceId: device.DeviceId,
     DeviceGuid: device.DeviceGuid,
     EventId: device.ActiveEventId,
@@ -481,6 +501,9 @@ export function createScanRecord(
     BadgeNumberRaw: badgeRaw.trim(),
     BadgeNumberNormalized: normalizeBadge(badgeRaw),
     EmployeeNameSnapshot: matchedEmployee?.EmployeeName ?? null,
+    Email: matchedEmployee?.Email ?? null,
+    CompanyNum: matchedEmployee?.CompanyNum ?? null,
+    ClassDurationHours: device.ClassDurationHours,
     ScanStatus: scanStatus,
     SyncStatus: "PENDING",
     ScanUTC: scanUtc,
@@ -564,6 +587,13 @@ export async function submitScan(record: AttendanceScan) {
 
       const response = await postScan(currentRecord);
       const mergedScan = response.scan ? { ...currentRecord, ...response.scan } : currentRecord;
+      if (response.accepted === false || mergedScan.SyncStatus === "SUPPRESSED" || Boolean(mergedScan.SuppressedReason)) {
+        return {
+          ...mergedScan,
+          SyncStatus: "SUPPRESSED",
+          SuppressedReason: mergedScan.SuppressedReason ?? "DuplicateBadgeForEvent",
+        };
+      }
       return await markScanAsSynced(mergedScan);
     } catch (error) {
       if (attempt === 1) {
@@ -675,12 +705,29 @@ export async function updateDeviceName(name: string) {
 }
 
 export async function updateDeviceConfiguration(name: string, eventId: string | null, events: EventRecord[]) {
+  const current = (await readDeviceConfig()) ?? makeLocalDeviceConfig();
   const renamed = await updateDeviceName(name);
   const currentEvents = events.length > 0 ? events : await readEvents();
-  return setActiveEvent(eventId, currentEvents).then((updated) => ({
-    ...updated,
+  const updatedEvent = await setActiveEvent(eventId, currentEvents);
+  const nextDevice = {
+    ...updatedEvent,
     DeviceName: renamed.DeviceName,
-  }));
+    ClassDurationHours: current.ClassDurationHours,
+  };
+  await writeDeviceConfig(nextDevice);
+  return nextDevice;
+}
+
+export async function updateDeviceClassDuration(classDurationHours: number) {
+  const current = (await readDeviceConfig()) ?? makeLocalDeviceConfig();
+  const nextDevice = {
+    ...current,
+    ClassDurationHours: clampClassDurationHours(classDurationHours),
+    LastUpdatedUTC: nowUtcIso(),
+  };
+
+  await writeDeviceConfig(nextDevice);
+  return nextDevice;
 }
 
 export async function setActiveEvent(eventId: string | null, events: EventRecord[]) {

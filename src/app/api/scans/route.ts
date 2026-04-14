@@ -13,7 +13,10 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as AttendanceScan;
     const scan = await insertScanRecord(body);
-    return Response.json({ accepted: true, scan });
+    return Response.json({
+      accepted: scan.SyncStatus !== "SUPPRESSED",
+      scan,
+    });
   } catch (error) {
     return Response.json(
       { error: error instanceof Error ? error.message : "Unable to store badge scan." },

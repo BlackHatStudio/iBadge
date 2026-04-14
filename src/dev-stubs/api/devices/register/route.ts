@@ -1,5 +1,6 @@
 import { devEventsList, upsertDevDevice } from "@/lib/ibadge-dev-api";
 import { forwardToUpstream } from "@/lib/ibadge-upstream";
+import { createUuid } from "@/lib/uuid";
 
 export async function POST(request: Request) {
   const proxied = await forwardToUpstream(request);
@@ -9,7 +10,7 @@ export async function POST(request: Request) {
 
   const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
   const now = new Date().toISOString();
-  const deviceId = String(body.DeviceId ?? body.deviceId ?? crypto.randomUUID());
+  const deviceId = String(body.DeviceId ?? body.deviceId ?? createUuid());
   const deviceGuid = String(body.DeviceGuid ?? body.deviceGuid ?? deviceId);
 
   const defaultEvent = devEventsList()[0];

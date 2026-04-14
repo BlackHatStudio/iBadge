@@ -15,6 +15,7 @@ import type {
 } from "@/lib/kiosk-types";
 import { buildReviewPdfBuffer } from "@/lib/review-pdf";
 import { formatScanTimeCentralOnly } from "@/lib/kiosk-utils";
+import { createUuid } from "@/lib/uuid";
 
 const execFileAsync = promisify(execFile);
 const SQLCMD_PATH = "sqlcmd";
@@ -47,6 +48,14 @@ type DeviceRow = {
   RegisteredUTC: string;
   LastUpdatedUTC: string;
 };
+
+type EmployeeOptionalColumns = {
+  HasEmail: boolean;
+  HasCompanyNum: boolean;
+  HasFloor: boolean;
+};
+
+let employeeOptionalColumnsCache: EmployeeOptionalColumns | null = null;
 
 function parseEnvFile(filePath: string) {
   if (!existsSync(filePath)) {
@@ -221,6 +230,32 @@ function trimOrNull(value: string | null | undefined) {
   return trimmed.length > 0 ? trimmed : null;
 }
 
+async function getEmployeeOptionalColumns() {
+  if (employeeOptionalColumnsCache) {
+    return employeeOptionalColumnsCache;
+  }
+
+  const result =
+    (await queryJsonOne<EmployeeOptionalColumns>(`
+      SET NOCOUNT ON;
+      SELECT
+        CAST(MAX(CASE WHEN name = N'Email' THEN 1 ELSE 0 END) AS bit) AS HasEmail,
+        CAST(MAX(CASE WHEN name = N'CompanyNum' THEN 1 ELSE 0 END) AS bit) AS HasCompanyNum,
+        CAST(MAX(CASE WHEN name = N'Floor' THEN 1 ELSE 0 END) AS bit) AS HasFloor
+      FROM sys.columns
+      WHERE object_id = OBJECT_ID(N'dbo.Employee')
+      FOR JSON PATH, WITHOUT_ARRAY_WRAPPER;
+    `)) ?? { HasEmail: false, HasCompanyNum: false, HasFloor: false };
+
+  employeeOptionalColumnsCache = {
+    HasEmail: Boolean(result.HasEmail),
+    HasCompanyNum: Boolean(result.HasCompanyNum),
+    HasFloor: Boolean(result.HasFloor),
+  };
+
+  return employeeOptionalColumnsCache;
+}
+
 function eventSelectSql(whereClause: string) {
   return `
     SET NOCOUNT ON;
@@ -260,7 +295,12 @@ function devicePayloadSelect(whereClause: string) {
   `;
 }
 
-function employeeSelectSql() {
+function employeeSelectSql(optionalColumns: EmployeeOptionalColumns) {
+  const companyValueSql = optionalColumns.HasFloor
+    ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), Floor))), '')"
+    : optionalColumns.HasCompanyNum
+      ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), CompanyNum))), '')"
+      : "CAST(NULL AS nvarchar(100))";
   return `
     SET NOCOUNT ON;
     SELECT
@@ -270,14 +310,20 @@ function employeeSelectSql() {
       NULLIF(LTRIM(RTRIM(CONCAT(ISNULL(FirstName, ''), ' ', ISNULL(LastName, '')))), '') AS EmployeeName,
       CAST(IsActive AS bit) AS IsActive,
       ${currentUtcSql("LastImportedUTC")} AS LastUpdatedUTC,
-      NULLIF(LTRIM(RTRIM(Email)), '') AS Email
+      ${optionalColumns.HasEmail ? "NULLIF(LTRIM(RTRIM(Email)), '')" : "CAST(NULL AS nvarchar(320))"} AS Email,
+      ${companyValueSql} AS CompanyNum
     FROM dbo.Employee
     ORDER BY EmpID
     FOR JSON PATH, INCLUDE_NULL_VALUES;
   `;
 }
 
-function scanSelectSql(whereClause: string) {
+function scanSelectSql(whereClause: string, optionalColumns: EmployeeOptionalColumns) {
+  const companyValueSql = optionalColumns.HasFloor
+    ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), emp.Floor))), '')"
+    : optionalColumns.HasCompanyNum
+      ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), emp.CompanyNum))), '')"
+      : "CAST(NULL AS nvarchar(100))";
   return `
     SET NOCOUNT ON;
     SELECT
@@ -289,6 +335,9 @@ function scanSelectSql(whereClause: string) {
       CASE WHEN bs.EmpID IS NULL THEN NULL ELSE CAST(bs.EmpID AS nvarchar(50)) END AS EmpID,
       bs.BadgeNumberRaw,
       bs.EmployeeNameSnapshot,
+      ${optionalColumns.HasEmail ? "NULLIF(LTRIM(RTRIM(emp.Email)), '')" : "CAST(NULL AS nvarchar(320))"} AS Email,
+      ${companyValueSql} AS CompanyNum,
+      CAST(NULL AS int) AS ClassDurationHours,
       bs.ScanStatus,
       bs.SyncStatus,
       ${currentUtcSql("bs.ScanUTC")} AS ScanUTC,
@@ -302,6 +351,7 @@ function scanSelectSql(whereClause: string) {
     FROM dbo.BadgeScan bs
     INNER JOIN dbo.Device d ON d.DeviceID = bs.DeviceID
     LEFT JOIN dbo.Event e ON e.EventID = bs.EventID
+    LEFT JOIN dbo.Employee emp ON emp.EmpID = bs.EmpID
     ${whereClause}
     FOR JSON PATH, INCLUDE_NULL_VALUES;
   `;
@@ -409,7 +459,7 @@ async function ensureDeviceRow(input: {
   deviceName?: string | null;
 }) {
   const existing = await getDeviceByIdentity(input.deviceId, input.deviceGuid);
-  const resolvedGuid = trimOrNull(input.deviceGuid) ?? trimOrNull(existing?.DeviceGuid) ?? crypto.randomUUID();
+  const resolvedGuid = trimOrNull(input.deviceGuid) ?? trimOrNull(existing?.DeviceGuid) ?? createUuid();
   const resolvedName = trimOrNull(input.deviceName) ?? trimOrNull(existing?.DeviceName) ?? "Kiosk";
 
   if (existing && isNumericId(existing.DeviceId)) {
@@ -502,6 +552,7 @@ function normalizeEmployeeName(firstName: string | null | undefined, lastName: s
 }
 
 async function resolveScanDependencies(scan: AttendanceScan) {
+  const optionalColumns = await getEmployeeOptionalColumns();
   const device = await ensureDeviceRow({
     deviceId: scan.DeviceId,
     deviceGuid: scan.DeviceGuid,
@@ -523,6 +574,8 @@ async function resolveScanDependencies(scan: AttendanceScan) {
     FirstName: string | null;
     LastName: string | null;
     IsActive: boolean;
+    Email: string | null;
+    CompanyNum: string | null;
   }>(`
     SET NOCOUNT ON;
     SELECT TOP 1
@@ -530,12 +583,20 @@ async function resolveScanDependencies(scan: AttendanceScan) {
       BadgeNumber,
       FirstName,
       LastName,
-      CAST(IsActive AS bit) AS IsActive
+      CAST(IsActive AS bit) AS IsActive,
+      ${optionalColumns.HasEmail ? "NULLIF(LTRIM(RTRIM(Email)), '')" : "CAST(NULL AS nvarchar(320))"} AS Email,
+      ${
+        optionalColumns.HasFloor
+          ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), Floor))), '')"
+          : optionalColumns.HasCompanyNum
+            ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), CompanyNum))), '')"
+            : "CAST(NULL AS nvarchar(100))"
+      } AS CompanyNum
     FROM dbo.Employee
     WHERE ${
       isNumericId(scan.EmpID)
         ? `EmpID = ${scan.EmpID}`
-        : `UPPER(REPLACE(BadgeNumber, ' ', '')) = UPPER(REPLACE(${sqlNVarChar(scan.BadgeNumberRaw)}, ' ', ''))`
+        : `UPPER(REPLACE(LTRIM(REPLACE(BadgeNumber, '0', ' ')), ' ', '')) = UPPER(REPLACE(LTRIM(REPLACE(${sqlNVarChar(scan.BadgeNumberRaw)}, '0', ' ')), ' ', ''))`
     }
     ORDER BY EmpID
     FOR JSON PATH, INCLUDE_NULL_VALUES;
@@ -552,6 +613,8 @@ async function resolveScanDependencies(scan: AttendanceScan) {
     eventId,
     employeeId: employee ? String(employee.EmpID) : null,
     employeeName,
+    email: employee?.Email ?? scan.Email ?? null,
+    companyNum: employee?.CompanyNum ?? scan.CompanyNum ?? null,
     scanStatus,
   };
 }
@@ -599,6 +662,32 @@ function buildReviewWhere(filters: ReviewFilters, currentDeviceId: string | null
   return where.join(" AND ");
 }
 
+async function findExistingEventDuplicate(
+  eventId: string,
+  badgeNumberNormalized: string,
+  scanUtc: string,
+  classDurationHours: number
+) {
+  const optionalColumns = await getEmployeeOptionalColumns();
+  const clampedHours = Math.min(8, Math.max(1, Math.round(classDurationHours || 1)));
+  const rows = await queryJsonArray<AttendanceScan>(`
+    ${scanSelectSql(
+      `WHERE bs.EventID = ${eventId}
+         AND UPPER(REPLACE(LTRIM(REPLACE(bs.BadgeNumberRaw, '0', ' ')), ' ', '')) =
+             UPPER(REPLACE(LTRIM(REPLACE(${sqlNVarChar(badgeNumberNormalized)}, '0', ' ')), ' ', ''))
+         AND bs.SyncStatus <> N'SUPPRESSED'
+         AND bs.ScanUTC <= ${sqlDateTime(scanUtc)}
+         AND bs.ScanUTC >= DATEADD(hour, -${clampedHours}, ${sqlDateTime(scanUtc)})
+         AND CONVERT(date, (bs.ScanUTC AT TIME ZONE 'UTC') AT TIME ZONE 'Central Standard Time') =
+             CONVERT(date, (${sqlDateTime(scanUtc)} AT TIME ZONE 'UTC') AT TIME ZONE 'Central Standard Time')
+       ORDER BY bs.ScanUTC DESC, bs.ScanID DESC`,
+      optionalColumns
+    )}
+  `);
+
+  return rows[0] ?? null;
+}
+
 function csvEscape(value: string | number | boolean | null | undefined) {
   const text = value === null || value === undefined ? "" : String(value);
   if (/[",\r\n]/.test(text)) {
@@ -609,7 +698,7 @@ function csvEscape(value: string | number | boolean | null | undefined) {
 
 function buildCsv(scans: AttendanceScan[]) {
   const lines = [
-    ["Scan time (Central)", "Badge", "Employee", "Event", "Device"].join(","),
+    ["Scan time (Central)", "Badge", "Employee", "Email", "Company#", "Event", "Device"].join(","),
   ];
 
   for (const scan of scans) {
@@ -618,6 +707,8 @@ function buildCsv(scans: AttendanceScan[]) {
         formatScanTimeCentralOnly(scan.ScanUTC),
         scan.BadgeNumberRaw,
         scan.EmployeeNameSnapshot,
+        scan.Email,
+        scan.CompanyNum,
         scan.EventNameSnapshot,
         scan.DeviceDisplayName,
       ]
@@ -673,6 +764,40 @@ export async function createIbadgeEvent(name: string) {
   }
 
   return created;
+}
+
+export async function updateIbadgeEvent(eventId: string, updates: { name: string; isActive: boolean }) {
+  if (!isNumericId(eventId)) {
+    throw new Error("Event ID must be numeric.");
+  }
+
+  const trimmedName = updates.name.trim();
+  if (!trimmedName) {
+    throw new Error("Event name is required.");
+  }
+
+  const updated = await queryJsonOne<EventRecord>(`
+    SET NOCOUNT ON;
+    UPDATE dbo.Event
+    SET EventName = ${sqlNVarChar(trimmedName)},
+        IsActive = ${updates.isActive ? 1 : 0}
+    WHERE EventID = ${eventId};
+
+    SELECT
+      CAST(EventID AS nvarchar(50)) AS EventId,
+      EventName,
+      CAST(IsActive AS bit) AS IsActive,
+      ${currentUtcSql("CreatedUTC")} AS LastUpdatedUTC
+    FROM dbo.Event
+    WHERE EventID = ${eventId}
+    FOR JSON PATH, WITHOUT_ARRAY_WRAPPER;
+  `);
+
+  if (!updated) {
+    throw new Error("Event update did not return a row.");
+  }
+
+  return updated;
 }
 
 export async function getCurrentDeviceRecord(deviceId?: string | null, deviceGuid?: string | null) {
@@ -737,8 +862,9 @@ export async function verifyAdminPinRecord(pin: string) {
 }
 
 export async function getRefreshPayload(deviceId?: string | null, deviceGuid?: string | null): Promise<RefreshResponse> {
+  const optionalColumns = await getEmployeeOptionalColumns();
   const [employees, events, device] = await Promise.all([
-    queryJsonArray<EmployeeRecord>(employeeSelectSql()),
+    queryJsonArray<EmployeeRecord>(employeeSelectSql(optionalColumns)),
     listIbadgeEvents(),
     getDeviceByIdentity(deviceId, deviceGuid),
   ]);
@@ -764,6 +890,29 @@ export async function getRefreshPayload(deviceId?: string | null, deviceGuid?: s
 
 export async function insertScanRecord(scan: AttendanceScan, syncBatchId?: string | null) {
   const resolved = await resolveScanDependencies(scan);
+  const optionalColumns = await getEmployeeOptionalColumns();
+  const existingDuplicate = await findExistingEventDuplicate(
+    resolved.eventId,
+    scan.BadgeNumberNormalized,
+    scan.ScanUTC,
+    scan.ClassDurationHours ?? 1
+  );
+
+  if (existingDuplicate) {
+    return {
+      ...scan,
+      EventId: existingDuplicate.EventId,
+      EventNameSnapshot: existingDuplicate.EventNameSnapshot,
+      EmpID: existingDuplicate.EmpID,
+      EmployeeNameSnapshot: existingDuplicate.EmployeeNameSnapshot,
+      Email: existingDuplicate.Email,
+      CompanyNum: existingDuplicate.CompanyNum,
+      ClassDurationHours: scan.ClassDurationHours ?? 1,
+      ScanStatus: existingDuplicate.ScanStatus,
+      SyncStatus: "SUPPRESSED" as const,
+      SuppressedReason: "DuplicateBadgeForEvent",
+    };
+  }
 
   const createdRows = await queryJsonArray<AttendanceScan>(`
     SET NOCOUNT ON;
@@ -807,7 +956,7 @@ export async function insertScanRecord(scan: AttendanceScan, syncBatchId?: strin
       SYSUTCDATETIME()
     );
 
-    ${scanSelectSql("WHERE bs.ScanID IN (SELECT ScanID FROM @Inserted)")}
+    ${scanSelectSql("WHERE bs.ScanID IN (SELECT ScanID FROM @Inserted)", optionalColumns)}
   `);
   const created = createdRows[0] ?? null;
 
@@ -815,7 +964,12 @@ export async function insertScanRecord(scan: AttendanceScan, syncBatchId?: strin
     throw new Error("Scan insert did not return a row.");
   }
 
-  return created;
+  return {
+    ...created,
+    Email: resolved.email,
+    CompanyNum: resolved.companyNum,
+    ClassDurationHours: scan.ClassDurationHours ?? 1,
+  };
 }
 
 export async function syncBatchRecords(scans: AttendanceScan[]): Promise<SyncBatchResponse> {
@@ -848,7 +1002,7 @@ export async function syncBatchRecords(scans: AttendanceScan[]): Promise<SyncBat
     OUTPUT inserted.SyncBatchID INTO @Inserted(SyncBatchID)
     VALUES (
       ${device.DeviceId},
-      TRY_CONVERT(uniqueidentifier, ${sqlVarChar(crypto.randomUUID())}),
+      TRY_CONVERT(uniqueidentifier, ${sqlVarChar(createUuid())}),
       SYSUTCDATETIME(),
       SYSUTCDATETIME(),
       ${scans.length},
@@ -914,7 +1068,10 @@ export async function retryDeviceScans(deviceId: string): Promise<SyncBatchRespo
 }
 
 export async function getReviewScansRecord(filters: ReviewFilters, currentDeviceId: string | null) {
-  return queryJsonArray<AttendanceScan>(scanSelectSql(`WHERE ${buildReviewWhere(filters, currentDeviceId)} ORDER BY bs.ScanUTC DESC`));
+  const optionalColumns = await getEmployeeOptionalColumns();
+  return queryJsonArray<AttendanceScan>(
+    scanSelectSql(`WHERE ${buildReviewWhere(filters, currentDeviceId)} ORDER BY bs.ScanUTC DESC`, optionalColumns)
+  );
 }
 
 export async function buildExportResponse(

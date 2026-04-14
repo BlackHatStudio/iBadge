@@ -10,6 +10,7 @@ export interface EmployeeRecord {
   BadgeNumberNormalized: string;
   EmployeeName: string;
   Email: string | null;
+  CompanyNum: string | null;
   IsActive: boolean;
   LastUpdatedUTC: string | null;
 }
@@ -27,6 +28,7 @@ export interface DeviceConfig {
   DeviceName: string;
   ActiveEventId: string | null;
   ActiveEventName: string | null;
+  ClassDurationHours: number;
   RegisteredUTC: string;
   LastUpdatedUTC: string;
 }
@@ -41,6 +43,9 @@ export interface AttendanceScan {
   BadgeNumberRaw: string;
   BadgeNumberNormalized: string;
   EmployeeNameSnapshot: string | null;
+  Email: string | null;
+  CompanyNum: string | null;
+  ClassDurationHours: number | null;
   ScanStatus: ScanStatus;
   SyncStatus: SyncStatus;
   ScanUTC: string;

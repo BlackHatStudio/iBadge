@@ -59,5 +59,7 @@ Invoke-SqlBatchFile -ConnectionString ([string]$settings.database.adminConnectio
 Invoke-SqlBatchFile -ConnectionString ([string]$settings.database.appConnectionString) -FilePath (Join-Path $SqlRoot '002_create_tables.sql') -Tokens $tokens
 Invoke-SqlBatchFile -ConnectionString ([string]$settings.database.appConnectionString) -FilePath (Join-Path $SqlRoot '003_seed_initial_data.sql') -Tokens $tokens
 Invoke-SqlBatchFile -ConnectionString ([string]$settings.database.appConnectionString) -FilePath (Join-Path $SqlRoot '004_indexes_and_constraints.sql') -Tokens $tokens
+Invoke-SqlBatchFile -ConnectionString ([string]$settings.database.appConnectionString) -FilePath (Join-Path $SqlRoot '005_dbo_employee_email.sql') -Tokens $tokens
+Invoke-SqlBatchFile -ConnectionString ([string]$settings.database.appConnectionString) -FilePath (Join-Path $SqlRoot '006_dbo_employee_companynum.sql') -Tokens $tokens
 
 Write-Host 'Database scripts completed successfully.'

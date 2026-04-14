@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { Activity, BadgeCheck, BadgeX, CloudOff, Shield } from "lucide-react";
 import { AdminAccessButton } from "@/components/admin-access-button";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ import {
 import { eventLabel, formatDisplayDate } from "@/lib/kiosk-utils";
 
 type ResultView = {
-  state: "idle" | "MATCHED" | "UNKNOWN" | "INACTIVE" | "DUPLICATE";
+  state: "idle" | "MATCHED" | "UNKNOWN" | "INACTIVE" | "DUPLICATE" | "ERROR";
   title: string;
   detail: string;
   scan?: AttendanceScan;
@@ -33,11 +34,12 @@ const DEFAULT_RESULT: ResultView = {
 function toneForResult(state: ResultView["state"]) {
   if (state === "MATCHED") return { border: "border-emerald-300/35", bg: "bg-emerald-400/15", icon: BadgeCheck, iconColor: "text-emerald-200" };
   if (state === "INACTIVE") return { border: "border-amber-300/35", bg: "bg-amber-400/15", icon: BadgeX, iconColor: "text-amber-100" };
-  if (state === "UNKNOWN" || state === "DUPLICATE") return { border: "border-rose-300/35", bg: "bg-rose-400/15", icon: CloudOff, iconColor: "text-rose-100" };
+  if (state === "UNKNOWN" || state === "DUPLICATE" || state === "ERROR") return { border: "border-rose-300/35", bg: "bg-rose-400/15", icon: CloudOff, iconColor: "text-rose-100" };
   return { border: "border-white/10", bg: "bg-slate-900/70", icon: Activity, iconColor: "text-cyan-200" };
 }
 
 export function KioskPage() {
+  const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const deviceRef = useRef<Awaited<ReturnType<typeof bootstrapKiosk>>["device"] | null>(null);
   const [ready, setReady] = useState(false);
@@ -48,6 +50,7 @@ export function KioskPage() {
   const [pendingScans, setPendingScans] = useState<AttendanceScan[]>([]);
   const [recentScans, setRecentScans] = useState<AttendanceScan[]>([]);
   const [badgeInput, setBadgeInput] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<ResultView>(DEFAULT_RESULT);
   const loadKiosk = useCallback(async (forceRefresh = false) => {
     const snapshot = await bootstrapKiosk(forceRefresh);
@@ -136,15 +139,8 @@ export function KioskPage() {
     return () => window.clearTimeout(timer);
   }, [result]);
 
-  const currentEventLabel = useMemo(() => eventLabel(events, device?.ActiveEventId ?? null, device?.ActiveEventName ?? null), [device, events]);
-  const lastScan = recentScans[0];
-  const tone = toneForResult(result.state);
-  const ResultIcon = tone.icon;
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (!device) {
+  useEffect(() => {
+    if (!ready || isSubmitting) {
       return;
     }
 
@@ -153,76 +149,145 @@ export function KioskPage() {
       return;
     }
 
-    const duplicate = findSuppressedDuplicate(recentScans, {
-      badgeRaw: rawBadge,
-      deviceId: device.DeviceId,
-      eventId: device.ActiveEventId,
-    });
+    const timer = window.setTimeout(() => {
+      formRef.current?.requestSubmit();
+    }, 1000);
 
-    if (duplicate) {
-      setResult({
-        state: "DUPLICATE",
-        title: "Duplicate Suppressed",
-        detail: `${duplicate.BadgeNumberRaw} was already captured on this device for ${duplicate.EventNameSnapshot ?? "the active event"} within 30 seconds.`,
-        scan: duplicate,
+    return () => window.clearTimeout(timer);
+  }, [badgeInput, isSubmitting, ready]);
+
+  const currentEventLabel = useMemo(() => eventLabel(events, device?.ActiveEventId ?? null, device?.ActiveEventName ?? null), [device, events]);
+  const lastScan = recentScans[0];
+  const tone = toneForResult(result.state);
+  const ResultIcon = tone.icon;
+
+  const processBadgeSubmission = useCallback(async () => {
+    if (!device || isSubmitting) {
+      return;
+    }
+
+    const rawBadge = badgeInput.trim();
+    if (!rawBadge) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const duplicate = findSuppressedDuplicate(recentScans, {
+        badgeRaw: rawBadge,
+        eventId: device.ActiveEventId,
+        classDurationHours: device.ClassDurationHours,
       });
+
+      if (duplicate) {
+        setResult({
+          state: "DUPLICATE",
+          title: "Duplicate Suppressed",
+          detail: `${duplicate.BadgeNumberRaw} is already checked into ${duplicate.EventNameSnapshot ?? "the active event"}.`,
+          scan: duplicate,
+        });
+        setBadgeInput("");
+        inputRef.current?.focus();
+        return;
+      }
+
       setBadgeInput("");
-      inputRef.current?.focus();
-      return;
-    }
 
-    const { record, matchedEmployee } = createScanRecord(rawBadge, device, employees, events);
-    const savedScan = await submitScan(record);
+      const { record, matchedEmployee } = createScanRecord(rawBadge, device, employees, events);
+      const savedScan = await submitScan(record);
 
-    const refreshed = await bootstrapKiosk(false);
-    setRecentScans(refreshed.recentScans);
-    setPendingScans(refreshed.pendingScans);
+      if (savedScan.SyncStatus === "SUPPRESSED" || savedScan.SuppressedReason === "DuplicateBadgeForEvent") {
+        setResult({
+          state: "DUPLICATE",
+          title: "Duplicate Suppressed",
+          detail: `${savedScan.BadgeNumberRaw} is already checked into ${savedScan.EventNameSnapshot ?? "the active event"}.`,
+          scan: savedScan,
+        });
+        return;
+      }
 
-    if (savedScan.ScanStatus === "MATCHED") {
+      const refreshed = await bootstrapKiosk(false);
+      setRecentScans(refreshed.recentScans);
+      setPendingScans(refreshed.pendingScans);
+
+      if (savedScan.ScanStatus === "MATCHED") {
+        setResult({
+          state: "MATCHED",
+          title: matchedEmployee?.EmployeeName ?? savedScan.EmployeeNameSnapshot ?? "Attendance logged",
+          detail:
+            savedScan.SyncStatus === "SYNCED"
+              ? `Attendance synced immediately for ${savedScan.EventNameSnapshot ?? "the selected event"}.`
+              : `Attendance captured and queued for sync to ${savedScan.EventNameSnapshot ?? "the selected event"}.`,
+          scan: savedScan,
+        });
+        return;
+      }
+
+      if (savedScan.ScanStatus === "INACTIVE") {
+        setResult({
+          state: "INACTIVE",
+          title: savedScan.EmployeeNameSnapshot ?? "Inactive employee",
+          detail: `Badge ${savedScan.BadgeNumberRaw} belongs to an inactive employee record.`,
+          scan: savedScan,
+        });
+        return;
+      }
+
       setResult({
-        state: "MATCHED",
-        title: matchedEmployee?.EmployeeName ?? savedScan.EmployeeNameSnapshot ?? "Attendance logged",
-        detail:
-          savedScan.SyncStatus === "SYNCED"
-            ? `Attendance synced immediately for ${savedScan.EventNameSnapshot ?? "the selected event"}.`
-            : `Attendance captured and queued for sync to ${savedScan.EventNameSnapshot ?? "the selected event"}.`,
+        state: "UNKNOWN",
+        title: "Unknown",
+        detail: `Badge ${savedScan.BadgeNumberRaw} is not in the cached employee list.`,
         scan: savedScan,
       });
-      return;
-    }
-
-    if (savedScan.ScanStatus === "INACTIVE") {
+    } catch (error) {
       setResult({
-        state: "INACTIVE",
-        title: savedScan.EmployeeNameSnapshot ?? "Inactive employee",
-        detail: `Badge ${savedScan.BadgeNumberRaw} belongs to an inactive employee record.`,
-        scan: savedScan,
+        state: "ERROR",
+        title: "Scan Failed",
+        detail: error instanceof Error ? error.message : "Unable to record this badge scan.",
       });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [badgeInput, device, employees, events, isSubmitting, recentScans]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await processBadgeSubmission();
+  }
+
+  function handleBadgeKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key !== "Enter") {
       return;
     }
 
-    setResult({
-      state: "UNKNOWN",
-      title: "Unknown",
-      detail: `Badge ${savedScan.BadgeNumberRaw} is not in the cached employee list.`,
-      scan: savedScan,
-    });
+    event.preventDefault();
+    formRef.current?.requestSubmit();
   }
 
   return (
     <div className="min-h-screen bg-[linear-gradient(155deg,#07121f_0%,#0f2436_32%,#124055_100%)] px-4 py-4 text-slate-100 md:px-8 md:py-6">
       <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-7xl flex-col gap-4">
         <header className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur md:p-8">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
+          <div className="grid items-center gap-4 md:grid-cols-[auto_1fr_auto]">
+            <div className="justify-self-start">
+              <Image
+                src="/ibadge-full.png"
+                alt="iBadge"
+                width={288}
+                height={116}
+                priority
+                className="h-auto w-[220px] max-w-full md:w-[288px]"
+              />
+            </div>
+            <div className="text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">Attendance Kiosk</p>
               <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-5xl">{currentEventLabel}</h1>
-              <p className="mt-3 max-w-3xl text-base text-slate-300 md:text-lg">Scan your badge to check in.</p>
             </div>
 
             <AdminAccessButton
               variant="outline"
-              className="h-14 rounded-2xl border-white/10 bg-slate-900/80 px-6 text-base font-semibold text-white hover:bg-slate-800"
+              className="h-14 justify-self-end rounded-2xl border-white/10 bg-slate-900/80 px-6 text-base font-semibold text-white hover:bg-slate-800"
             >
               <Shield className="size-5" />
               Admin
@@ -232,7 +297,7 @@ export function KioskPage() {
 
         <div className="flex flex-1 flex-col gap-4">
           <section className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur md:p-8">
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
               <label htmlFor="badge" className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-100">
                 Badge Scan
               </label>
@@ -242,17 +307,23 @@ export function KioskPage() {
                   ref={inputRef}
                   value={badgeInput}
                   onChange={(event) => setBadgeInput(event.target.value)}
+                  onKeyDown={handleBadgeKeyDown}
                   autoFocus
+                  type="text"
                   inputMode="numeric"
+                  pattern="[0-9]*"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  spellCheck={false}
                   placeholder="Scan badge or type badge number"
                   className="h-20 rounded-[1.5rem] border-white/10 bg-slate-900/80 px-6 text-2xl text-white placeholder:text-slate-500 md:text-3xl"
                 />
                 <Button
                   type="submit"
                   className="h-20 rounded-[1.5rem] bg-cyan-400 px-8 text-xl font-semibold text-slate-950 hover:bg-cyan-300 lg:min-w-64"
-                  disabled={!ready}
+                  disabled={!ready || isSubmitting}
                 >
-                  Log Attendance
+                  {isSubmitting ? "Logging..." : "Log Attendance"}
                 </Button>
               </div>
             </form>

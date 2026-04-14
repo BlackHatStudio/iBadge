@@ -1,7 +1,11 @@
 import type { AttendanceScan, EmployeeRecord, EventRecord, ReviewFilters, ReviewSummary } from "@/lib/kiosk-types";
 
 export function normalizeBadge(value: string) {
-  return value.trim().replace(/\s+/g, "").toUpperCase();
+  const normalized = value.trim().replace(/\s+/g, "").toUpperCase();
+  if (/^\d+$/.test(normalized)) {
+    return normalized.replace(/^0+(?=\d)/, "");
+  }
+  return normalized;
 }
 
 export function formatDisplayDate(value: string | null | undefined) {
@@ -36,6 +40,33 @@ export function formatScanTimeCentralOnly(iso: string | null | undefined): strin
 
 export function nowUtcIso() {
   return new Date().toISOString();
+}
+
+export function clampClassDurationHours(value: number | string | null | undefined) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    return 0.5;
+  }
+  const rounded = Math.round(parsed * 2) / 2;
+  return Math.min(4, Math.max(0.5, rounded));
+}
+
+export function centralDateKey(value: string | null | undefined) {
+  if (!value) {
+    return "";
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Chicago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
 }
 
 /** Local calendar date as YYYY-MM-DD for `<input type="date">`. */
