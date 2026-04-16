@@ -36,7 +36,7 @@ export function PinEntryForm() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(155deg,#0f172a_0%,#0f3b4e_50%,#07121f_100%)] px-6 py-8 text-slate-100 md:px-10">
+    <div className="min-h-screen bg-[linear-gradient(155deg,#0c1826_0%,#153248_38%,#1a4f6a_100%)] px-6 py-8 text-slate-100 md:px-10">
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-5xl items-center justify-center">
         <div className="grid w-full gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <section className="rounded-[2rem] border border-white/10 bg-slate-950/75 p-8 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur md:p-10">

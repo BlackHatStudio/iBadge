@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  /** Tailwind v4 uses CSS `@custom-variant dark` in globals.css; this key is ignored by @tailwindcss/postcss. */
   darkMode: 'class',
   content: [
     './src/**/*.{ts,tsx}',

@@ -10,6 +10,7 @@ import {
   triggerRetry,
   updateCurrentDevice,
   updateCurrentDeviceEvent,
+  upsertEmployeeCardholder,
 } from "@/lib/api";
 import type {
   AttendanceScan,
@@ -348,6 +349,21 @@ export async function bootstrapKiosk(forceRefresh = false) {
   }
 }
 
+/** Save a cardholder to SQL Server, then force a reference refresh so the local employee cache updates. */
+export async function addCardholderAndRefresh(
+  payload: {
+    firstName: string;
+    lastName: string;
+    badgeNumber: string;
+    email?: string | null;
+    companyNum?: string | null;
+  },
+  device: DeviceConfig
+) {
+  await upsertEmployeeCardholder(payload);
+  return refreshReferenceData(true, device);
+}
+
 export async function refreshReferenceData(forceRefresh: boolean, device?: DeviceConfig) {
   const [cachedEmployees, cachedEvents, cachedMetadata] = await Promise.all([
     readEmployees(),
@@ -491,6 +507,9 @@ export function createScanRecord(
 
   const scanStatus = !matchedEmployee ? "UNKNOWN" : matchedEmployee.IsActive ? "MATCHED" : "INACTIVE";
 
+  const badgeRawForRecord = matchedEmployee ? matchedEmployee.BadgeNumberRaw : badgeRaw.trim();
+  const badgeNormalizedForRecord = matchedEmployee ? matchedEmployee.BadgeNumberNormalized : normalizeBadge(badgeRaw);
+
   const record: AttendanceScan = {
     DeviceScanGuid: createUuid(),
     DeviceId: device.DeviceId,
@@ -498,8 +517,8 @@ export function createScanRecord(
     EventId: device.ActiveEventId,
     EventNameSnapshot: currentEventName,
     EmpID: matchedEmployee?.EmpID ?? null,
-    BadgeNumberRaw: badgeRaw.trim(),
-    BadgeNumberNormalized: normalizeBadge(badgeRaw),
+    BadgeNumberRaw: badgeRawForRecord,
+    BadgeNumberNormalized: badgeNormalizedForRecord,
     EmployeeNameSnapshot: matchedEmployee?.EmployeeName ?? null,
     Email: matchedEmployee?.Email ?? null,
     CompanyNum: matchedEmployee?.CompanyNum ?? null,

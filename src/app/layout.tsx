@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import type { ReactNode } from "react";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,13 +29,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body className="min-h-full antialiased">
+        <Script id="ibadge-theme-init" strategy="beforeInteractive">
+          {`try{var t=localStorage.getItem('ibadge-theme');var d=t!=='light';document.documentElement.classList.toggle('dark',d);document.documentElement.setAttribute('data-theme',t==='light'?'light':t==='dark'?'dark':'dark');}catch(e){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}`}
+        </Script>
         <Script src="/runtime-config.js" strategy="beforeInteractive" />
         <Script id="ibadge-sw-register" strategy="afterInteractive">
           {`if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function (error) { console.warn('Service worker registration failed', error); }); }); }`}
         </Script>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

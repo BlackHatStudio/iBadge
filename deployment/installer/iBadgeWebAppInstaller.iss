@@ -9,6 +9,8 @@
 #endif
 
 #define AppId "{{F2EE0F2A-64E7-4A38-A7AC-E779FCB676E9}"
+#define SetupReg "Software\Microsoft\Windows\CurrentVersion\Uninstall\{#AppId}_is1"
+#define SetupAppPathReg "Inno Setup: App Path"
 #define AppName "iBadge Attendance Kiosk"
 #define AppPublisher "iBadge"
 #define AppExeName "iBadge.WebApp.exe"
@@ -48,12 +50,13 @@ Source: "{#StageDir}\scripts\*"; DestDir: "{app}\scripts"; Flags: ignoreversion 
 Source: "{#StageDir}\deployment-manifest.json"; DestDir: "{app}"; Flags: ignoreversion
 
 [Run]
-Filename: "{sys}\WindowsPowerShell\v1.0\powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\scripts\install-web-package.ps1"" -SettingsFile ""{code:GetSettingsFilePath}"" -PackageRoot ""{app}"""; Flags: runhidden waituntilterminated; StatusMsg: "Updating the iBadge web service..."
+Filename: "{sys}\WindowsPowerShell\v1.0\powershell.exe"; Parameters: "{code:GetInstallWebPackageParams}"; Flags: runhidden waituntilterminated; StatusMsg: "Updating the iBadge web service..."
 
 [Code]
 var
   AppPage: TInputQueryWizardPage;
   SqlPage: TInputQueryWizardPage;
+  UpgradeBeforeInstall: Boolean;
 
 function JsonEscape(const Value: string): string;
 begin
@@ -65,6 +68,24 @@ end;
 function GetSettingsFilePath(Value: string): string;
 begin
   Result := ExpandConstant('{commonappdata}\iBadge\config\deploy.settings.json');
+end;
+
+function InitializeSetup(): Boolean;
+var
+  S: string;
+begin
+  UpgradeBeforeInstall := RegQueryStringValue(HKLM, '{#SetupReg}', '{#SetupAppPathReg}', S) or
+    RegQueryStringValue(HKCU, '{#SetupReg}', '{#SetupAppPathReg}', S);
+  Result := True;
+end;
+
+function GetInstallWebPackageParams(Value: string): string;
+begin
+  Result := '-NoProfile -ExecutionPolicy Bypass -File "' + ExpandConstant('{app}\scripts\install-web-package.ps1') + '" ' +
+    '-SettingsFile "' + GetSettingsFilePath('') + '" ' +
+    '-PackageRoot "' + ExpandConstant('{app}') + '"';
+  if UpgradeBeforeInstall then
+    Result := Result + ' -IsUpgrade';
 end;
 
 procedure InitializeWizard;

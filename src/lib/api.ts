@@ -2,6 +2,7 @@ import { buildApiUrl } from "@/lib/app-config";
 import type {
   AttendanceScan,
   DeviceConfig,
+  EmployeeRecord,
   EventRecord,
   RefreshPayload,
   RefreshResponse,
@@ -62,6 +63,19 @@ export async function createEvent(name: string) {
   return request<EventRecord>("/events", {
     method: "POST",
     body: JSON.stringify({ eventName: name }),
+  });
+}
+
+export async function upsertEmployeeCardholder(payload: {
+  firstName: string;
+  lastName: string;
+  badgeNumber: string;
+  email?: string | null;
+  companyNum?: string | null;
+}) {
+  return request<EmployeeRecord>("/employees", {
+    method: "POST",
+    body: JSON.stringify(payload),
   });
 }
 

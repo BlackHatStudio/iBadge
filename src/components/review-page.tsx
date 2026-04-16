@@ -210,48 +210,56 @@ function ReviewPageInner() {
   }, [exportPreviewOpen, closeExportPreview]);
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(155deg,#07121f_0%,#0f2436_35%,#124055_100%)] px-4 py-4 text-slate-100 md:px-8 md:py-6">
+    <div className="ibadge-shell">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4">
-        <header className="rounded-[2rem] border border-white/10 bg-slate-950/75 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur md:p-8">
+        <header className="ibadge-card">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">Scan Review</p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-5xl">Attendance History</h1>
-              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-800/90 dark:text-cyan-200/80">Scan Review</p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-5xl">Attendance History</h1>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300">
                 Review kiosk attendance with device scope controls, event-based filtering, summary counts, and export actions that call the backend reporting endpoints.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <Button asChild variant="outline" className="h-12 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800">
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 rounded-2xl border-slate-100 bg-white px-5 text-base text-slate-900 shadow-sm hover:bg-sky-50/60 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
+              >
                 <Link href="/admin">
                   <ArrowLeft className="size-4" />
                   Back to Admin
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="h-12 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800">
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 rounded-2xl border-slate-100 bg-white px-5 text-base text-slate-900 shadow-sm hover:bg-sky-50/60 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
+              >
                 <Link href="/">Kiosk</Link>
               </Button>
             </div>
           </div>
         </header>
 
-        <section className="rounded-[2rem] border border-white/10 bg-slate-950/75 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur">
+        <section className="ibadge-card">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-semibold text-white">Event and device scope</h2>
+              <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Event and device scope</h2>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button
                 variant={filters.deviceScope === "current" ? "default" : "outline"}
-                className={`h-12 rounded-2xl px-5 text-base ${filters.deviceScope === "current" ? "bg-cyan-400 text-slate-950 hover:bg-cyan-300" : "border-white/10 bg-slate-900/80 text-white hover:bg-slate-800"}`}
+                className={`h-12 rounded-2xl px-5 text-base ${filters.deviceScope === "current" ? "bg-cyan-400 text-slate-950 hover:bg-cyan-300" : "border border-slate-100/90 bg-white text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"}`}
                 onClick={() => setFilters((current) => ({ ...current, deviceScope: "current" }))}
               >
                 Current Device Only
               </Button>
               <Button
                 variant={filters.deviceScope === "all" ? "default" : "outline"}
-                className={`h-12 rounded-2xl px-5 text-base ${filters.deviceScope === "all" ? "bg-cyan-400 text-slate-950 hover:bg-cyan-300" : "border-white/10 bg-slate-900/80 text-white hover:bg-slate-800"}`}
+                className={`h-12 rounded-2xl px-5 text-base ${filters.deviceScope === "all" ? "bg-cyan-400 text-slate-950 hover:bg-cyan-300" : "border border-slate-100/90 bg-white text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"}`}
                 onClick={() => setFilters((current) => ({ ...current, deviceScope: "all" }))}
               >
                 All Devices
@@ -261,11 +269,11 @@ function ReviewPageInner() {
 
           <div className="mt-6 grid gap-4 lg:grid-cols-4">
             <div>
-              <label className="text-sm font-medium text-cyan-100">Event</label>
+              <label className="text-sm font-medium text-cyan-900 dark:text-cyan-100">Event</label>
               <select
                 value={filters.eventId}
                 onChange={(event) => setFilters((current) => ({ ...current, eventId: event.target.value }))}
-                className="mt-2 h-14 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-base text-white outline-none"
+                className="mt-2 h-14 w-full rounded-2xl border border-slate-100 bg-white px-4 text-base text-slate-900 outline-none dark:border-white/10 dark:bg-slate-900/80 dark:text-white"
               >
                 <option value="all">All events</option>
                 {events.map((event) => (
@@ -277,29 +285,29 @@ function ReviewPageInner() {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-cyan-100">Date From</label>
+              <label className="text-sm font-medium text-cyan-900 dark:text-cyan-100">Date From</label>
               <Input
                 type="date"
                 value={filters.dateFrom}
                 onChange={(event) => setFilters((current) => ({ ...current, dateFrom: event.target.value }))}
-                className="mt-2 h-14 rounded-2xl border-white/10 bg-slate-900/80 px-4 text-base text-white"
+                className="mt-2 h-14 rounded-2xl border border-slate-100/90 bg-white px-4 text-base text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium text-cyan-100">Date To</label>
+              <label className="text-sm font-medium text-cyan-900 dark:text-cyan-100">Date To</label>
               <Input
                 type="date"
                 value={filters.dateTo}
                 onChange={(event) => setFilters((current) => ({ ...current, dateTo: event.target.value }))}
-                className="mt-2 h-14 rounded-2xl border-white/10 bg-slate-900/80 px-4 text-base text-white"
+                className="mt-2 h-14 rounded-2xl border border-slate-100/90 bg-white px-4 text-base text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white"
               />
             </div>
 
             <div className="flex items-end">
               <Button
                 variant="outline"
-                className="h-14 w-full rounded-2xl border-white/10 bg-slate-900/80 text-base text-white hover:bg-slate-800"
+                className="h-14 w-full rounded-2xl border border-slate-100/90 bg-white text-base text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
                 disabled={isPending}
                 onClick={() =>
                   startTransition(async () => {
@@ -315,25 +323,25 @@ function ReviewPageInner() {
 
           <div className="mt-4 grid gap-4 lg:grid-cols-4">
             <div className="lg:col-span-2">
-              <label className="text-sm font-medium text-cyan-100">Employee</label>
+              <label className="text-sm font-medium text-cyan-900 dark:text-cyan-100">Employee</label>
               <Input
                 value={filters.employee}
                 onChange={(event) => setFilters((current) => ({ ...current, employee: event.target.value }))}
                 placeholder="Name or EmpID"
-                className="mt-2 h-14 rounded-2xl border-white/10 bg-slate-900/80 px-4 text-base text-white"
+                className="mt-2 h-14 rounded-2xl border border-slate-100/90 bg-white px-4 text-base text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white"
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-cyan-100">Badge</label>
+              <label className="text-sm font-medium text-cyan-900 dark:text-cyan-100">Badge</label>
               <Input
                 value={filters.badgeNumber}
                 onChange={(event) => setFilters((current) => ({ ...current, badgeNumber: event.target.value }))}
                 placeholder="Badge number"
-                className="mt-2 h-14 rounded-2xl border-white/10 bg-slate-900/80 px-4 text-base text-white"
+                className="mt-2 h-14 rounded-2xl border border-slate-100/90 bg-white px-4 text-base text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white"
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-cyan-100">Device</label>
+              <label className="text-sm font-medium text-cyan-900 dark:text-cyan-100">Device</label>
               <select
                 value={filters.device === "" ? "all" : filters.device}
                 onChange={(event) =>
@@ -342,7 +350,7 @@ function ReviewPageInner() {
                     device: event.target.value === "all" ? "" : event.target.value,
                   }))
                 }
-                className="mt-2 h-14 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-base text-white outline-none"
+                className="mt-2 h-14 w-full rounded-2xl border border-slate-100 bg-white px-4 text-base text-slate-900 outline-none dark:border-white/10 dark:bg-slate-900/80 dark:text-white"
               >
                 <option value="all">All devices</option>
                 {deviceSelectOptions.map((name) => (
@@ -364,7 +372,7 @@ function ReviewPageInner() {
             </Button>
             <Button
               variant="outline"
-              className="h-12 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800"
+              className="h-12 rounded-2xl border border-slate-100/90 bg-white px-5 text-base text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
               onClick={() => void openExportPreview("excel")}
             >
               <Download className="size-4" />
@@ -372,7 +380,7 @@ function ReviewPageInner() {
             </Button>
             <Button
               variant="outline"
-              className="h-12 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800"
+              className="h-12 rounded-2xl border border-slate-100/90 bg-white px-5 text-base text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
               onClick={() => void openExportPreview("pdf")}
             >
               <Download className="size-4" />
@@ -380,9 +388,9 @@ function ReviewPageInner() {
             </Button>
           </div>
 
-          <div className="mt-5 rounded-[1.4rem] border border-white/10 bg-white/5 px-4 py-4 text-sm text-slate-300">
+          <div className="ibadge-inset mt-5 text-sm text-slate-600 dark:text-slate-300">
             <div className="flex items-start gap-3">
-              <Filter className="mt-0.5 size-4 text-cyan-200" />
+              <Filter className="mt-0.5 size-4 text-cyan-600 dark:text-cyan-200" />
               <p>{message}</p>
             </div>
           </div>
@@ -390,29 +398,31 @@ function ReviewPageInner() {
 
         <section className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
           <div className="space-y-4">
-            <div className="rounded-[2rem] border border-white/10 bg-slate-950/75 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Summary</p>
+            <div className="ibadge-card">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Summary</p>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Total</p>
-                  <p className="mt-2 text-3xl font-semibold text-white">{summary.total}</p>
+                <div className="ibadge-inset-sm">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Total</p>
+                  <p className="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">{summary.total}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-slate-950/75 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Attendance By Event</p>
+            <div className="ibadge-card">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Attendance By Event</p>
               <div className="mt-4 space-y-3">
                 {countsByEvent.length === 0 ? (
-                  <div className="rounded-[1.4rem] border border-dashed border-white/10 px-4 py-5 text-sm text-slate-400">
+                  <div className="rounded-[1.4rem] border border-dashed border-slate-300 px-4 py-5 text-sm text-slate-500 dark:border-white/10 dark:text-slate-400">
                     No attendance records match the current filters.
                   </div>
                 ) : (
                   countsByEvent.map((item) => (
-                    <div key={item.label} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                    <div key={item.label} className="ibadge-inset-sm">
                       <div className="flex items-center justify-between gap-3">
-                        <p className="text-base font-semibold text-white">{item.label}</p>
-                        <span className="rounded-full bg-cyan-400/15 px-3 py-1 text-sm font-semibold text-cyan-100">{item.count}</span>
+                        <p className="text-base font-semibold text-slate-900 dark:text-white">{item.label}</p>
+                        <span className="rounded-full bg-cyan-100 px-3 py-1 text-sm font-semibold text-cyan-900 dark:bg-cyan-400/15 dark:text-cyan-100">
+                          {item.count}
+                        </span>
                       </div>
                     </div>
                   ))
@@ -421,39 +431,53 @@ function ReviewPageInner() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/10 bg-slate-950/75 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur">
+          <div className="ibadge-card">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Scans</p>
-                <h2 className="mt-2 text-2xl font-semibold text-white">Read-only results</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Scans</p>
+                <h2 className="mt-2 text-2xl font-semibold text-slate-900 dark:text-white">Read-only results</h2>
               </div>
-              <p className="text-sm text-slate-400">{scans.length} result{scans.length === 1 ? "" : "s"}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{scans.length} result{scans.length === 1 ? "" : "s"}</p>
             </div>
 
             <div className="mt-5 space-y-3">
               {scans.length === 0 ? (
-                <div className="rounded-[1.4rem] border border-dashed border-white/10 px-4 py-5 text-sm text-slate-400">
+                <div className="rounded-[1.4rem] border border-dashed border-slate-300 px-4 py-5 text-sm text-slate-500 dark:border-white/10 dark:text-slate-400">
                   No scans match the current filters.
                 </div>
               ) : (
                 scans.map((scan) => (
-                  <article key={scan.DeviceScanGuid} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+                  <article key={scan.DeviceScanGuid} className="ibadge-inset-sm">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
-                        <p className="text-lg font-semibold text-white">{scan.EmployeeNameSnapshot ?? "Unknown"}</p>
-                        <p className="mt-1 text-sm text-slate-300">{scan.BadgeNumberRaw}</p>
+                        <p className="text-lg font-semibold text-slate-900 dark:text-white">{scan.EmployeeNameSnapshot ?? "Unknown"}</p>
+                        <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{scan.BadgeNumberRaw}</p>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.ScanStatus === "MATCHED" ? "bg-emerald-400/15 text-emerald-100" : scan.ScanStatus === "INACTIVE" ? "bg-amber-400/15 text-amber-100" : "bg-rose-400/15 text-rose-100"}`}>
+                        <span
+                          className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${
+                            scan.ScanStatus === "MATCHED"
+                              ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-400/15 dark:text-emerald-100"
+                              : scan.ScanStatus === "INACTIVE"
+                                ? "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"
+                                : "bg-rose-100 text-rose-900 dark:bg-rose-400/15 dark:text-rose-100"
+                          }`}
+                        >
                           {scan.ScanStatus}
                         </span>
-                        <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.SyncStatus === "SYNCED" ? "bg-cyan-400/15 text-cyan-100" : "bg-amber-400/15 text-amber-100"}`}>
+                        <span
+                          className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${
+                            scan.SyncStatus === "SYNCED"
+                              ? "bg-cyan-100 text-cyan-900 dark:bg-cyan-400/15 dark:text-cyan-100"
+                              : "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"
+                          }`}
+                        >
                           {scan.SyncStatus}
                         </span>
                       </div>
                     </div>
 
-                    <div className="mt-4 grid gap-3 text-sm text-slate-300 md:grid-cols-2 xl:grid-cols-3">
+                    <div className="mt-4 grid gap-3 text-sm text-slate-600 dark:text-slate-300 md:grid-cols-2 xl:grid-cols-3">
                       <p><span className="text-slate-500">Scan time:</span> {formatDisplayDate(scan.ScanUTC)}</p>
                       <p><span className="text-slate-500">Event:</span> {scan.EventNameSnapshot ?? "No event"}</p>
                       <p><span className="text-slate-500">Device:</span> {scan.DeviceDisplayName}</p>
@@ -480,12 +504,12 @@ function ReviewPageInner() {
             aria-modal="true"
             aria-labelledby="export-preview-title"
             aria-busy={exportPreviewLoading}
-            className="flex max-h-[min(92vh,900px)] w-full max-w-5xl flex-col rounded-[1.75rem] border border-white/10 bg-slate-950 shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+            className="ibadge-modal flex max-h-[min(92vh,900px)] w-full max-w-5xl flex-col"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-3 border-b border-white/10 px-5 py-4">
+            <div className="flex items-start justify-between gap-3 border-b border-slate-100 px-5 py-4 dark:border-white/10">
               <div>
-                <h2 id="export-preview-title" className="text-lg font-semibold text-white">
+                <h2 id="export-preview-title" className="text-lg font-semibold text-slate-900 dark:text-white">
                   Export preview
                   {exportPreviewFormat ? (
                     <span className="ml-2 text-base font-normal text-slate-400">
@@ -493,13 +517,13 @@ function ReviewPageInner() {
                     </span>
                   ) : null}
                 </h2>
-                <p className="mt-1 text-sm text-slate-400">Review the document, then download when ready.</p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Review the document, then download when ready.</p>
               </div>
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="shrink-0 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white"
+                className="shrink-0 rounded-xl text-slate-500 hover:bg-sky-50/70 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
                 aria-label="Close preview"
                 onClick={closeExportPreview}
               >
@@ -509,26 +533,28 @@ function ReviewPageInner() {
 
             <div className="min-h-0 flex-1 overflow-hidden px-2 py-3 sm:px-4">
               {exportPreviewLoading ? (
-                <div className="flex min-h-[40vh] flex-col items-center justify-center gap-3 text-slate-300">
-                  <Loader2 className="size-10 animate-spin text-cyan-300" aria-hidden />
+                <div className="flex min-h-[40vh] flex-col items-center justify-center gap-3 text-slate-600 dark:text-slate-300">
+                  <Loader2 className="size-10 animate-spin text-cyan-600 dark:text-cyan-300" aria-hidden />
                   <p className="text-sm">Preparing preview…</p>
                 </div>
               ) : exportPreviewError ? (
-                <div className="rounded-2xl border border-rose-400/30 bg-rose-950/40 px-4 py-6 text-center text-sm text-rose-100">{exportPreviewError}</div>
+                <div className="rounded-2xl border border-rose-300/60 bg-rose-50 px-4 py-6 text-center text-sm text-rose-800 dark:border-rose-400/30 dark:bg-rose-950/40 dark:text-rose-100">
+                  {exportPreviewError}
+                </div>
               ) : exportPreviewFormat === "pdf" && exportPreviewBlobUrl ? (
                 <iframe
                   title="PDF export preview"
                   src={exportPreviewBlobUrl}
-                  className="h-[min(72vh,720px)] w-full rounded-xl border border-white/10 bg-white"
+                  className="h-[min(72vh,720px)] w-full rounded-xl border border-slate-100 bg-white dark:border-white/10"
                 />
               ) : (exportPreviewFormat === "csv" || exportPreviewFormat === "excel") && exportPreviewBlobUrl ? (
-                <div className="max-h-[min(72vh,720px)] overflow-auto rounded-xl border border-white/10 bg-slate-900/50">
+                <div className="max-h-[min(72vh,720px)] overflow-auto rounded-xl border border-slate-100 bg-white dark:border-white/10 dark:bg-slate-900/50">
                   {csvPreviewRows.length === 0 ? (
                     <p className="px-4 py-8 text-center text-sm text-slate-400">No rows in this export.</p>
                   ) : (
                     <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
-                      <thead className="sticky top-0 z-10 bg-slate-800/95 shadow-[0_1px_0_rgba(255,255,255,0.08)]">
-                        <tr className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-300">
+                      <thead className="sticky top-0 z-10 bg-slate-100/95 shadow-[0_1px_0_rgba(0,0,0,0.06)] dark:bg-slate-800/95 dark:shadow-[0_1px_0_rgba(255,255,255,0.08)]">
+                        <tr className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-700 dark:text-slate-300">
                           {csvPreviewRows[0]?.map((header, index) => (
                             <th key={index} scope="col" className="whitespace-nowrap px-3 py-2.5">
                               {header}
@@ -543,9 +569,9 @@ function ReviewPageInner() {
                             cells.push("");
                           }
                           return (
-                            <tr key={rowIndex} className="border-b border-white/5 odd:bg-white/[0.03]">
+                            <tr key={rowIndex} className="border-b border-slate-100 odd:bg-white dark:border-white/5 dark:odd:bg-white/[0.03]">
                               {cells.map((cell, cellIndex) => (
-                                <td key={cellIndex} className="max-w-[16rem] whitespace-pre-wrap break-words px-3 py-2 text-slate-200">
+                                <td key={cellIndex} className="max-w-[16rem] whitespace-pre-wrap break-words px-3 py-2 text-slate-800 dark:text-slate-200">
                                   {cell}
                                 </td>
                               ))}
@@ -561,11 +587,11 @@ function ReviewPageInner() {
               )}
             </div>
 
-            <div className="flex flex-wrap items-center justify-end gap-3 border-t border-white/10 px-5 py-4">
+            <div className="flex flex-wrap items-center justify-end gap-3 border-t border-slate-100 px-5 py-4 dark:border-white/10">
               <Button
                 type="button"
                 variant="outline"
-                className="h-11 rounded-2xl border-white/10 bg-slate-900/80 px-5 text-base text-white hover:bg-slate-800"
+                className="h-11 rounded-2xl border border-slate-100/90 bg-white px-5 text-base text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
                 onClick={closeExportPreview}
               >
                 Close

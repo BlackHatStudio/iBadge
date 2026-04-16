@@ -295,15 +295,13 @@ function devicePayloadSelect(whereClause: string) {
   `;
 }
 
-function employeeSelectSql(optionalColumns: EmployeeOptionalColumns) {
+function employeeProjectionSql(optionalColumns: EmployeeOptionalColumns) {
   const companyValueSql = optionalColumns.HasFloor
     ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), Floor))), '')"
     : optionalColumns.HasCompanyNum
       ? "NULLIF(LTRIM(RTRIM(CONVERT(nvarchar(100), CompanyNum))), '')"
       : "CAST(NULL AS nvarchar(100))";
   return `
-    SET NOCOUNT ON;
-    SELECT
       CAST(EmpID AS nvarchar(50)) AS EmpID,
       BadgeNumber AS BadgeNumberRaw,
       UPPER(REPLACE(BadgeNumber, ' ', '')) AS BadgeNumberNormalized,
@@ -311,7 +309,14 @@ function employeeSelectSql(optionalColumns: EmployeeOptionalColumns) {
       CAST(IsActive AS bit) AS IsActive,
       ${currentUtcSql("LastImportedUTC")} AS LastUpdatedUTC,
       ${optionalColumns.HasEmail ? "NULLIF(LTRIM(RTRIM(Email)), '')" : "CAST(NULL AS nvarchar(320))"} AS Email,
-      ${companyValueSql} AS CompanyNum
+      ${companyValueSql} AS CompanyNum`;
+}
+
+function employeeSelectSql(optionalColumns: EmployeeOptionalColumns) {
+  return `
+    SET NOCOUNT ON;
+    SELECT
+      ${employeeProjectionSql(optionalColumns)}
     FROM dbo.Employee
     ORDER BY EmpID
     FOR JSON PATH, INCLUDE_NULL_VALUES;
@@ -859,6 +864,101 @@ export async function verifyAdminPinRecord(pin: string) {
   const config = await ensureAdminConfigRow();
   const authorized = await bcrypt.compare(normalized, config.PinHash);
   return { valid: authorized, authorized };
+}
+
+export type CardholderUpsertInput = {
+  firstName: string;
+  lastName: string;
+  badgeNumber: string;
+  email?: string | null;
+  companyNum?: string | null;
+};
+
+/**
+ * Insert or update dbo.Employee by badge (normalized match). Sets FirstName and LastName on insert and update.
+ */
+export async function upsertEmployeeCardholder(input: CardholderUpsertInput): Promise<EmployeeRecord> {
+  const firstName = trimOrNull(input.firstName);
+  const lastName = trimOrNull(input.lastName);
+  if (!firstName) {
+    throw new Error("First name is required.");
+  }
+  if (!lastName) {
+    throw new Error("Last name is required.");
+  }
+
+  const badgeRaw = trimOrNull(input.badgeNumber);
+  if (!badgeRaw) {
+    throw new Error("Badge number is required.");
+  }
+
+  const optionalColumns = await getEmployeeOptionalColumns();
+  const email = trimOrNull(input.email ?? null);
+  const companyNum = trimOrNull(input.companyNum ?? null);
+
+  const emailSql = optionalColumns.HasEmail ? sqlNVarChar(email) : null;
+  const companyCol = optionalColumns.HasCompanyNum ? "CompanyNum" : optionalColumns.HasFloor ? "Floor" : null;
+  const companySql = companyCol ? sqlNVarChar(companyNum) : null;
+
+  const firstSql = sqlNVarChar(firstName);
+  const lastSql = sqlNVarChar(lastName);
+
+  const updateParts: string[] = [
+    `FirstName = ${firstSql}`,
+    `LastName = ${lastSql}`,
+    "LastImportedUTC = SYSUTCDATETIME()",
+  ];
+  if (optionalColumns.HasEmail && emailSql !== null) {
+    updateParts.push(`Email = ${emailSql}`);
+  }
+  if (companyCol && companySql !== null) {
+    updateParts.push(`${companyCol} = ${companySql}`);
+  }
+
+  const insertCols = ["BadgeNumber", "FirstName", "LastName", "IsActive", "LastImportedUTC"];
+  const insertVals = [sqlNVarChar(badgeRaw), firstSql, lastSql, `1`, `SYSUTCDATETIME()`];
+  if (optionalColumns.HasEmail && emailSql !== null) {
+    insertCols.push("Email");
+    insertVals.push(emailSql);
+  }
+  if (companyCol && companySql !== null) {
+    insertCols.push(companyCol);
+    insertVals.push(companySql);
+  }
+
+  await runSql(`
+    SET NOCOUNT ON;
+    DECLARE @BadgeRaw nvarchar(100) = ${sqlNVarChar(badgeRaw)};
+    DECLARE @Norm nvarchar(100) = UPPER(REPLACE(LTRIM(RTRIM(@BadgeRaw)), ' ', ''));
+
+    UPDATE dbo.Employee
+    SET ${updateParts.join(", ")}
+    WHERE UPPER(REPLACE(LTRIM(RTRIM(BadgeNumber)), ' ', '')) = @Norm;
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+      INSERT INTO dbo.Employee (${insertCols.join(", ")})
+      VALUES (${insertVals.join(", ")});
+    END
+  `);
+
+  const projection = employeeProjectionSql(optionalColumns);
+  const loaded = await queryJsonOne<EmployeeRecord>(`
+    SET NOCOUNT ON;
+    DECLARE @Norm nvarchar(100) = UPPER(REPLACE(LTRIM(RTRIM(${sqlNVarChar(badgeRaw)})), ' ', ''));
+    SELECT TOP 1
+      ${projection}
+    FROM dbo.Employee
+    WHERE UPPER(REPLACE(LTRIM(RTRIM(BadgeNumber)), ' ', '')) = @Norm
+    ORDER BY EmpID
+    FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER;
+  `);
+
+  if (!loaded) {
+    throw new Error("Employee was saved but could not be reloaded.");
+  }
+
+  return loaded;
 }
 
 export async function getRefreshPayload(deviceId?: string | null, deviceGuid?: string | null): Promise<RefreshResponse> {

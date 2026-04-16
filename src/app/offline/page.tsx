@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export default function OfflinePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[linear-gradient(155deg,#07121f_0%,#0f2436_35%,#124055_100%)] px-6 py-8 text-slate-100">
+    <div className="flex min-h-screen items-center justify-center bg-[linear-gradient(155deg,#0c1826_0%,#153248_38%,#1a4f6a_100%)] px-6 py-8 text-slate-100">
       <div className="w-full max-w-2xl rounded-[2rem] border border-white/10 bg-slate-950/75 p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur md:p-10">
         <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">Offline Mode</p>
         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white">The kiosk shell is still available</h1>

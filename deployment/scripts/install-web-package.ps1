@@ -1,6 +1,8 @@
 param(
   [string]$SettingsFile,
-  [string]$PackageRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  [string]$PackageRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path,
+  [switch]$IsUpgrade,
+  [switch]$ForceRegenerateConfig
 )
 
 Set-StrictMode -Version Latest
@@ -57,17 +59,30 @@ function Render-Template([string]$templatePath, [string]$destinationPath) {
   Set-Content -Path $destinationPath -Value $content
 }
 
+function Render-TemplateUnlessPreserved([string]$templatePath, [string]$destinationPath, [string]$label) {
+  if ($IsUpgrade -and -not $ForceRegenerateConfig -and (Test-Path -LiteralPath $destinationPath -PathType Leaf)) {
+    Write-Host "Preserving existing ${label}: $destinationPath"
+    return
+  }
+  Render-Template -templatePath $templatePath -destinationPath $destinationPath
+}
+
 if (-not (Test-Path -LiteralPath $serverRoot)) {
   New-Item -ItemType Directory -Path $serverRoot -Force | Out-Null
 }
 
 Write-Host "Using deployment settings from $SettingsFile"
+if ($ForceRegenerateConfig) {
+  Write-Host 'ForceRegenerateConfig: overwriting existing .env, runtime-config.js, and web.config from templates.'
+} elseif ($IsUpgrade) {
+  Write-Host 'Upgrade: preserving existing .env, runtime-config.js, and web.config when present (use -ForceRegenerateConfig to replace from deploy.settings.json).'
+}
 
-Render-Template (Join-Path $PackageRoot 'config\runtime-config.template.js') (Join-Path $appRoot 'public\runtime-config.js')
-Render-Template (Join-Path $PackageRoot 'config\webapp.web.config.template') (Join-Path $appRoot 'web.config')
+Render-TemplateUnlessPreserved (Join-Path $PackageRoot 'config\runtime-config.template.js') (Join-Path $appRoot 'public\runtime-config.js') 'runtime-config.js (API routes)'
+Render-TemplateUnlessPreserved (Join-Path $PackageRoot 'config\webapp.web.config.template') (Join-Path $appRoot 'web.config') 'web.config (IIS reverse proxy)'
 Render-Template (Join-Path $PackageRoot 'config\run-webapp.template.cmd') (Join-Path $appRoot 'run-webapp.cmd')
 Render-Template (Join-Path $PackageRoot 'config\iBadge.WebApp.xml.template') (Join-Path $appRoot 'service\iBadge.WebApp.xml')
-Render-Template (Join-Path $PackageRoot 'config\webapp.server.env.template') (Join-Path $serverRoot '.env')
+Render-TemplateUnlessPreserved (Join-Path $PackageRoot 'config\webapp.server.env.template') (Join-Path $serverRoot '.env') '.env'
 
 $serviceName = [string]$settings.app.serviceName
 $serviceWrapper = Join-Path $appRoot 'service\iBadge.WebApp.exe'

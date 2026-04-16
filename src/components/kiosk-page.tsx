@@ -16,7 +16,7 @@ import {
   retryPendingQueue,
   submitScan,
 } from "@/lib/kiosk-data";
-import { eventLabel, formatDisplayDate } from "@/lib/kiosk-utils";
+import { employeeMatchForBadge, eventLabel, formatDisplayDate } from "@/lib/kiosk-utils";
 
 type ResultView = {
   state: "idle" | "MATCHED" | "UNKNOWN" | "INACTIVE" | "DUPLICATE" | "ERROR";
@@ -28,14 +28,37 @@ type ResultView = {
 const DEFAULT_RESULT: ResultView = {
   state: "idle",
   title: "Ready to Scan",
-  detail: "Scan a badge or type a badge number to log attendance.",
+  detail: "Scan a badge, type a badge number, or enter an email to log attendance.",
 };
 
 function toneForResult(state: ResultView["state"]) {
-  if (state === "MATCHED") return { border: "border-emerald-300/35", bg: "bg-emerald-400/15", icon: BadgeCheck, iconColor: "text-emerald-200" };
-  if (state === "INACTIVE") return { border: "border-amber-300/35", bg: "bg-amber-400/15", icon: BadgeX, iconColor: "text-amber-100" };
-  if (state === "UNKNOWN" || state === "DUPLICATE" || state === "ERROR") return { border: "border-rose-300/35", bg: "bg-rose-400/15", icon: CloudOff, iconColor: "text-rose-100" };
-  return { border: "border-white/10", bg: "bg-slate-900/70", icon: Activity, iconColor: "text-cyan-200" };
+  if (state === "MATCHED")
+    return {
+      border: "border-emerald-300/60 dark:border-emerald-300/35",
+      bg: "bg-emerald-50/95 dark:bg-emerald-400/15",
+      icon: BadgeCheck,
+      iconColor: "text-emerald-700 dark:text-emerald-200",
+    };
+  if (state === "INACTIVE")
+    return {
+      border: "border-amber-300/70 dark:border-amber-300/35",
+      bg: "bg-amber-50/95 dark:bg-amber-400/15",
+      icon: BadgeX,
+      iconColor: "text-amber-800 dark:text-amber-100",
+    };
+  if (state === "UNKNOWN" || state === "DUPLICATE" || state === "ERROR")
+    return {
+      border: "border-rose-300/70 dark:border-rose-300/35",
+      bg: "bg-rose-50/95 dark:bg-rose-400/15",
+      icon: CloudOff,
+      iconColor: "text-rose-700 dark:text-rose-100",
+    };
+  return {
+    border: "border-slate-100/90 dark:border-white/10",
+    bg: "bg-white dark:bg-slate-900/70",
+    icon: Activity,
+    iconColor: "text-cyan-700 dark:text-cyan-200",
+  };
 }
 
 export function KioskPage() {
@@ -174,8 +197,9 @@ export function KioskPage() {
     setIsSubmitting(true);
 
     try {
+      const matchForDup = employeeMatchForBadge(employees, rawBadge);
       const duplicate = findSuppressedDuplicate(recentScans, {
-        badgeRaw: rawBadge,
+        badgeRaw: matchForDup?.BadgeNumberRaw ?? rawBadge,
         eventId: device.ActiveEventId,
         classDurationHours: device.ClassDurationHours,
       });
@@ -266,9 +290,9 @@ export function KioskPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(155deg,#07121f_0%,#0f2436_32%,#124055_100%)] px-4 py-4 text-slate-100 md:px-8 md:py-6">
+    <div className="ibadge-shell">
       <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-7xl flex-col gap-4">
-        <header className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur md:p-8">
+        <header className="ibadge-card">
           <div className="grid items-center gap-4 md:grid-cols-[auto_1fr_auto]">
             <div className="justify-self-start">
               <Image
@@ -281,13 +305,13 @@ export function KioskPage() {
               />
             </div>
             <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200/80">Attendance Kiosk</p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-5xl">{currentEventLabel}</h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-800/90 dark:text-cyan-200/80">Attendance Kiosk</p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-5xl">{currentEventLabel}</h1>
             </div>
 
             <AdminAccessButton
               variant="outline"
-              className="h-14 justify-self-end rounded-2xl border-white/10 bg-slate-900/80 px-6 text-base font-semibold text-white hover:bg-slate-800"
+              className="h-14 justify-self-end rounded-2xl border-slate-100 bg-white px-6 text-base font-semibold text-slate-900 shadow-sm hover:bg-sky-50/60 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
             >
               <Shield className="size-5" />
               Admin
@@ -296,10 +320,10 @@ export function KioskPage() {
         </header>
 
         <div className="flex flex-1 flex-col gap-4">
-          <section className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur md:p-8">
+          <section className="ibadge-card">
             <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
-              <label htmlFor="badge" className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-100">
-                Badge Scan
+              <label htmlFor="badge" className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-900 dark:text-cyan-100">
+                Badge or email
               </label>
               <div className="flex flex-col gap-3 lg:flex-row">
                 <Input
@@ -310,17 +334,16 @@ export function KioskPage() {
                   onKeyDown={handleBadgeKeyDown}
                   autoFocus
                   type="text"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
+                  inputMode="text"
                   autoComplete="off"
                   autoCorrect="off"
                   spellCheck={false}
-                  placeholder="Scan badge or type badge number"
-                  className="h-20 rounded-[1.5rem] border-white/10 bg-slate-900/80 px-6 text-2xl text-white placeholder:text-slate-500 md:text-3xl"
+                  placeholder="Scan badge, type badge number, or email"
+                  className="h-20 rounded-[1.5rem] border-slate-100 bg-white px-6 text-2xl text-slate-900 placeholder:text-slate-400 md:text-3xl dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:placeholder:text-slate-500"
                 />
                 <Button
                   type="submit"
-                  className="h-20 rounded-[1.5rem] bg-cyan-400 px-8 text-xl font-semibold text-slate-950 hover:bg-cyan-300 lg:min-w-64"
+                  className="h-20 rounded-[1.5rem] bg-cyan-500 px-8 text-xl font-semibold text-white shadow-sm hover:bg-cyan-400 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300 lg:min-w-64"
                   disabled={!ready || isSubmitting}
                 >
                   {isSubmitting ? "Logging..." : "Log Attendance"}
@@ -330,60 +353,72 @@ export function KioskPage() {
 
             <div className={`mt-6 rounded-[2rem] border ${tone.border} ${tone.bg} p-6 transition-all duration-150 md:p-8`}>
               <div className="flex items-start gap-4">
-                <div className={`flex size-14 shrink-0 items-center justify-center rounded-2xl bg-slate-950/40 ${tone.iconColor}`}>
+                <div
+                  className={`flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/80 dark:bg-slate-950/40 ${tone.iconColor}`}
+                >
                   <ResultIcon className="size-7" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-300">Scan Result</p>
-                  <h2 className="mt-2 text-4xl font-semibold tracking-tight text-white md:text-5xl">{result.title}</h2>
-                  <p className="mt-3 max-w-3xl text-base leading-7 text-slate-100/90 md:text-lg">{result.detail}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-300">Scan Result</p>
+                  <h2 className="mt-2 text-4xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-5xl">{result.title}</h2>
+                  <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700 dark:text-slate-100/90 md:text-lg">{result.detail}</p>
                 </div>
               </div>
 
               <div className="mt-6 grid gap-3 md:grid-cols-3">
-                <div className="rounded-[1.4rem] border border-white/10 bg-slate-950/45 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Employee</p>
-                  <p className="mt-2 text-xl font-semibold text-white">{result.scan?.EmployeeNameSnapshot ?? (result.state === "UNKNOWN" ? "Unknown" : "Waiting")}</p>
+                <div className="ibadge-inset-sm">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Employee</p>
+                  <p className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
+                    {result.scan?.EmployeeNameSnapshot ?? (result.state === "UNKNOWN" ? "Unknown" : "Waiting")}
+                  </p>
                 </div>
-                <div className="rounded-[1.4rem] border border-white/10 bg-slate-950/45 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Badge</p>
-                  <p className="mt-2 text-xl font-semibold text-white">{result.scan?.BadgeNumberRaw ?? "No scan yet"}</p>
+                <div className="ibadge-inset-sm">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Badge</p>
+                  <p className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">{result.scan?.BadgeNumberRaw ?? "No scan yet"}</p>
                 </div>
-                <div className="rounded-[1.4rem] border border-white/10 bg-slate-950/45 p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Sync</p>
-                  <p className="mt-2 text-xl font-semibold text-white">{result.scan?.SyncStatus ?? "Ready"}</p>
+                <div className="ibadge-inset-sm">
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Sync</p>
+                  <p className="mt-2 text-xl font-semibold text-slate-900 dark:text-white">{result.scan?.SyncStatus ?? "Ready"}</p>
                 </div>
               </div>
             </div>
 
             {!device?.ActiveEventId && (
-              <div className="mt-5 rounded-[1.5rem] border border-amber-300/30 bg-amber-400/10 px-5 py-4 text-sm text-amber-100">
+              <div className="mt-5 rounded-[1.5rem] border border-amber-300/50 bg-amber-50 px-5 py-4 text-sm text-amber-900 dark:border-amber-300/30 dark:bg-amber-400/10 dark:text-amber-100">
                 This device does not have an active event yet. Use Admin to assign one before production use.
               </div>
             )}
           </section>
 
-          <section className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.32)] backdrop-blur">
+          <section className="ibadge-card--tight">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">Latest Scan</p>
-                <p className="mt-2 text-2xl font-semibold text-white">{lastScan?.EmployeeNameSnapshot ?? "No scans yet"}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Latest Scan</p>
+                <p className="mt-2 text-2xl font-semibold text-slate-900 dark:text-white">{lastScan?.EmployeeNameSnapshot ?? "No scans yet"}</p>
               </div>
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${lastScan?.SyncStatus === "SYNCED" ? "bg-emerald-400/15 text-emerald-100" : "bg-amber-400/15 text-amber-100"}`}>
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${
+                  lastScan?.SyncStatus === "SYNCED"
+                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100"
+                    : "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"
+                }`}
+              >
                 {lastScan?.SyncStatus ?? "Ready"}
               </span>
             </div>
 
-            <div className="mt-4 space-y-3 text-sm text-slate-300">
+            <div className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
               <p>Badge: {lastScan?.BadgeNumberRaw ?? "Waiting for badge input"}</p>
               <p>Event: {lastScan?.EventNameSnapshot ?? currentEventLabel}</p>
               <p>Time: {formatDisplayDate(lastScan?.ScanUTC)}</p>
             </div>
 
             {pendingScans.length > 0 && (
-              <div className="mt-5 rounded-[1.4rem] border border-amber-300/25 bg-amber-400/10 p-4">
-                <p className="text-sm font-semibold text-amber-50">{pendingScans.length} scan{pendingScans.length === 1 ? "" : "s"} waiting for sync.</p>
-                <p className="mt-2 text-sm leading-6 text-amber-100/80">
+              <div className="mt-5 rounded-[1.4rem] border border-amber-300/40 bg-amber-50 p-4 dark:border-amber-300/25 dark:bg-amber-400/10">
+                <p className="text-sm font-semibold text-amber-900 dark:text-amber-50">
+                  {pendingScans.length} scan{pendingScans.length === 1 ? "" : "s"} waiting for sync.
+                </p>
+                <p className="mt-2 text-sm leading-6 text-amber-800/90 dark:text-amber-100/80">
                   The kiosk will retry automatically every {appConfig.queueRetryMinutes} minute{appConfig.queueRetryMinutes === 1 ? "" : "s"} while online.
                 </p>
               </div>

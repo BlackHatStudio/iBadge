@@ -8,6 +8,11 @@ export function normalizeBadge(value: string) {
   return normalized;
 }
 
+/** Lowercase, trim, collapse spaces — for exact email equality checks. */
+export function normalizeEmailForMatch(value: string) {
+  return value.trim().replace(/\s+/g, "").toLowerCase();
+}
+
 export function formatDisplayDate(value: string | null | undefined) {
   if (!value) {
     return "Not available";
@@ -180,8 +185,30 @@ export function eventLabel(events: EventRecord[], eventId: string | null, fallba
 }
 
 export function employeeMatchForBadge(employees: EmployeeRecord[], badgeValue: string) {
-  const normalized = normalizeBadge(badgeValue);
-  return employees.find((employee) => employee.BadgeNumberNormalized === normalized) ?? null;
+  const trimmed = badgeValue.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const normalizedBadge = normalizeBadge(trimmed);
+  const byBadge = employees.find((employee) => employee.BadgeNumberNormalized === normalizedBadge);
+  if (byBadge) {
+    return byBadge;
+  }
+
+  const normalizedEmail = normalizeEmailForMatch(trimmed);
+  if (!normalizedEmail.includes("@")) {
+    return null;
+  }
+
+  return (
+    employees.find((employee) => {
+      if (!employee.Email) {
+        return false;
+      }
+      return normalizeEmailForMatch(employee.Email) === normalizedEmail;
+    }) ?? null
+  );
 }
 
 export function createExportQuery(filters: ReviewFilters, deviceId: string | null) {
