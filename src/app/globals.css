@@ -1,6 +1,13 @@
 /* src/app/globals.css — Tailwind v4 */
-@import "tailwindcss";
+@import "tailwindcss" source("../");
 @plugin "tailwindcss-animate";
+
+/*
+ * Tailwind v4 defaults `dark:` to prefers-color-scheme, so toggling a `.dark` class on <html>
+ * does nothing while the OS is in dark mode. This binds `dark:` to the class only (manual toggle).
+ * @see https://tailwindcss.com/docs/dark-mode
+ */
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ─────────────────────────  TweakCN palette (SAFE TO OVERWRITE)  ─────────────────────────
    DO NOT EDIT THIS SECTION MANUALLY.
@@ -43,7 +50,7 @@
 }
 
 .dark {
-  --background: oklch(0.2303 0.0125 264.2926);
+  --background: oklch(0.28 0.0125 264.2926);
   --foreground: oklch(0.9219 0 0);
   --card: oklch(0.3210 0.0078 223.6661);
   --card-foreground: oklch(0.9219 0 0);
@@ -67,7 +74,7 @@
   --chart-3: oklch(0.3390 0.1793 301.6848);
   --chart-4: oklch(0.6746 0.1414 261.3380);
   --chart-5: oklch(0.5880 0.0993 245.7394);
-  --sidebar: oklch(0.2303 0.0125 264.2926);
+  --sidebar: oklch(0.28 0.0125 264.2926);
   --sidebar-foreground: oklch(0.9219 0 0);
   --sidebar-primary: oklch(0.5676 0.2021 283.0838);
   --sidebar-primary-foreground: oklch(1.0000 0 0);
@@ -115,6 +122,65 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ─────────────────────────  iBadge shell & panels (manual light / dark)  ─────────────────────────
+   Light mode: airy white + cool sky tints. Dark mode: deep blue gradient + slate panels. */
+:root {
+  --ibadge-shell-gradient: linear-gradient(155deg, #ffffff 0%, #f0f9ff 45%, #dff4ff 100%);
+  --ibadge-panel: #ffffff;
+  --ibadge-panel-border: rgba(15, 23, 42, 0.09);
+  --ibadge-panel-shadow: 0 12px 42px rgba(15, 23, 42, 0.07);
+  --ibadge-muted-panel: #f4f9fd;
+  --ibadge-muted-border: rgba(15, 23, 42, 0.08);
+}
+
+.dark {
+  --ibadge-shell-gradient: linear-gradient(155deg, #0c1826 0%, #153248 38%, #1a4f6a 100%);
+  --ibadge-panel: rgba(14, 22, 38, 0.82);
+  --ibadge-panel-border: rgba(255, 255, 255, 0.12);
+  --ibadge-panel-shadow: 0 25px 60px rgba(0, 0, 0, 0.28);
+  --ibadge-muted-panel: rgba(255, 255, 255, 0.07);
+  --ibadge-muted-border: rgba(255, 255, 255, 0.11);
+}
+
+@layer components {
+  .ibadge-shell {
+    min-height: 100vh;
+    background: var(--ibadge-shell-gradient);
+    @apply px-4 py-4 text-slate-900 md:px-8 md:py-6;
+  }
+  .dark .ibadge-shell {
+    @apply text-slate-100;
+  }
+  .ibadge-card {
+    @apply rounded-[2rem] border p-6 backdrop-blur md:p-8;
+    background-color: var(--ibadge-panel);
+    border-color: var(--ibadge-panel-border);
+    box-shadow: var(--ibadge-panel-shadow);
+  }
+  .ibadge-card--tight {
+    @apply rounded-[2rem] border p-6 backdrop-blur;
+    background-color: var(--ibadge-panel);
+    border-color: var(--ibadge-panel-border);
+    box-shadow: var(--ibadge-panel-shadow);
+  }
+  .ibadge-inset {
+    @apply rounded-[1.5rem] border px-4 py-4;
+    background-color: var(--ibadge-muted-panel);
+    border-color: var(--ibadge-muted-border);
+  }
+  .ibadge-inset-sm {
+    @apply rounded-[1.4rem] border p-4;
+    background-color: var(--ibadge-muted-panel);
+    border-color: var(--ibadge-muted-border);
+  }
+  .ibadge-modal {
+    @apply rounded-[1.75rem] border shadow-xl;
+    background-color: var(--ibadge-panel);
+    border-color: var(--ibadge-panel-border);
+    box-shadow: var(--ibadge-panel-shadow);
+  }
 }
 
 /* ───────────────────────────────  Turnaround theme  ─────────────────────────────── */
@@ -169,7 +235,21 @@ html, body { height: 100%; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+html {
+  background: var(--background);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }
 
 /* ─────────────────────────  DataTable zebra styles  ───────────────────────── */
@@ -264,3 +344,4 @@ body {
     --p9-muted: 160 174 192;
   }
 }
+

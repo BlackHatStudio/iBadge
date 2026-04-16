@@ -10,6 +10,8 @@
 
 # next.js
 /.next/
+/.next-runtime/
+/.next-static/
 /out/
 
 # production
@@ -38,3 +40,15 @@ next-env.d.ts
 # server
 /server/dist
 /server/node_modules
+
+# deployment artifacts
+/deployment/staging/package/
+/deployment/staging/webapp-package/
+/deployment/staging/_backend-publish/
+/deployment/staging/_frontend-build/
+/deployment/output/
+
+# local caches / stale next dirs
+.next-stale-*/
+.npm-cache/
+/*.log

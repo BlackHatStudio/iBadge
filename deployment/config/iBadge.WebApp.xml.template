@@ -1,0 +1,18 @@
+<service>
+  <id>__SERVICE_ID__</id>
+  <name>__SERVICE_NAME__</name>
+  <description>iBadge Next.js web application</description>
+  <executable>__NODE_EXE__</executable>
+  <arguments>server.js</arguments>
+  <workingdirectory>__APP_ROOT__</workingdirectory>
+  <env name="PORT" value="__APP_PORT__" />
+  <env name="HOSTNAME" value="127.0.0.1" />
+  <env name="NODE_ENV" value="production" />
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>8</keepFiles>
+    <pattern>yyyyMMdd</pattern>
+  </log>
+  <onfailure action="restart" delay="10 sec" />
+  <onfailure action="restart" delay="30 sec" />
+</service>

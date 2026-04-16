@@ -1,0 +1,5 @@
+#define MyAppName "iBadge Attendance Kiosk"
+#define MyAppPublisher "iBadge"
+#define MyAppVersion "1.0.0"
+#define MyStageDir "..\\staging\\package"
+#define MyOutputDir "..\\output"

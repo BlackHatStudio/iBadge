@@ -1,0 +1,47 @@
+{
+  "application": {
+    "name": "iBadge",
+    "version": "__APP_VERSION__"
+  },
+  "paths": {
+    "installRoot": "C:\\Program Files\\iBadge",
+    "programDataRoot": "C:\\ProgramData\\iBadge"
+  },
+  "frontend": {
+    "referenceRefreshHours": 12,
+    "queueRetryMinutes": 2,
+    "duplicateWindowSeconds": 30
+  },
+  "iis": {
+    "siteName": "iBadge",
+    "appPoolName": "iBadgeStaticPool",
+    "bindingProtocol": "http",
+    "bindingPort": 80,
+    "hostHeader": "attendance.local"
+  },
+  "api": {
+    "serviceName": "iBadgeApiService",
+    "displayName": "iBadge API Service",
+    "listenHost": "127.0.0.1",
+    "listenPort": 4100,
+    "publicBaseUrl": "http://attendance.local/api"
+  },
+  "database": {
+    "installDatabase": true,
+    "createDatabaseIfMissing": true,
+    "server": "SQLSERVER01",
+    "databaseName": "iBadgeKiosk",
+    "adminConnectionString": "Server=SQLSERVER01;Database=master;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;",
+    "appConnectionString": "Server=SQLSERVER01;Database=iBadgeKiosk;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;",
+    "sourceAccessControlConnectionString": "Server=SQLSERVER01;Database=AccessControl;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;"
+  },
+  "security": {
+    "adminPinHash": "__SET_ADMIN_PIN_HASH__",
+    "jwtSecret": "__SET_JWT_SECRET__"
+  },
+  "imports": {
+    "enabled": true,
+    "taskName": "iBadge Employee Import",
+    "intervalHours": 1
+  }
+}
