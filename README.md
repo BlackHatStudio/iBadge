@@ -31,6 +31,34 @@ npm run server:dev
 
 The Next.js app will be available at `http://localhost:3000` and the Express server at `http://localhost:4000`.
 
+## ☁️ Cloud agent setup (run + browser testing)
+
+For Cursor cloud agents (or any remote Linux VM), use the commands below so the app can be started and smoke-tested reliably:
+
+```bash
+# 1) One-time setup on a fresh cloud machine
+npm run cloud:setup
+
+# 2) Start the Next.js app bound to all interfaces
+npm run dev:cloud
+
+# 3) In another terminal, run a browser smoke test against the running app
+npm run smoke:test
+
+# or run steps 2 + 3 together in one command:
+npm run cloud:test
+```
+
+### What this solves in cloud environments
+
+- Installs both root and `server/` dependencies in one step.
+- Installs Playwright Chromium runtime so headless browser checks work.
+- Runs Next.js on `0.0.0.0:3000`, which is required for remote agent/browser access.
+- Verifies key UI surfaces with a real browser:
+  - kiosk home page
+  - badge input availability
+  - admin access flow entry (`/admin/access`)
+
 ## 📁 Project Structure
 
 ```
@@ -168,12 +196,16 @@ The `components.json` file follows shadcn/ui conventions:
 ### Root Scripts
 
 - `npm run dev` - Start Next.js development server
+- `npm run dev:cloud` - Start Next.js dev server on `0.0.0.0:${PORT:-3000}` for remote/cloud access
 - `npm run build` - Build Next.js app for production
 - `npm run start` - Start Next.js production server
 - `npm run lint` - Run ESLint
 - `npm run server:dev` - Start Express development server
 - `npm run build:server` - Build Express server
 - `npm run build:all` - Build both Next.js app and server
+- `npm run cloud:setup` - Install root + server deps and Playwright Chromium for cloud testing
+- `npm run smoke:test` - Run browser smoke test against `SMOKE_BASE_URL` (default `http://127.0.0.1:3000`)
+- `npm run cloud:test` - Start/reuse cloud dev server and run the smoke test in one command
 
 ### Server Scripts
 
