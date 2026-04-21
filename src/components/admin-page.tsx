@@ -196,6 +196,17 @@ function AdminPageInner() {
   }, [sortedEmployees, employeeSearchQuery]);
 
   const searchHasFilter = employeeSearchQuery.trim().length > 0;
+  const activeCatalogEvents = useMemo(
+    () => state.events.filter((event) => event.IsActive),
+    [state.events]
+  );
+  const inactiveAssignedEvent = useMemo(() => {
+    if (activeEventId === "none") {
+      return null;
+    }
+    const match = state.events.find((event) => event.EventId === activeEventId);
+    return match && !match.IsActive ? match : null;
+  }, [activeEventId, state.events]);
   const filteredEvents = useMemo(
     () => state.events.filter((event) => (eventFilter === "active" ? event.IsActive : !event.IsActive)),
     [eventFilter, state.events]
@@ -427,7 +438,12 @@ function AdminPageInner() {
                     className="mt-2 h-14 w-full rounded-2xl border border-slate-100 bg-white text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white px-4 text-base outline-none"
                   >
                     <option value="none">No event selected</option>
-                    {state.events.map((event) => (
+                    {inactiveAssignedEvent ? (
+                      <option value={inactiveAssignedEvent.EventId}>
+                        {inactiveAssignedEvent.EventName} (inactive assignment)
+                      </option>
+                    ) : null}
+                    {activeCatalogEvents.map((event) => (
                       <option key={event.EventId} value={event.EventId}>
                         {event.EventName}
                       </option>
