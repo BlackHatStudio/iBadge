@@ -343,3 +343,11 @@ export async function replaceRecentScans(scans: AttendanceScan[]) {
 export async function upsertRecentScan(scan: AttendanceScan) {
   await writeManyToStore(STORE_NAMES.recentScans, [scan]);
 }
+
+export async function deleteRecentScans(scanIds: string[]) {
+  if (scanIds.length === 0) {
+    return;
+  }
+
+  await deleteKeys(STORE_NAMES.recentScans, scanIds);
+}

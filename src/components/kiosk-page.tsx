@@ -16,7 +16,7 @@ import {
   retryPendingQueue,
   submitScan,
 } from "@/lib/kiosk-data";
-import { employeeMatchForBadge, eventLabel, formatDisplayDate } from "@/lib/kiosk-utils";
+import { eventLabel, formatDisplayDate } from "@/lib/kiosk-utils";
 
 type ResultView = {
   state: "idle" | "MATCHED" | "UNKNOWN" | "INACTIVE" | "DUPLICATE" | "ERROR";
@@ -28,7 +28,7 @@ type ResultView = {
 const DEFAULT_RESULT: ResultView = {
   state: "idle",
   title: "Ready to Scan",
-  detail: "Scan a badge, type a badge number, or enter an email to log attendance.",
+  detail: "Scan a badge or type a badge number to log attendance.",
 };
 
 function toneForResult(state: ResultView["state"]) {
@@ -64,6 +64,8 @@ function toneForResult(state: ResultView["state"]) {
 export function KioskPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const isEmailEntryOpenRef = useRef(false);
   const deviceRef = useRef<Awaited<ReturnType<typeof bootstrapKiosk>>["device"] | null>(null);
   const [ready, setReady] = useState(false);
   const [isOnline, setIsOnline] = useState(false);
@@ -73,6 +75,9 @@ export function KioskPage() {
   const [pendingScans, setPendingScans] = useState<AttendanceScan[]>([]);
   const [recentScans, setRecentScans] = useState<AttendanceScan[]>([]);
   const [badgeInput, setBadgeInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [isEmailEntryOpen, setIsEmailEntryOpen] = useState(false);
+  isEmailEntryOpenRef.current = isEmailEntryOpen;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [result, setResult] = useState<ResultView>(DEFAULT_RESULT);
   const loadKiosk = useCallback(async (forceRefresh = false) => {
@@ -85,7 +90,6 @@ export function KioskPage() {
     setRecentScans(snapshot.recentScans);
     setIsOnline(navigator.onLine);
     setReady(true);
-    inputRef.current?.focus();
   }, []);
 
   const syncQueued = useCallback(async (useRetryEndpoint = false) => {
@@ -156,11 +160,31 @@ export function KioskPage() {
     const timer = window.setTimeout(() => {
       setResult(DEFAULT_RESULT);
       setBadgeInput("");
-      inputRef.current?.focus();
+      setEmailInput("");
+      if (!isEmailEntryOpenRef.current) {
+        inputRef.current?.focus({ preventScroll: true });
+      }
     }, 2600);
 
     return () => window.clearTimeout(timer);
   }, [result]);
+
+  useEffect(() => {
+    if (isEmailEntryOpen) {
+      emailInputRef.current?.focus();
+    }
+  }, [isEmailEntryOpen]);
+
+  /** Keep the badge field focused whenever this screen is ready and email entry is closed (initial load, returning from email, after async bootstrap). */
+  useEffect(() => {
+    if (!ready || isEmailEntryOpen) {
+      return;
+    }
+    const id = window.setTimeout(() => {
+      inputRef.current?.focus({ preventScroll: true });
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [ready, isEmailEntryOpen]);
 
   useEffect(() => {
     if (!ready || isSubmitting) {
@@ -184,22 +208,55 @@ export function KioskPage() {
   const tone = toneForResult(result.state);
   const ResultIcon = tone.icon;
 
-  const processBadgeSubmission = useCallback(async () => {
+  const processSubmission = useCallback(async (mode: "badge" | "email") => {
     if (!device || isSubmitting) {
       return;
     }
 
-    const rawBadge = badgeInput.trim();
-    if (!rawBadge) {
+    const rawInput = (mode === "badge" ? badgeInput : emailInput).trim();
+    if (!rawInput) {
+      return;
+    }
+
+    if (mode === "badge" && rawInput.includes("@")) {
+      setResult({
+        state: "ERROR",
+        title: "Email Not Allowed Here",
+        detail: "Use the Email button below to enter and submit an email address.",
+      });
+      setBadgeInput("");
+      inputRef.current?.focus();
+      return;
+    }
+
+    if (mode === "email" && !rawInput.includes("@")) {
+      setResult({
+        state: "ERROR",
+        title: "Invalid Email",
+        detail: "Enter a valid email address, then press Enter.",
+      });
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      const matchForDup = employeeMatchForBadge(employees, rawBadge);
+      const { record, matchedEmployee } = createScanRecord(rawInput, device, employees, events, {
+        matchBy: mode,
+      });
+      const badgeForDuplicate = matchedEmployee?.BadgeNumberRaw ?? rawInput;
+
+      if (mode === "email" && !matchedEmployee) {
+        setResult({
+          state: "UNKNOWN",
+          title: "Email Not Found",
+          detail: `No employee matched ${rawInput}. Verify the email and try again.`,
+        });
+        return;
+      }
+
       const duplicate = findSuppressedDuplicate(recentScans, {
-        badgeRaw: matchForDup?.BadgeNumberRaw ?? rawBadge,
+        badgeRaw: badgeForDuplicate,
         eventId: device.ActiveEventId,
         classDurationHours: device.ClassDurationHours,
       });
@@ -212,13 +269,19 @@ export function KioskPage() {
           scan: duplicate,
         });
         setBadgeInput("");
+        setEmailInput("");
+        if (mode === "email") {
+          setIsEmailEntryOpen(false);
+        }
         inputRef.current?.focus();
         return;
       }
 
       setBadgeInput("");
-
-      const { record, matchedEmployee } = createScanRecord(rawBadge, device, employees, events);
+      setEmailInput("");
+      if (mode === "email") {
+        setIsEmailEntryOpen(false);
+      }
       const savedScan = await submitScan(record);
 
       if (savedScan.SyncStatus === "SUPPRESSED" || savedScan.SuppressedReason === "DuplicateBadgeForEvent") {
@@ -268,16 +331,21 @@ export function KioskPage() {
       setResult({
         state: "ERROR",
         title: "Scan Failed",
-        detail: error instanceof Error ? error.message : "Unable to record this badge scan.",
+        detail: error instanceof Error ? error.message : "Unable to record this attendance scan.",
       });
     } finally {
       setIsSubmitting(false);
     }
-  }, [badgeInput, device, employees, events, isSubmitting, recentScans]);
+  }, [badgeInput, device, emailInput, employees, events, isSubmitting, recentScans]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await processBadgeSubmission();
+    await processSubmission("badge");
+  }
+
+  async function handleEmailSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await processSubmission("email");
   }
 
   function handleBadgeKeyDown(event: KeyboardEvent<HTMLInputElement>) {
@@ -323,7 +391,7 @@ export function KioskPage() {
           <section className="ibadge-card">
             <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
               <label htmlFor="badge" className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-900 dark:text-cyan-100">
-                Badge or email
+                Badge Number
               </label>
               <div className="flex flex-col gap-3 lg:flex-row">
                 <Input
@@ -332,13 +400,12 @@ export function KioskPage() {
                   value={badgeInput}
                   onChange={(event) => setBadgeInput(event.target.value)}
                   onKeyDown={handleBadgeKeyDown}
-                  autoFocus
                   type="text"
                   inputMode="text"
                   autoComplete="off"
                   autoCorrect="off"
                   spellCheck={false}
-                  placeholder="Scan badge, type badge number, or email"
+                  placeholder="Scan badge or type badge number"
                   className="h-20 rounded-[1.5rem] border-slate-100 bg-white px-6 text-2xl text-slate-900 placeholder:text-slate-400 md:text-3xl dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:placeholder:text-slate-500"
                 />
                 <Button
@@ -350,6 +417,37 @@ export function KioskPage() {
                 </Button>
               </div>
             </form>
+            <div className="mt-4">
+              <Button
+                type="button"
+                className="h-12 rounded-2xl bg-cyan-500 px-5 text-base font-semibold text-white shadow-sm hover:bg-cyan-400 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300"
+                onClick={() => setIsEmailEntryOpen((current) => !current)}
+              >
+                {isEmailEntryOpen ? "Hide Email Entry" : "Email"}
+              </Button>
+            </div>
+            {isEmailEntryOpen ? (
+              <form className="mt-4 flex flex-col gap-3 md:flex-row" onSubmit={handleEmailSubmit}>
+                <Input
+                  id="email-entry"
+                  ref={emailInputRef}
+                  value={emailInput}
+                  onChange={(event) => setEmailInput(event.target.value)}
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  placeholder="Enter email address"
+                  className="h-14 rounded-2xl border-slate-100 bg-white px-5 text-lg text-slate-900 placeholder:text-slate-400 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:placeholder:text-slate-500"
+                />
+                <Button
+                  type="submit"
+                  className="h-14 rounded-2xl bg-cyan-500 px-6 text-base font-semibold text-white shadow-sm hover:bg-cyan-400 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300 md:min-w-44"
+                  disabled={!ready || isSubmitting}
+                >
+                  {isSubmitting ? "Matching..." : "Enter"}
+                </Button>
+              </form>
+            ) : null}
 
             <div className={`mt-6 rounded-[2rem] border ${tone.border} ${tone.bg} p-6 transition-all duration-150 md:p-8`}>
               <div className="flex items-start gap-4">

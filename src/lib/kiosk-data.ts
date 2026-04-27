@@ -27,6 +27,7 @@ import {
   clampClassDurationHours,
   centralDateKey,
   employeeMatchForBadge,
+  employeeMatchForEmail,
   eventLabel,
   formatDisplayDate,
   matchesReviewFilters,
@@ -35,6 +36,7 @@ import {
 } from "@/lib/kiosk-utils";
 import { createUuid } from "@/lib/uuid";
 import {
+  deleteRecentScans,
   deletePendingScans,
   readDeviceConfig,
   readEmployees,
@@ -499,9 +501,11 @@ export function createScanRecord(
   badgeRaw: string,
   device: DeviceConfig,
   employees: EmployeeRecord[],
-  events: EventRecord[]
+  events: EventRecord[],
+  options?: { matchBy?: "badge" | "email" }
 ) {
-  const matchedEmployee = employeeMatchForBadge(employees, badgeRaw);
+  const matchedEmployee =
+    options?.matchBy === "email" ? employeeMatchForEmail(employees, badgeRaw) : employeeMatchForBadge(employees, badgeRaw);
   const currentEventName = eventLabel(events, device.ActiveEventId, device.ActiveEventName);
   const scanUtc = nowUtcIso();
 
@@ -540,6 +544,18 @@ export function createScanRecord(
     record,
     matchedEmployee,
   };
+}
+
+export async function deleteRecentActivityScans(scanIds: string[]) {
+  if (scanIds.length === 0) {
+    const [recentScans, pendingScans] = await Promise.all([readRecentScans(), readPendingScans()]);
+    return { recentScans, pendingScans };
+  }
+
+  await Promise.all([deleteRecentScans(scanIds), deletePendingScans(scanIds)]);
+
+  const [recentScans, pendingScans] = await Promise.all([readRecentScans(), readPendingScans()]);
+  return { recentScans, pendingScans };
 }
 
 async function persistQueuedScan(scan: AttendanceScan) {

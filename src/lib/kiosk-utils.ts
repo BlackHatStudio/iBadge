@@ -47,9 +47,17 @@ export function nowUtcIso() {
   return new Date().toISOString();
 }
 
+const MIN_CLASS_DURATION_HOURS = 1 / 60; // 1 min — used for short duplicate-suppression windows
+
 export function clampClassDurationHours(value: number | string | null | undefined) {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) {
+    return 0.5;
+  }
+  if (parsed < 0.5) {
+    if (Math.abs(parsed - MIN_CLASS_DURATION_HOURS) < 1e-4) {
+      return MIN_CLASS_DURATION_HOURS;
+    }
     return 0.5;
   }
   const rounded = Math.round(parsed * 2) / 2;
@@ -198,6 +206,22 @@ export function employeeMatchForBadge(employees: EmployeeRecord[], badgeValue: s
 
   const normalizedEmail = normalizeEmailForMatch(trimmed);
   if (!normalizedEmail.includes("@")) {
+    return null;
+  }
+
+  return (
+    employees.find((employee) => {
+      if (!employee.Email) {
+        return false;
+      }
+      return normalizeEmailForMatch(employee.Email) === normalizedEmail;
+    }) ?? null
+  );
+}
+
+export function employeeMatchForEmail(employees: EmployeeRecord[], emailValue: string) {
+  const normalizedEmail = normalizeEmailForMatch(emailValue);
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
     return null;
   }
 

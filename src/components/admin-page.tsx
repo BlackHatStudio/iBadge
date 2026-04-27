@@ -10,13 +10,14 @@ import { createEvent, updateEvent } from "@/lib/api";
 import {
   addCardholderAndRefresh,
   bootstrapKiosk,
+  deleteRecentActivityScans,
   refreshReferenceData,
   retryPendingQueue,
   updateDeviceClassDuration,
   updateDeviceConfiguration,
 } from "@/lib/kiosk-data";
 import type { AttendanceScan, DeviceConfig, EmployeeRecord, EventRecord, SyncMetadata } from "@/lib/kiosk-types";
-import { formatDisplayDate } from "@/lib/kiosk-utils";
+import { clampClassDurationHours, formatDisplayDate } from "@/lib/kiosk-utils";
 import { cn } from "@/lib/utils";
 import { useIbadgeTheme } from "@/components/theme-provider";
 
@@ -176,6 +177,8 @@ function AdminPageInner() {
   const [cardholderBadge, setCardholderBadge] = useState("");
   const [cardholderCompany, setCardholderCompany] = useState("");
   const [cardholderEmail, setCardholderEmail] = useState("");
+  const [scanSelectMode, setScanSelectMode] = useState(false);
+  const [selectedScanIds, setSelectedScanIds] = useState<string[]>([]);
 
   const sortedEmployees = useMemo(
     () => [...state.employees].sort((a, b) => a.EmployeeName.localeCompare(b.EmployeeName, undefined, { sensitivity: "base" })),
@@ -224,6 +227,51 @@ function AdminPageInner() {
     );
   }, [state.device, state.recentScans]);
 
+  useEffect(() => {
+    if (currentEventScans.length === 0) {
+      setScanSelectMode(false);
+      setSelectedScanIds([]);
+      return;
+    }
+
+    const validIds = new Set(currentEventScans.map((scan) => scan.DeviceScanGuid));
+    setSelectedScanIds((current) => current.filter((id) => validIds.has(id)));
+  }, [currentEventScans]);
+
+  const selectedScanCount = selectedScanIds.length;
+
+  const toggleScanSelection = useCallback((scanId: string) => {
+    setSelectedScanIds((current) => (current.includes(scanId) ? current.filter((id) => id !== scanId) : [...current, scanId]));
+  }, []);
+
+  const isScanSelected = useCallback((scanId: string) => selectedScanIds.includes(scanId), [selectedScanIds]);
+
+  const deleteSelectedScans = useCallback(() => {
+    if (selectedScanIds.length === 0) {
+      setStatusMessage("Select at least one activity record to delete.");
+      return;
+    }
+
+    const confirmDelete = window.confirm(
+      `Delete ${selectedScanIds.length} recent activity record${selectedScanIds.length === 1 ? "" : "s"}? This cannot be undone.`
+    );
+    if (!confirmDelete) {
+      return;
+    }
+
+    startTransition(async () => {
+      const next = await deleteRecentActivityScans(selectedScanIds);
+      setState((current) => ({
+        ...current,
+        recentScans: next.recentScans,
+        pendingScans: next.pendingScans,
+      }));
+      setSelectedScanIds([]);
+      setScanSelectMode(false);
+      setStatusMessage(`Deleted ${selectedScanIds.length} recent activity record${selectedScanIds.length === 1 ? "" : "s"}.`);
+    });
+  }, [selectedScanIds, startTransition]);
+
   const openEventEditor = useCallback((event: EventRecord) => {
     setSelectedEvent(event);
     setEventEditName(event.EventName);
@@ -243,7 +291,7 @@ function AdminPageInner() {
     });
     setDeviceNameDraft(snapshot.device.DeviceName);
     setActiveEventId(snapshot.device.ActiveEventId ?? "none");
-    setClassDurationHours(String(snapshot.device.ClassDurationHours ?? 0.5));
+    setClassDurationHours(String(clampClassDurationHours(snapshot.device?.ClassDurationHours ?? 0.5)));
     setIsOnline(navigator.onLine);
   }, []);
 
@@ -458,7 +506,7 @@ function AdminPageInner() {
                     onChange={(event) => setClassDurationHours(event.target.value)}
                     className="mt-2 h-14 w-full rounded-2xl border border-slate-100 bg-white text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white px-4 text-base outline-none"
                   >
-                    {Array.from({ length: 8 }, (_, index) => 0.5 + index * 0.5).map((hours) => (
+                    {[1 / 60, ...Array.from({ length: 8 }, (_, index) => 0.5 + index * 0.5)].map((hours) => (
                       <option key={hours} value={String(hours)}>
                         {formatDurationLabel(hours)}
                       </option>
@@ -751,7 +799,34 @@ function AdminPageInner() {
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Queue Snapshot</p>
                   <h2 className="mt-2 text-2xl font-semibold text-slate-900 dark:text-white">Recent device activity</h2>
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400">Local history remains even after successful sync.</p>
+                <div className="flex flex-wrap items-center justify-end gap-2">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Local history remains even after successful sync.</p>
+                  {currentEventScans.length > 0 ? (
+                    <>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-10 rounded-2xl border border-slate-100/90 bg-white px-4 text-sm text-slate-900 hover:bg-sky-50/70 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:hover:bg-slate-800"
+                        onClick={() => {
+                          setScanSelectMode((current) => !current);
+                          setSelectedScanIds([]);
+                        }}
+                      >
+                        {scanSelectMode ? "Cancel Select" : "Select"}
+                      </Button>
+                      {scanSelectMode ? (
+                        <Button
+                          type="button"
+                          className="h-10 rounded-2xl bg-rose-500 px-4 text-sm font-semibold text-white hover:bg-rose-400 disabled:cursor-not-allowed disabled:opacity-60"
+                          disabled={isPending || selectedScanCount === 0}
+                          onClick={deleteSelectedScans}
+                        >
+                          Delete{selectedScanCount > 0 ? ` (${selectedScanCount})` : ""}
+                        </Button>
+                      ) : null}
+                    </>
+                  ) : null}
+                </div>
               </div>
 
               <div className="mt-5 space-y-3">
@@ -764,8 +839,15 @@ function AdminPageInner() {
                     <button
                       key={scan.DeviceScanGuid}
                       type="button"
-                      onClick={() => setScanListOpen(true)}
+                      onClick={() => {
+                        if (scanSelectMode) {
+                          toggleScanSelection(scan.DeviceScanGuid);
+                          return;
+                        }
+                        setScanListOpen(true);
+                      }}
                       className="ibadge-inset-sm w-full text-left transition hover:border-cyan-400/35 hover:bg-sky-50/70 dark:hover:bg-white/[0.08]"
+                      aria-pressed={scanSelectMode ? isScanSelected(scan.DeviceScanGuid) : undefined}
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -773,9 +855,21 @@ function AdminPageInner() {
                           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{scan.BadgeNumberRaw}</p>
                           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500">{scan.EventNameSnapshot ?? "No event"}</p>
                         </div>
-                        <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.SyncStatus === "SYNCED" ? "bg-emerald-400/15 text-emerald-100" : "bg-amber-400/15 text-amber-100"}`}>
-                          {scan.SyncStatus}
-                        </span>
+                        <div className="flex items-center gap-3">
+                          {scanSelectMode ? (
+                            <input
+                              type="checkbox"
+                              checked={isScanSelected(scan.DeviceScanGuid)}
+                              onChange={() => toggleScanSelection(scan.DeviceScanGuid)}
+                              onClick={(event) => event.stopPropagation()}
+                              aria-label={`Select recent activity for ${scan.EmployeeNameSnapshot ?? scan.BadgeNumberRaw}`}
+                              className="size-5 accent-cyan-500"
+                            />
+                          ) : null}
+                          <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.SyncStatus === "SYNCED" ? "bg-emerald-400/15 text-emerald-100" : "bg-amber-400/15 text-amber-100"}`}>
+                            {scan.SyncStatus}
+                          </span>
+                        </div>
                       </div>
                       <div className="mt-3 grid gap-2 text-sm text-slate-300 md:grid-cols-2">
                         <p>Scan status: {scan.ScanStatus}</p>
@@ -934,9 +1028,20 @@ function AdminPageInner() {
                           <p className="text-base font-semibold text-slate-900 dark:text-white">{scan.EmployeeNameSnapshot ?? "Unknown"}</p>
                           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{scan.BadgeNumberRaw}</p>
                         </div>
-                        <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.SyncStatus === "SYNCED" ? "bg-emerald-400/15 text-emerald-100" : "bg-amber-400/15 text-amber-100"}`}>
-                          {scan.SyncStatus}
-                        </span>
+                        <div className="flex items-center gap-3">
+                          {scanSelectMode ? (
+                            <input
+                              type="checkbox"
+                              checked={isScanSelected(scan.DeviceScanGuid)}
+                              onChange={() => toggleScanSelection(scan.DeviceScanGuid)}
+                              aria-label={`Select recent activity for ${scan.EmployeeNameSnapshot ?? scan.BadgeNumberRaw}`}
+                              className="size-5 accent-cyan-500"
+                            />
+                          ) : null}
+                          <span className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] ${scan.SyncStatus === "SYNCED" ? "bg-emerald-400/15 text-emerald-100" : "bg-amber-400/15 text-amber-100"}`}>
+                            {scan.SyncStatus}
+                          </span>
+                        </div>
                       </div>
                       <div className="mt-3 grid gap-2 text-sm text-slate-300 md:grid-cols-2">
                         <p>Scan status: {scan.ScanStatus}</p>
