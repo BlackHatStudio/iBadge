@@ -47,10 +47,16 @@ export function nowUtcIso() {
   return new Date().toISOString();
 }
 
+/** One minute, expressed in hours (duplicate-suppression window minimum). */
+export const CLASS_DURATION_ONE_MINUTE_HOURS = 1 / 60;
+
 export function clampClassDurationHours(value: number | string | null | undefined) {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) {
     return 0.5;
+  }
+  if (parsed < 0.25) {
+    return CLASS_DURATION_ONE_MINUTE_HOURS;
   }
   const rounded = Math.round(parsed * 2) / 2;
   return Math.min(4, Math.max(0.5, rounded));

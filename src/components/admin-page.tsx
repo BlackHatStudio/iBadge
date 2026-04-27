@@ -16,7 +16,7 @@ import {
   updateDeviceConfiguration,
 } from "@/lib/kiosk-data";
 import type { AttendanceScan, DeviceConfig, EmployeeRecord, EventRecord, SyncMetadata } from "@/lib/kiosk-types";
-import { formatDisplayDate } from "@/lib/kiosk-utils";
+import { CLASS_DURATION_ONE_MINUTE_HOURS, formatDisplayDate } from "@/lib/kiosk-utils";
 import { cn } from "@/lib/utils";
 import { useIbadgeTheme } from "@/components/theme-provider";
 
@@ -458,6 +458,7 @@ function AdminPageInner() {
                     onChange={(event) => setClassDurationHours(event.target.value)}
                     className="mt-2 h-14 w-full rounded-2xl border border-slate-100 bg-white text-slate-900 dark:border-white/10 dark:bg-slate-900/80 dark:text-white px-4 text-base outline-none"
                   >
+                    <option value={String(CLASS_DURATION_ONE_MINUTE_HOURS)}>{formatDurationLabel(CLASS_DURATION_ONE_MINUTE_HOURS)}</option>
                     {Array.from({ length: 8 }, (_, index) => 0.5 + index * 0.5).map((hours) => (
                       <option key={hours} value={String(hours)}>
                         {formatDurationLabel(hours)}
