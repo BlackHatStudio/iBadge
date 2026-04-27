@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export const dynamic = "force-dynamic";
-
 export default function OfflinePage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[linear-gradient(155deg,#0c1826_0%,#153248_38%,#1a4f6a_100%)] px-6 py-8 text-slate-100">
