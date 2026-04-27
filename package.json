@@ -1,10 +1,11 @@
 {
   "name": "project-template",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:frontend:static": "node ./scripts/build-static-for-iis.mjs",
     "start": "next start",
     "lint": "next lint",
     "server:dev": "cd server && npm run dev",

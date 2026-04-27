@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
-import { Activity, BadgeCheck, BadgeX, CloudOff, Shield } from "lucide-react";
+import { Activity, BadgeCheck, BadgeX, CloudOff, Mail, Shield } from "lucide-react";
 import { AdminAccessButton } from "@/components/admin-access-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -289,6 +289,11 @@ export function KioskPage() {
     formRef.current?.requestSubmit();
   }
 
+  function handleOpenEmailClient() {
+    const subject = encodeURIComponent(`Attendance — ${currentEventLabel}`);
+    window.location.assign(`mailto:?subject=${subject}`);
+  }
+
   return (
     <div className="ibadge-shell">
       <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-7xl flex-col gap-4">
@@ -339,15 +344,26 @@ export function KioskPage() {
                   autoCorrect="off"
                   spellCheck={false}
                   placeholder="Scan badge, type badge number, or email"
-                  className="h-20 rounded-[1.5rem] border-slate-100 bg-white px-6 text-2xl text-slate-900 placeholder:text-slate-400 md:text-3xl dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:placeholder:text-slate-500"
+                  className="h-20 min-h-20 flex-1 rounded-[1.5rem] border-slate-100 bg-white px-6 text-2xl text-slate-900 placeholder:text-slate-400 md:text-3xl dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:placeholder:text-slate-500"
                 />
-                <Button
-                  type="submit"
-                  className="h-20 rounded-[1.5rem] bg-cyan-500 px-8 text-xl font-semibold text-white shadow-sm hover:bg-cyan-400 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300 lg:min-w-64"
-                  disabled={!ready || isSubmitting}
-                >
-                  {isSubmitting ? "Logging..." : "Log Attendance"}
-                </Button>
+                <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
+                  <Button
+                    type="button"
+                    className="h-20 min-h-20 w-full rounded-[1.5rem] bg-cyan-200 px-8 text-xl font-semibold text-slate-900 shadow-sm hover:bg-cyan-100 dark:bg-cyan-300/90 dark:text-slate-950 dark:hover:bg-cyan-200 lg:min-w-64"
+                    disabled={!ready}
+                    onClick={handleOpenEmailClient}
+                  >
+                    <Mail className="size-6 shrink-0" aria-hidden />
+                    Email
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="h-20 min-h-20 w-full rounded-[1.5rem] bg-cyan-500 px-8 text-xl font-semibold text-white shadow-sm hover:bg-cyan-400 dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300 lg:min-w-64"
+                    disabled={!ready || isSubmitting}
+                  >
+                    {isSubmitting ? "Logging..." : "Log Attendance"}
+                  </Button>
+                </div>
               </div>
             </form>
 

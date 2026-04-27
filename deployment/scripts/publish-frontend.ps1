@@ -17,7 +17,17 @@ $packageJsonPath = Join-Path $RepoRoot 'package.json'
 $outPath = Join-Path $RepoRoot 'out'
 
 Assert-FileExists -Path $packageJsonPath
-Assert-FileExists -Path (Join-Path $RepoRoot 'next.config.ts')
+$nextConfigPath = $null
+foreach ($name in @("next.config.mjs", "next.config.ts", "next.config.js")) {
+  $candidate = Join-Path $RepoRoot $name
+  if (Test-Path -LiteralPath $candidate) {
+    $nextConfigPath = $candidate
+    break
+  }
+}
+if (-not $nextConfigPath) {
+  throw "Next.js config not found. Expected one of: next.config.mjs, next.config.ts, next.config.js under $RepoRoot"
+}
 Write-NodeDiagnostics
 Ensure-NpmDependencies -WorkingDirectory $RepoRoot
 

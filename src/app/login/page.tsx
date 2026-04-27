@@ -4,8 +4,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export const dynamic = "force-dynamic";
-
 export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[linear-gradient(140deg,#082f49_0%,#0f172a_50%,#111827_100%)] px-6 py-10 text-slate-100">
