@@ -4,12 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:cloud": "next dev -H 0.0.0.0 -p ${PORT:-3000}",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "server:dev": "cd server && npm run dev",
     "build:server": "cd server && npm run build",
-    "build:all": "npm run build:server && npm run build"
+    "build:all": "npm run build:server && npm run build",
+    "cloud:setup": "bash ./scripts/cloud-setup.sh",
+    "smoke:test": "node ./scripts/smoke-test.mjs",
+    "cloud:test": "bash ./scripts/cloud-test.sh"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -34,9 +38,12 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15.5.14",
+    "playwright": "^1.59.1",
+    "start-server-and-test": "^3.0.2",
     "tailwindcss": "^4.1.14",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wait-on": "^9.0.5"
   },
   "engines": {
     "node": ">=20.9.0",
