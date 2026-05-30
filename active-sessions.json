@@ -15,7 +15,7 @@
     "startedAt": "2026-05-30T13:48:54.911Z",
     "lastHeartbeat": "2026-05-30T13:49:58.550Z",
     "touchedFiles": [],
-    "status": "active"
+    "status": "stale"
   },
   {
     "sessionId": "1635ba68-cde6-4e6b-b1be-fd708119fc85",
@@ -23,6 +23,15 @@
     "prompt": "",
     "startedAt": "2026-05-30T13:50:31.764Z",
     "lastHeartbeat": "2026-05-30T14:16:06.821Z",
+    "touchedFiles": [],
+    "status": "stale"
+  },
+  {
+    "sessionId": "d23f43d5-b1eb-4a41-ae31-e54e1fe22558",
+    "agentName": null,
+    "prompt": "",
+    "startedAt": "2026-05-30T14:25:24.056Z",
+    "lastHeartbeat": "2026-05-30T14:31:03.032Z",
     "touchedFiles": [],
     "status": "active"
   }
