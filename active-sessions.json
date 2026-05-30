@@ -6,6 +6,24 @@
     "startedAt": "2026-05-28T22:20:07.874Z",
     "lastHeartbeat": "2026-05-28T22:34:47.434Z",
     "touchedFiles": [],
+    "status": "stale"
+  },
+  {
+    "sessionId": "b70ab8e7-44c3-42cb-827d-78ad6a331779",
+    "agentName": null,
+    "prompt": "",
+    "startedAt": "2026-05-30T13:48:54.911Z",
+    "lastHeartbeat": "2026-05-30T13:49:58.550Z",
+    "touchedFiles": [],
+    "status": "active"
+  },
+  {
+    "sessionId": "1635ba68-cde6-4e6b-b1be-fd708119fc85",
+    "agentName": null,
+    "prompt": "",
+    "startedAt": "2026-05-30T13:50:31.764Z",
+    "lastHeartbeat": "2026-05-30T13:52:36.862Z",
+    "touchedFiles": [],
     "status": "active"
   }
 ]
