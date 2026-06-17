@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attendi Logo Intro</title>
+  </head>
+  <body>
+    <div data-hf-id="hf-eg5y" id="attendi-logo-intro" data-composition-id="attendi-logo-intro" data-start="0" data-width="1920" data-height="1080" data-duration="3">
+      <div data-hf-id="hf-d9wv" class="frame">
+        <div data-hf-id="hf-fstj" class="ambient ambient-left" data-layout-ignore=""></div>
+        <div data-hf-id="hf-oo8s" class="ambient ambient-right" data-layout-ignore=""></div>
+        <div data-hf-id="hf-80b5" class="grid" data-layout-ignore=""></div>
+        <div data-hf-id="hf-4hll" class="sweep" data-layout-ignore=""></div>
+
+        <div data-hf-id="hf-dkg6" class="logo-stage logo-stage-mark">
+          <div data-hf-id="hf-9t9y" class="stage-glow mark-glow" data-layout-ignore=""></div>
+          
+        </div>
+
+        <div data-hf-id="hf-r3ry" class="logo-stage logo-stage-full">
+          <div data-hf-id="hf-okea" class="stage-glow full-glow" data-layout-ignore=""></div>
+          <img data-hf-id="hf-yred" id="attendi-logo" class="clip logo-asset full-logo-asset" data-start="1.15" data-duration="1.85" data-track-index="0" src="assets/attendi-logo.png" alt="Attendi. Attendance. Simplified.">
+        </div>
+      </div>
+
+      <style>
+        html,
+        body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+          background: #01050d;
+          font-family: sans-serif;
+        }
+
+        #attendi-logo-intro {
+          position: relative;
+          width: 1920px;
+          height: 1080px;
+          overflow: hidden;
+          color: #f7fbff;
+          background:
+            radial-gradient(circle at 50% 42%, rgba(25, 212, 255, 0.11), transparent 30%),
+            radial-gradient(circle at 50% 64%, rgba(0, 120, 255, 0.09), transparent 34%),
+            linear-gradient(155deg, #031225 0%, #01050d 56%, #020817 100%);
+        }
+
+        .frame {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          padding: 92px 128px;
+        }
+
+        .grid {
+          position: absolute;
+          inset: 0;
+          opacity: 0.13;
+          background-image:
+            linear-gradient(rgba(25, 212, 255, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(25, 212, 255, 0.1) 1px, transparent 1px);
+          background-size: 120px 120px;
+          mask-image: radial-gradient(circle at 50% 52%, black 0%, transparent 68%);
+        }
+
+        .ambient {
+          position: absolute;
+          width: 720px;
+          height: 720px;
+          border-radius: 999px;
+          filter: blur(80px);
+          opacity: 0.24;
+        }
+
+        .ambient-left {
+          left: 80px;
+          top: 80px;
+          background: rgba(0, 120, 255, 0.34);
+        }
+
+        .ambient-right {
+          right: 90px;
+          bottom: 40px;
+          background: rgba(25, 212, 255, 0.2);
+        }
+
+        .logo-stage {
+          position: absolute;
+          inset: 92px 128px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: drop-shadow(0 34px 92px rgba(0, 0, 0, 0.48));
+        }
+
+        .stage-glow {
+          position: absolute;
+          width: 760px;
+          height: 760px;
+          border-radius: 999px;
+          background: radial-gradient(circle, rgba(25, 212, 255, 0.18), transparent 64%);
+          transform: translateY(-3%);
+          opacity: 0.8;
+        }
+
+        .logo-asset {
+          position: relative;
+          z-index: 2;
+          object-fit: contain;
+          transform-origin: center;
+          will-change: transform, opacity, filter;
+        }
+
+        .mark-asset {
+          width: min(780px, 58vw);
+          height: min(780px, 58vw);
+        }
+
+        .full-logo-asset {
+          width: min(980px, 72vw);
+          height: min(980px, 72vw);
+        }
+
+        .sweep {
+          position: absolute;
+          z-index: 4;
+          left: 28%;
+          top: 28%;
+          width: 46%;
+          height: 24%;
+          opacity: 0;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(25, 212, 255, 0.02) 28%,
+            rgba(25, 212, 255, 0.78) 48%,
+            rgba(247, 251, 255, 0.92) 52%,
+            rgba(0, 120, 255, 0.32) 68%,
+            transparent 100%
+          );
+          filter: blur(10px);
+          mix-blend-mode: screen;
+          pointer-events: none;
+        }
+      </style>
+
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+      <script>
+        window.__timelines = window.__timelines || {};
+
+        const tl = gsap.timeline({ paused: true });
+
+        tl.from(
+          ".grid",
+          {
+            opacity: 0,
+            scale: 1.04,
+            duration: 0.82,
+            ease: "power3.out",
+          },
+          0.1
+        );
+
+        tl.from(
+          ".ambient-left",
+          {
+            opacity: 0,
+            x: -90,
+            scale: 0.82,
+            duration: 1.05,
+            ease: "circ.out",
+          },
+          0.22
+        );
+
+        tl.from(
+          ".ambient-right",
+          {
+            opacity: 0,
+            x: 80,
+            y: 40,
+            scale: 0.72,
+            duration: 1.18,
+            ease: "power4.out",
+          },
+          0.3
+        );
+
+        tl.from(
+          ".mark-glow",
+          {
+            opacity: 0,
+            scale: 0.76,
+            duration: 0.68,
+            ease: "sine.out",
+          },
+          0.18
+        );
+
+        tl.from(
+          "#attendi-mark",
+          {
+            opacity: 0,
+            scale: 0.74,
+            filter: "blur(14px)",
+            duration: 0.54,
+            ease: "expo.out",
+          },
+          0.16
+        );
+
+        tl.to(
+          "#attendi-mark",
+          {
+            scale: 1.045,
+            duration: 0.38,
+            ease: "sine.inOut",
+          },
+          0.72
+        );
+
+        tl.fromTo(
+          ".sweep",
+          {
+            x: -520,
+            rotation: -24,
+          },
+          {
+            opacity: 0.95,
+            x: 520,
+            rotation: -24,
+            duration: 0.32,
+            ease: "power2.out",
+          },
+          0.74
+        );
+
+        tl.to(
+          ".sweep",
+          {
+            opacity: 0,
+            x: 820,
+            rotation: -24,
+            duration: 0.38,
+            ease: "sine.in",
+          },
+          1.06
+        );
+
+        tl.from(
+          ".full-glow",
+          {
+            opacity: 0,
+            scale: 0.84,
+            duration: 0.62,
+            ease: "sine.out",
+          },
+          1.15
+        );
+
+        tl.from(
+          "#attendi-logo",
+          {
+            opacity: 0,
+            scale: 0.9,
+            filter: "blur(16px)",
+            duration: 0.5,
+            ease: "expo.out",
+          },
+          1.17
+        );
+
+        tl.to(
+          "#attendi-logo",
+          {
+            scale: 1.018,
+            duration: 0.44,
+            ease: "sine.inOut",
+          },
+          1.69
+        );
+
+        tl.to(
+          "#attendi-logo",
+          {
+            scale: 1,
+            duration: 0.46,
+            ease: "elastic.out(1, 0.72)",
+          },
+          2.15
+        );
+
+        tl.to(
+          ["#attendi-logo", ".grid", ".ambient", ".stage-glow", ".logo-stage"],
+          {
+            opacity: 0,
+            duration: 0.34,
+            ease: "custom(M0,0 C0.55,0.06 0.79,0.94 1,1)",
+          },
+          2.62
+        );
+
+        window.__timelines["attendi-logo-intro"] = tl;
+      </script>
+    </div>
+  </body>
+</html>

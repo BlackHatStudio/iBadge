@@ -1,0 +1,161 @@
+{
+  "project_id": "attendi_logo_intro_001",
+  "project_name": "Attendi 3 Second Logo Intro",
+  "timeline_version": "1.0.0",
+  "status": "editable_timeline_pending_review",
+  "render_enabled": false,
+  "render_requires_explicit_approval": true,
+  "format": {
+    "aspect_ratio": "16:9",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "duration_seconds": 3
+  },
+  "tracks": [
+    {
+      "track_id": "primary_visual",
+      "type": "visual",
+      "no_overlap": true
+    },
+    {
+      "track_id": "graphics",
+      "type": "overlay",
+      "no_overlap": false
+    },
+    {
+      "track_id": "captions",
+      "type": "text",
+      "no_overlap": false
+    },
+    {
+      "track_id": "voiceover",
+      "type": "audio",
+      "no_overlap": false
+    },
+    {
+      "track_id": "music",
+      "type": "audio",
+      "no_overlap": false
+    },
+    {
+      "track_id": "sfx",
+      "type": "audio",
+      "no_overlap": false
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": "scene_01_mark_reveal",
+      "title": "Attendi Mark Reveal",
+      "enabled": true,
+      "approved": false,
+      "asset_type": "image",
+      "asset_path": "assets/attendi-mark.png",
+      "track": "primary_visual",
+      "primary_visual_layer": true,
+      "start_time": 0,
+      "duration": 1.15,
+      "end_time": 1.15,
+      "transition_in": {
+        "type": "fade",
+        "duration": 0.3
+      },
+      "transition_out": {
+        "type": "handoff_cut_with_light_sweep",
+        "duration": 0
+      },
+      "motion": {
+        "type": "mark_scale_reveal_with_light_sweep",
+        "easing": "expo.out / sine.inOut",
+        "intensity": "subtle"
+      },
+      "caption": {
+        "text": "",
+        "start_time": 0,
+        "end_time": 0,
+        "placement": "none"
+      },
+      "voiceover": {
+        "text": "",
+        "start_time": 0,
+        "end_time": 0
+      },
+      "notes": "Standalone Attendi mark occupies the first primary visual interval. Do not overlap with full logo."
+    },
+    {
+      "scene_id": "scene_02_full_logo_hold",
+      "title": "Full Attendi Logo Reveal",
+      "enabled": true,
+      "approved": false,
+      "asset_type": "image",
+      "asset_path": "assets/attendi-logo.png",
+      "track": "primary_visual",
+      "primary_visual_layer": true,
+      "start_time": 1.15,
+      "duration": 1.85,
+      "end_time": 3,
+      "transition_in": {
+        "type": "fade",
+        "duration": 0.35
+      },
+      "transition_out": {
+        "type": "fade_out",
+        "duration": 0.35
+      },
+      "motion": {
+        "type": "full_logo_reveal_and_settle",
+        "easing": "expo.out / elastic.out / power2.in",
+        "intensity": "subtle"
+      },
+      "caption": {
+        "text": "",
+        "start_time": 0,
+        "end_time": 0,
+        "placement": "none"
+      },
+      "voiceover": {
+        "text": "",
+        "start_time": 0,
+        "end_time": 0
+      },
+      "notes": "Full logo occupies the second primary visual interval and fades out at the end. Do not render until approved."
+    }
+  ],
+  "audio": [],
+  "captions": [],
+  "graphics": [
+    {
+      "graphic_id": "background_glow",
+      "track": "graphics",
+      "start_time": 0,
+      "duration": 3,
+      "end_time": 3,
+      "type": "radial_glow",
+      "notes": "Decorative depth behind the logo."
+    },
+    {
+      "graphic_id": "check_light_sweep",
+      "track": "graphics",
+      "start_time": 0.74,
+      "duration": 0.7,
+      "end_time": 1.44,
+      "type": "light_sweep",
+      "notes": "Cyan-blue sweep timed to the mark-to-logo handoff."
+    }
+  ],
+  "render_notes": [
+    "Editable Hyperframe preview only.",
+    "Rendering is disabled by default.",
+    "Final MP4 requires explicit user render approval and status change to approved_for_render."
+  ],
+  "validation": {
+    "timeline_file_exists": true,
+    "render_disabled_by_default": true,
+    "primary_visual_no_overlap": true,
+    "end_time_formula_valid": true,
+    "cta_required": false,
+    "ready_for_preview": true,
+    "ready_for_render": false
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": [
+    "src/app/api/attendee-lists/**/*.ts",
+    "src/app/api/attendees/**/*.ts",
+    "src/app/api/events/[eventId]/**/*.ts",
+    "src/app/api/kiosk/check-in/**/*.ts",
+    "src/app/admin/attendees/page.tsx",
+    "src/components/attendees-page.tsx",
+    "src/lib/attendees/**/*.ts",
+    "vitest.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "deployment",
+    "server"
+  ]
+}

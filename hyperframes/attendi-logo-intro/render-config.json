@@ -1,0 +1,17 @@
+{
+  "render_enabled": false,
+  "render_requires_explicit_approval": true,
+  "status": "editable_timeline_pending_review",
+  "approved_timeline_path": "",
+  "output": {
+    "format": "mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "destination": "renders/attendi-logo-intro.mp4"
+  },
+  "notes": [
+    "Do not render from this config until the user explicitly requests rendering.",
+    "Before rendering, copy or rename the approved timeline and set render_enabled to true."
+  ]
+}

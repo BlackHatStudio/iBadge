@@ -1,0 +1,17 @@
+
+  ⚠ gsap_studio_edit_blocked: GSAP tweens target "#attendi-logo", ".stage-glow", ".grid", ".ambient-left", ".ambient-right", ".sweep" in a registered timeline. Studio cannot save drag/resize edits to these elements — the runtime skips write-back for any element that appears in a registered window.__timelines timeline.
+    Fix: The hyperframes runtime registers timelines automatically. Do not add a manual window.__timelines script unless GSAP intentionally controls element positions. For initial visibility states, use CSS (e.g. opacity:0) instead of gsap.set(). If GSAP must own these elements' positions, avoid drag-editing them in Studio.
+
+T  hyperframes preview
+[?25l|
+o  Studio running
+[?25h
+  Project   attendi-logo-intro
+  Studio    http://localhost:3027
+
+  Edit with your AI agent — it has HyperFrames skills installed.
+  Changes reload automatically in the studio.
+
+  Press Ctrl+C to stop
+
+[BrowserManager] Browser launched (HeadlessChrome/131.0.6778.85, screenshot, headlessShell=true, platform=win32)
