@@ -40,8 +40,8 @@
     "agentName": null,
     "prompt": "",
     "startedAt": "2026-06-19T12:54:34.316Z",
-    "lastHeartbeat": "2026-06-19T16:49:08.731Z",
+    "lastHeartbeat": "2026-06-19T17:00:38.883Z",
     "touchedFiles": [],
-    "status": "active"
+    "status": "exited"
   }
 ]
