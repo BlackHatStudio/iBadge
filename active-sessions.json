@@ -33,6 +33,15 @@
     "startedAt": "2026-05-30T14:25:24.056Z",
     "lastHeartbeat": "2026-05-30T15:17:33.071Z",
     "touchedFiles": [],
+    "status": "stale"
+  },
+  {
+    "sessionId": "307fdc98-f6c9-49dc-8b1e-855879387993",
+    "agentName": null,
+    "prompt": "",
+    "startedAt": "2026-06-19T12:54:34.316Z",
+    "lastHeartbeat": "2026-06-19T13:04:04.527Z",
+    "touchedFiles": [],
     "status": "active"
   }
 ]
