@@ -1,0 +1,632 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Codebase Map — iBadge</title><style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px;background:#0d0d0f;color:#e8e8ed;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+  h1{margin:0 0 8px;font-size:24px}
+  h2{margin:32px 0 12px;font-size:18px;border-bottom:1px solid #2a2a35;padding-bottom:6px}
+  h3{margin:18px 0 8px;font-size:14px;color:#a78bfa}
+  h4{margin:0 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#9090a0}
+  p{margin:6px 0}
+  code,pre{font-family:"JetBrains Mono",Menlo,Consolas,monospace;font-size:12px;color:#cfcfe2}
+  ul{margin:4px 0;padding-left:18px}
+  li{margin:2px 0}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+  th,td{padding:6px 8px;border-bottom:1px solid #1f1f28;text-align:left;vertical-align:top}
+  th{color:#9090a0;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+  tr:hover td{background:#16161d}
+  .muted{color:#6a6a78;font-size:13px}
+  nav{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 20px}
+  nav a{padding:6px 10px;border:1px solid #2a2a35;border-radius:2px;color:#cfcfe2;text-decoration:none;font-size:12px}
+  nav a:hover{border-color:#a78bfa;color:#a78bfa}
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:12px 0 20px}
+  .card{border:1px solid #2a2a35;border-radius:2px;padding:10px}
+  .counts{list-style:none;padding:0;margin:0}
+  .badge{display:inline-block;padding:1px 6px;border-radius:2px;font-size:10px;font-weight:600;text-transform:uppercase}
+  .badge.sev-critical{background:#3a1014;color:#ff8a8a}
+  .badge.sev-warn{background:#3a2a10;color:#ffc870}
+  .badge.sev-info{background:#10283a;color:#7ec1ff}
+  section{margin:24px 0;padding:14px;border:1px solid #1f1f28;border-radius:2px;background:#101015}
+  section .section-desc{color:#9090a0;font-size:12px;margin:0 0 10px}
+  a[data-deeplink]{color:#a78bfa;text-decoration:none}
+  a[data-deeplink]:hover{text-decoration:underline}
+</style></head><body><h1>Codebase Map — iBadge</h1><p class="muted">Repo <code>C:\Users\stace\.ccc\projects\330a9c03-0b1a-45b0-ae90-71a5f05477ea</code> · 2026-06-21T09:00:02.704Z</p><nav><a href="#section-tenants" data-target="section-tenants">Tenant Matrix</a><a href="#section-defects" data-target="section-defects">Defect Surface</a><a href="#section-fleet" data-target="section-fleet">Fleet</a><a href="#section-decisions" data-target="section-decisions">Decisions</a><a href="#section-backlog" data-target="section-backlog">Improvement Backlog</a><a href="#section-keystones" data-target="section-keystones">Keystones</a></nav>
+    <div class="summary">
+      <div class="card">
+        <h4>Repo</h4>
+        <p><code>iBadge</code></p>
+        <p class="muted">commit b8b0692b808dfa1e063e4d87136819acbf2dc460</p>
+      </div>
+      <div class="card">
+        <h4>Snapshot</h4>
+        <p>2026-06-21T09:00:02.704Z</p>
+        <p class="muted">builder 0.0.1</p>
+      </div>
+      <div class="card">
+        <h4>Nodes</h4>
+        <ul class="counts"><li><strong>DecisionRecord</strong>: 2</li><li><strong>Module</strong>: 70</li><li><strong>PipelineStage</strong>: 32</li><li><strong>Service</strong>: 3</li></ul>
+      </div>
+      <div class="card">
+        <h4>Findings</h4>
+        <ul class="counts">
+          <li><span class="badge sev-critical">critical</span> 0</li>
+          <li><span class="badge sev-warn">warn</span> 36</li>
+          <li><span class="badge sev-info">info</span> 68</li>
+        </ul>
+      </div>
+    </div>
+    <section id="section-tenants" data-section="tenants">
+      <h2>Tenant Matrix</h2>
+      <p class="section-desc">Tenant nodes and the modules/services owned by each.</p>
+      <p class="muted">No tenants declared in this snapshot.</p>
+    </section>
+    <section id="section-defects" data-section="defects">
+      <h2>Defect Surface</h2>
+      <p class="section-desc">Critical and warn findings ranked by severity — keystones, phantom imports, gate gaps.</p>
+      <table class="findings"><thead><tr><th>Sev</th><th>Type</th><th>Title</th><th>Nodes</th></tr></thead><tbody><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>phantom_import</code></td>
+        <td>Phantom import: module:src/app/layout.tsx → module:src/app/globals.css</td>
+        <td><code>module:src/app/layout.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers Service: service:express:GET /health</td>
+        <td><code>service:express:GET /health</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers Service: service:express:POST /auth/login</td>
+        <td><code>service:express:POST /auth/login</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers Service: service:express:GET /api/protected</td>
+        <td><code>service:express:GET /api/protected</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:public/sw.js#&lt;anonymous&gt;</td>
+        <td><code>pipeline:public/sw.js#&lt;anonymous&gt;</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/admin-guard.tsx#AdminGuard</td>
+        <td><code>pipeline:src/components/admin-guard.tsx#AdminGuard</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/admin-page.tsx#AdminPageInner</td>
+        <td><code>pipeline:src/components/admin-page.tsx#AdminPageInner</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/admin-page.tsx#&lt;anonymous&gt;</td>
+        <td><code>pipeline:src/components/admin-page.tsx#&lt;anonymous&gt;</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/kiosk-page.tsx#KioskPage</td>
+        <td><code>pipeline:src/components/kiosk-page.tsx#KioskPage</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/kiosk-page.tsx#&lt;anonymous&gt;</td>
+        <td><code>pipeline:src/components/kiosk-page.tsx#&lt;anonymous&gt;</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/pin-entry-form.tsx#PinEntryForm</td>
+        <td><code>pipeline:src/components/pin-entry-form.tsx#PinEntryForm</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/pin-entry-form.tsx#&lt;anonymous&gt;</td>
+        <td><code>pipeline:src/components/pin-entry-form.tsx#&lt;anonymous&gt;</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/review-page.tsx#ReviewPageInner</td>
+        <td><code>pipeline:src/components/review-page.tsx#ReviewPageInner</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/review-page.tsx#&lt;anonymous&gt;</td>
+        <td><code>pipeline:src/components/review-page.tsx#&lt;anonymous&gt;</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/review-page.tsx#bootstrap</td>
+        <td><code>pipeline:src/components/review-page.tsx#bootstrap</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/tables/data-table.tsx#DataTable</td>
+        <td><code>pipeline:src/components/tables/data-table.tsx#DataTable</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/components/theme-provider.tsx#ThemeProvider</td>
+        <td><code>pipeline:src/components/theme-provider.tsx#ThemeProvider</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/dev-stubs/api/devices/current/route.ts#PUT</td>
+        <td><code>pipeline:src/dev-stubs/api/devices/current/route.ts#PUT</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/dev-stubs/api/devices/register/route.ts#POST</td>
+        <td><code>pipeline:src/dev-stubs/api/devices/register/route.ts#POST</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#ensureAdminConfigRow</td>
+        <td><code>pipeline:src/lib/ibadge-db.ts#ensureAdminConfigRow</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#findExistingEventDuplicate</td>
+        <td><code>pipeline:src/lib/ibadge-db.ts#findExistingEventDuplicate</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#upsertEmployeeCardholder</td>
+        <td><code>pipeline:src/lib/ibadge-db.ts#upsertEmployeeCardholder</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#insertScanRecord</td>
+        <td><code>pipeline:src/lib/ibadge-db.ts#insertScanRecord</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#normalizeReviewScan</td>
+        <td><code>pipeline:src/lib/kiosk-data.ts#normalizeReviewScan</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#bootstrapKiosk</td>
+        <td><code>pipeline:src/lib/kiosk-data.ts#bootstrapKiosk</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#persistQueuedScan</td>
+        <td><code>pipeline:src/lib/kiosk-data.ts#persistQueuedScan</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#markScanAsSynced</td>
+        <td><code>pipeline:src/lib/kiosk-data.ts#markScanAsSynced</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#retryPendingQueue</td>
+        <td><code>pipeline:src/lib/kiosk-data.ts#retryPendingQueue</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-utils.ts#localDateString</td>
+        <td><code>pipeline:src/lib/kiosk-utils.ts#localDateString</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/kiosk-utils.ts#matchesReviewFilters</td>
+        <td><code>pipeline:src/lib/kiosk-utils.ts#matchesReviewFilters</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#buildReviewPdfBuffer</td>
+        <td><code>pipeline:src/lib/review-pdf.ts#buildReviewPdfBuffer</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#drawHeaderBand</td>
+        <td><code>pipeline:src/lib/review-pdf.ts#drawHeaderBand</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#drawTableHeaderRow</td>
+        <td><code>pipeline:src/lib/review-pdf.ts#drawTableHeaderRow</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#drawRowLines</td>
+        <td><code>pipeline:src/lib/review-pdf.ts#drawRowLines</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#startNewPage</td>
+        <td><code>pipeline:src/lib/review-pdf.ts#startNewPage</code></td>
+      </tr><tr>
+        <td><span class="badge sev-warn">warn</span></td>
+        <td><code>gate_uncovered</code></td>
+        <td>No quality gate covers PipelineStage: pipeline:src/lib/storage.ts#&lt;anonymous&gt;</td>
+        <td><code>pipeline:src/lib/storage.ts#&lt;anonymous&gt;</code></td>
+      </tr></tbody></table>
+    </section>
+    <section id="section-fleet" data-section="fleet">
+      <h2>Fleet</h2>
+      <p class="section-desc">Services and pipeline stages across the repository.</p>
+      <h3>Services (3)</h3><table class="fleet"><thead><tr><th>Transport</th><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>express</td><td>GET</td><td><code>GET /health</code></td></tr><tr><td>express</td><td>POST</td><td><code>POST /auth/login</code></td></tr><tr><td>express</td><td>GET</td><td><code>GET /api/protected</code></td></tr></tbody></table><h3>Pipeline Stages (32)</h3><table class="fleet"><thead><tr><th>#</th><th>Stage</th><th>Module</th></tr></thead><tbody><tr><td></td><td>&lt;anonymous&gt;</td><td><code>public/sw.js</code></td></tr><tr><td></td><td>AdminGuard</td><td><code>src/components/admin-guard.tsx</code></td></tr><tr><td></td><td>AdminPageInner</td><td><code>src/components/admin-page.tsx</code></td></tr><tr><td></td><td>&lt;anonymous&gt;</td><td><code>src/components/admin-page.tsx</code></td></tr><tr><td></td><td>KioskPage</td><td><code>src/components/kiosk-page.tsx</code></td></tr><tr><td></td><td>&lt;anonymous&gt;</td><td><code>src/components/kiosk-page.tsx</code></td></tr><tr><td></td><td>PinEntryForm</td><td><code>src/components/pin-entry-form.tsx</code></td></tr><tr><td></td><td>&lt;anonymous&gt;</td><td><code>src/components/pin-entry-form.tsx</code></td></tr><tr><td></td><td>ReviewPageInner</td><td><code>src/components/review-page.tsx</code></td></tr><tr><td></td><td>&lt;anonymous&gt;</td><td><code>src/components/review-page.tsx</code></td></tr><tr><td></td><td>bootstrap</td><td><code>src/components/review-page.tsx</code></td></tr><tr><td></td><td>DataTable</td><td><code>src/components/tables/data-table.tsx</code></td></tr><tr><td></td><td>ThemeProvider</td><td><code>src/components/theme-provider.tsx</code></td></tr><tr><td></td><td>PUT</td><td><code>src/dev-stubs/api/devices/current/route.ts</code></td></tr><tr><td></td><td>POST</td><td><code>src/dev-stubs/api/devices/register/route.ts</code></td></tr><tr><td></td><td>ensureAdminConfigRow</td><td><code>src/lib/ibadge-db.ts</code></td></tr><tr><td></td><td>findExistingEventDuplicate</td><td><code>src/lib/ibadge-db.ts</code></td></tr><tr><td></td><td>upsertEmployeeCardholder</td><td><code>src/lib/ibadge-db.ts</code></td></tr><tr><td></td><td>insertScanRecord</td><td><code>src/lib/ibadge-db.ts</code></td></tr><tr><td></td><td>normalizeReviewScan</td><td><code>src/lib/kiosk-data.ts</code></td></tr><tr><td></td><td>bootstrapKiosk</td><td><code>src/lib/kiosk-data.ts</code></td></tr><tr><td></td><td>persistQueuedScan</td><td><code>src/lib/kiosk-data.ts</code></td></tr><tr><td></td><td>markScanAsSynced</td><td><code>src/lib/kiosk-data.ts</code></td></tr><tr><td></td><td>retryPendingQueue</td><td><code>src/lib/kiosk-data.ts</code></td></tr><tr><td></td><td>localDateString</td><td><code>src/lib/kiosk-utils.ts</code></td></tr><tr><td></td><td>matchesReviewFilters</td><td><code>src/lib/kiosk-utils.ts</code></td></tr><tr><td></td><td>buildReviewPdfBuffer</td><td><code>src/lib/review-pdf.ts</code></td></tr><tr><td></td><td>drawHeaderBand</td><td><code>src/lib/review-pdf.ts</code></td></tr><tr><td></td><td>drawTableHeaderRow</td><td><code>src/lib/review-pdf.ts</code></td></tr><tr><td></td><td>drawRowLines</td><td><code>src/lib/review-pdf.ts</code></td></tr><tr><td></td><td>startNewPage</td><td><code>src/lib/review-pdf.ts</code></td></tr><tr><td></td><td>&lt;anonymous&gt;</td><td><code>src/lib/storage.ts</code></td></tr></tbody></table>
+    </section>
+    <section id="section-decisions" data-section="decisions">
+      <h2>Decisions</h2>
+      <p class="section-desc">Architecture Decision Records and the modules they decide.</p>
+      <table class="decisions"><thead><tr><th>Title</th><th>Status</th><th>Date</th><th>Path</th></tr></thead><tbody><tr>
+        <td><a href="#" data-deeplink="adr:docs/attendance-kiosk-integration.md">Attendance Kiosk Integration Notes</a></td>
+        <td></td>
+        <td></td>
+        <td><code>docs/attendance-kiosk-integration.md</code></td>
+      </tr><tr>
+        <td><a href="#" data-deeplink="adr:docs/windows-server-2022-deployment-package-plan.md">Windows Server 2022 Deployment Package And Backend Support Plan</a></td>
+        <td></td>
+        <td></td>
+        <td><code>docs/windows-server-2022-deployment-package-plan.md</code></td>
+      </tr></tbody></table>
+    </section>
+    <section id="section-backlog" data-section="backlog">
+      <h2>Improvement Backlog</h2>
+      <p class="section-desc">Info-level findings — orphans, hardcoded endpoints, drift.</p>
+      <table class="findings"><thead><tr><th>Sev</th><th>Type</th><th>Title</th><th>Nodes</th></tr></thead><tbody><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:deployment/config/runtime-config.template.js</td>
+        <td><code>module:deployment/config/runtime-config.template.js</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:public/runtime-config.js</td>
+        <td><code>module:public/runtime-config.js</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:public/sw.js</td>
+        <td><code>module:public/sw.js</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:server/src/index.ts</td>
+        <td><code>module:server/src/index.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/admin/access/page.tsx</td>
+        <td><code>module:src/app/admin/access/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/admin/page.tsx</td>
+        <td><code>module:src/app/admin/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/admin/review/page.tsx</td>
+        <td><code>module:src/app/admin/review/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/admin/pin/verify/route.ts</td>
+        <td><code>module:src/app/api/admin/pin/verify/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/devices/current/event/route.ts</td>
+        <td><code>module:src/app/api/devices/current/event/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/devices/current/route.ts</td>
+        <td><code>module:src/app/api/devices/current/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/devices/register/route.ts</td>
+        <td><code>module:src/app/api/devices/register/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/employees/route.ts</td>
+        <td><code>module:src/app/api/employees/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/events/route.ts</td>
+        <td><code>module:src/app/api/events/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/reports/export/[format]/route.ts</td>
+        <td><code>module:src/app/api/reports/export/[format]/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/scans/review/route.ts</td>
+        <td><code>module:src/app/api/scans/review/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/scans/route.ts</td>
+        <td><code>module:src/app/api/scans/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/scans/sync-batch/route.ts</td>
+        <td><code>module:src/app/api/scans/sync-batch/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/sync/refresh/route.ts</td>
+        <td><code>module:src/app/api/sync/refresh/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/api/sync/retry/route.ts</td>
+        <td><code>module:src/app/api/sync/retry/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/layout.tsx</td>
+        <td><code>module:src/app/layout.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/login/page.tsx</td>
+        <td><code>module:src/app/login/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/manifest.ts</td>
+        <td><code>module:src/app/manifest.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/offline/page.tsx</td>
+        <td><code>module:src/app/offline/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/page.tsx</td>
+        <td><code>module:src/app/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/app/registration/page.tsx</td>
+        <td><code>module:src/app/registration/page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/admin-access-button.tsx</td>
+        <td><code>module:src/components/admin-access-button.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/admin-guard.tsx</td>
+        <td><code>module:src/components/admin-guard.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/admin-page.tsx</td>
+        <td><code>module:src/components/admin-page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/kiosk-page.tsx</td>
+        <td><code>module:src/components/kiosk-page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/pin-entry-form.tsx</td>
+        <td><code>module:src/components/pin-entry-form.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/pwa-register.tsx</td>
+        <td><code>module:src/components/pwa-register.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/review-page.tsx</td>
+        <td><code>module:src/components/review-page.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/tables/data-table-column-header.tsx</td>
+        <td><code>module:src/components/tables/data-table-column-header.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/tables/data-table.tsx</td>
+        <td><code>module:src/components/tables/data-table.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/theme-provider.tsx</td>
+        <td><code>module:src/components/theme-provider.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/theme-toggle.tsx</td>
+        <td><code>module:src/components/theme-toggle.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/ui/button.tsx</td>
+        <td><code>module:src/components/ui/button.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/ui/dropdown-menu.tsx</td>
+        <td><code>module:src/components/ui/dropdown-menu.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/ui/input.tsx</td>
+        <td><code>module:src/components/ui/input.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/ui/select.tsx</td>
+        <td><code>module:src/components/ui/select.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/ui/separator.tsx</td>
+        <td><code>module:src/components/ui/separator.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/components/ui/table.tsx</td>
+        <td><code>module:src/components/ui/table.tsx</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/admin/pin/verify/route.ts</td>
+        <td><code>module:src/dev-stubs/api/admin/pin/verify/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/devices/current/event/route.ts</td>
+        <td><code>module:src/dev-stubs/api/devices/current/event/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/devices/current/route.ts</td>
+        <td><code>module:src/dev-stubs/api/devices/current/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/devices/register/route.ts</td>
+        <td><code>module:src/dev-stubs/api/devices/register/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/events/route.ts</td>
+        <td><code>module:src/dev-stubs/api/events/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/reports/export/[format]/route.ts</td>
+        <td><code>module:src/dev-stubs/api/reports/export/[format]/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/scans/review/route.ts</td>
+        <td><code>module:src/dev-stubs/api/scans/review/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/scans/route.ts</td>
+        <td><code>module:src/dev-stubs/api/scans/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/scans/sync-batch/route.ts</td>
+        <td><code>module:src/dev-stubs/api/scans/sync-batch/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/sync/refresh/route.ts</td>
+        <td><code>module:src/dev-stubs/api/sync/refresh/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/dev-stubs/api/sync/retry/route.ts</td>
+        <td><code>module:src/dev-stubs/api/sync/retry/route.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/admin-access.ts</td>
+        <td><code>module:src/lib/admin-access.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/api.ts</td>
+        <td><code>module:src/lib/api.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/app-config.ts</td>
+        <td><code>module:src/lib/app-config.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/ibadge-db.ts</td>
+        <td><code>module:src/lib/ibadge-db.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/ibadge-dev-api.ts</td>
+        <td><code>module:src/lib/ibadge-dev-api.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/ibadge-events-sql.ts</td>
+        <td><code>module:src/lib/ibadge-events-sql.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/ibadge-upstream.ts</td>
+        <td><code>module:src/lib/ibadge-upstream.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/kiosk-data.ts</td>
+        <td><code>module:src/lib/kiosk-data.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/kiosk-types.ts</td>
+        <td><code>module:src/lib/kiosk-types.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/kiosk-utils.ts</td>
+        <td><code>module:src/lib/kiosk-utils.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/review-pdf.ts</td>
+        <td><code>module:src/lib/review-pdf.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/storage.ts</td>
+        <td><code>module:src/lib/storage.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/utils.ts</td>
+        <td><code>module:src/lib/utils.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:src/lib/uuid.ts</td>
+        <td><code>module:src/lib/uuid.ts</code></td>
+      </tr><tr>
+        <td><span class="badge sev-info">info</span></td>
+        <td><code>orphan_module</code></td>
+        <td>Orphan module: module:tailwind.config.ts</td>
+        <td><code>module:tailwind.config.ts</code></td>
+      </tr></tbody></table>
+    </section>
+    <section id="section-keystones" data-section="keystones">
+      <h2>Keystones</h2>
+      <p class="section-desc">Modules with the highest import fan-in — the load-bearing files.</p>
+      <p class="muted">No keystone modules above threshold.</p>
+    </section><script>
+  (function(){
+    "use strict";
+    var anchors=document.querySelectorAll("nav a[data-target]");
+    anchors.forEach(function(a){
+      a.addEventListener("click",function(ev){
+        ev.preventDefault();
+        var id=a.getAttribute("data-target");
+        var el=document.getElementById(id);
+        if(el){el.scrollIntoView({behavior:"smooth",block:"start"});}
+      });
+    });
+    var deep=document.querySelectorAll("a[data-deeplink]");
+    deep.forEach(function(a){
+      a.addEventListener("click",function(ev){ev.preventDefault();});
+    });
+  })();
+</script></body></html>
