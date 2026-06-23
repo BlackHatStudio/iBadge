@@ -1,0 +1,851 @@
+{
+  "byPath": [
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/findings.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/graph.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/index.html",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/llm/refinement.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/adrs.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/artifacts.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/git-attribution.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/services.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/stages.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/ts-imports.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/summary.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "wiki/summaries/weekly-2026-W24.md",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/findings.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/graph.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/index.html",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/llm/refinement.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/adrs.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/artifacts.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/git-attribution.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/services.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/stages.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/ts-imports.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/summary.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/findings.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/graph.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/index.html",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/llm/refinement.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/raw/adrs.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/raw/artifacts.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/raw/git-attribution.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/raw/services.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/raw/stages.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/raw/ts-imports.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/summary.json",
+      "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+      "date": "2026-06-20T04:09:39-05:00"
+    },
+    {
+      "path": "active-sessions.json",
+      "sha": "1fbbdb21dff76c2ad74e07c3223cc76d95b418c4",
+      "date": "2026-06-19T17:04:29Z"
+    },
+    {
+      "path": ".ccc-spawn-debug.json",
+      "sha": "cfe970f816fcc3940cd1dd54481973bd044f1634",
+      "date": "2026-06-19T13:04:29Z"
+    },
+    {
+      "path": "agents.json",
+      "sha": "c0d50cdee1dbeba465e955459bbb29c0e4e8546a",
+      "date": "2026-05-28T22:27:17Z"
+    },
+    {
+      "path": "src/components/admin-page.tsx",
+      "sha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "date": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "path": "src/components/kiosk-page.tsx",
+      "sha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "date": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "path": "src/lib/kiosk-data.ts",
+      "sha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "date": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "path": "src/lib/kiosk-utils.ts",
+      "sha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "date": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "path": "src/lib/storage.ts",
+      "sha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "date": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "path": "package.json",
+      "sha": "6261b0607f7f2abcb1d41bfc3a3692e98469f3ab",
+      "date": "2026-04-21T07:58:28-05:00"
+    },
+    {
+      "path": "deployment/installer/iBadgeWebAppInstaller.iss",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "deployment/scripts/install-web-package.ps1",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/app/api/employees/route.ts",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/app/globals.css",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/app/manifest.ts",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/app/offline/page.tsx",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/components/admin-guard.tsx",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/components/pin-entry-form.tsx",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/components/review-page.tsx",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/components/theme-provider.tsx",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/lib/api.ts",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "src/lib/ibadge-db.ts",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "tailwind.config.ts",
+      "sha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "date": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "path": "deployment/scripts/install-database.ps1",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "deployment/sql/006_dbo_employee_companynum.sql",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "package-lock.json",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "public/ibadge-favicon.png",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "public/ibadge-full.png",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/app/api/events/route.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/app/api/scans/route.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/devices/current/event/route.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/devices/current/route.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/devices/register/route.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/events/route.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/lib/ibadge-dev-api.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/lib/kiosk-types.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/lib/review-pdf.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": "src/lib/uuid.ts",
+      "sha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "date": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "path": ".env.example",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": ".github/workflows/windows-package.yml",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": ".gitignore",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/.env.production.template",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/appsettings.Production.template.json",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/deploy.settings.template.json",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/iBadge.ApiService.xml.template",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/iBadge.WebApp.xml.template",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/installer.variables.template.iss",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/run-webapp.template.cmd",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/runtime-config.template.js",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/web.config.template",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/webapp-package.README.txt",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/webapp.deploy.settings.template.json",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/webapp.server.env.template",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/config/webapp.web.config.template",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/installer/KioskAttendanceInstaller.iss",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/build-installer.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/build-webapp-installer.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/common.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/create-iis-site.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/create-scheduled-task.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/ensure-winsw.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/install-backend-service.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/install-deployment.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/invoke-employee-import.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/prepare-config.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/publish-all.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/publish-api.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/publish-frontend.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/render-template.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/stage-deployment.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/scripts/stage-webapp-package.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/sql/001_create_database.sql",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/sql/002_create_tables.sql",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/sql/003_seed_initial_data.sql",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/sql/004_indexes_and_constraints.sql",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/sql/005_dbo_employee_email.sql",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "deployment/staging/.gitkeep",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "docs/attendance-kiosk-integration.md",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "docs/windows-server-2022-deployment-package-plan.md",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "next.config.mjs",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "next.config.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "public/icon.svg",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "public/runtime-config.js",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "public/sw.js",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "scripts/dev.ps1",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "server/.env.example",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "server/src/index.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/admin/access/page.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/admin/page.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/admin/review/page.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/admin/pin/verify/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/devices/current/event/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/devices/current/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/devices/register/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/reports/export/[format]/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/scans/review/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/scans/sync-batch/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/sync/refresh/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/api/sync/retry/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/login/page.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/page.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/app/registration/page.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/components/admin-access-button.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/components/pwa-register.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/components/tables/data-table.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/components/ui/input.tsx",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/admin/pin/verify/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/reports/export/[format]/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/scans/review/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/scans/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/scans/sync-batch/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/sync/refresh/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/dev-stubs/api/sync/retry/route.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/lib/admin-access.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/lib/app-config.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/lib/ibadge-events-sql.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "src/lib/ibadge-upstream.ts",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "date": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "path": "README.md",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "components.json",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "server/package-lock.json",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "server/package.json",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "server/tsconfig.json",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/tables/data-table-column-header.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/tables/data-table-pagination.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/tables/data-table-view-options.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/theme-toggle.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/ui/button.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/ui/dropdown-menu.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/ui/select.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/ui/separator.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/components/ui/table.tsx",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "sha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "date": "2026-01-19T13:06:15-06:00"
+    }
+  ],
+  "commitsScanned": 38,
+  "attributedCount": 169
+}

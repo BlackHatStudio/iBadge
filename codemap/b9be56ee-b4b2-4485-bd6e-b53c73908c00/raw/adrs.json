@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "type": "DecisionRecord",
+      "id": "decision:docs/attendance-kiosk-integration.md",
+      "path": "docs/attendance-kiosk-integration.md",
+      "title": "Attendance Kiosk Integration Notes",
+      "attrs": {
+        "slug": "attendance-kiosk-integration"
+      }
+    },
+    {
+      "type": "DecisionRecord",
+      "id": "decision:docs/windows-server-2022-deployment-package-plan.md",
+      "path": "docs/windows-server-2022-deployment-package-plan.md",
+      "title": "Windows Server 2022 Deployment Package And Backend Support Plan",
+      "attrs": {
+        "slug": "windows-server-2022-deployment-package-plan"
+      }
+    }
+  ],
+  "edges": [],
+  "filesScanned": 2,
+  "sourceFilesScanned": 74
+}

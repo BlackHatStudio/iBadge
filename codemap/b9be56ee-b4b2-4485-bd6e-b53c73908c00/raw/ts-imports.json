@@ -1,0 +1,2691 @@
+{
+  "nodes": [
+    {
+      "type": "Module",
+      "id": "module:deployment/config/runtime-config.template.js",
+      "path": "deployment/config/runtime-config.template.js",
+      "language": "javascript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:public/runtime-config.js",
+      "path": "public/runtime-config.js",
+      "language": "javascript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:public/sw.js",
+      "path": "public/sw.js",
+      "language": "javascript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:server/src/index.ts",
+      "path": "server/src/index.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/admin/access/page.tsx",
+      "path": "src/app/admin/access/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/admin/page.tsx",
+      "path": "src/app/admin/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/admin/review/page.tsx",
+      "path": "src/app/admin/review/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/admin/pin/verify/route.ts",
+      "path": "src/app/api/admin/pin/verify/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/devices/current/event/route.ts",
+      "path": "src/app/api/devices/current/event/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/devices/current/route.ts",
+      "path": "src/app/api/devices/current/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/devices/register/route.ts",
+      "path": "src/app/api/devices/register/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/employees/route.ts",
+      "path": "src/app/api/employees/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/events/route.ts",
+      "path": "src/app/api/events/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/reports/export/[format]/route.ts",
+      "path": "src/app/api/reports/export/[format]/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/scans/review/route.ts",
+      "path": "src/app/api/scans/review/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/scans/route.ts",
+      "path": "src/app/api/scans/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/scans/sync-batch/route.ts",
+      "path": "src/app/api/scans/sync-batch/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/sync/refresh/route.ts",
+      "path": "src/app/api/sync/refresh/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/api/sync/retry/route.ts",
+      "path": "src/app/api/sync/retry/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/layout.tsx",
+      "path": "src/app/layout.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/login/page.tsx",
+      "path": "src/app/login/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/manifest.ts",
+      "path": "src/app/manifest.ts",
+      "language": "typescript",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/offline/page.tsx",
+      "path": "src/app/offline/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/page.tsx",
+      "path": "src/app/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/app/registration/page.tsx",
+      "path": "src/app/registration/page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/admin-access-button.tsx",
+      "path": "src/components/admin-access-button.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/admin-guard.tsx",
+      "path": "src/components/admin-guard.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/admin-page.tsx",
+      "path": "src/components/admin-page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "lastTouchedAt": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/kiosk-page.tsx",
+      "path": "src/components/kiosk-page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "lastTouchedAt": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/pin-entry-form.tsx",
+      "path": "src/components/pin-entry-form.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/pwa-register.tsx",
+      "path": "src/components/pwa-register.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/review-page.tsx",
+      "path": "src/components/review-page.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/tables/data-table-column-header.tsx",
+      "path": "src/components/tables/data-table-column-header.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/tables/data-table-pagination.tsx",
+      "path": "src/components/tables/data-table-pagination.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/tables/data-table-view-options.tsx",
+      "path": "src/components/tables/data-table-view-options.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/tables/data-table.tsx",
+      "path": "src/components/tables/data-table.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/theme-provider.tsx",
+      "path": "src/components/theme-provider.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/theme-toggle.tsx",
+      "path": "src/components/theme-toggle.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/ui/button.tsx",
+      "path": "src/components/ui/button.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/ui/dropdown-menu.tsx",
+      "path": "src/components/ui/dropdown-menu.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/ui/input.tsx",
+      "path": "src/components/ui/input.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/ui/select.tsx",
+      "path": "src/components/ui/select.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/ui/separator.tsx",
+      "path": "src/components/ui/separator.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/components/ui/table.tsx",
+      "path": "src/components/ui/table.tsx",
+      "language": "tsx",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/admin/pin/verify/route.ts",
+      "path": "src/dev-stubs/api/admin/pin/verify/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/devices/current/event/route.ts",
+      "path": "src/dev-stubs/api/devices/current/event/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/devices/current/route.ts",
+      "path": "src/dev-stubs/api/devices/current/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/devices/register/route.ts",
+      "path": "src/dev-stubs/api/devices/register/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/events/route.ts",
+      "path": "src/dev-stubs/api/events/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/reports/export/[format]/route.ts",
+      "path": "src/dev-stubs/api/reports/export/[format]/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/scans/review/route.ts",
+      "path": "src/dev-stubs/api/scans/review/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/scans/route.ts",
+      "path": "src/dev-stubs/api/scans/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/scans/sync-batch/route.ts",
+      "path": "src/dev-stubs/api/scans/sync-batch/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/sync/refresh/route.ts",
+      "path": "src/dev-stubs/api/sync/refresh/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/dev-stubs/api/sync/retry/route.ts",
+      "path": "src/dev-stubs/api/sync/retry/route.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/admin-access.ts",
+      "path": "src/lib/admin-access.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/api.ts",
+      "path": "src/lib/api.ts",
+      "language": "typescript",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/app-config.ts",
+      "path": "src/lib/app-config.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/ibadge-db.ts",
+      "path": "src/lib/ibadge-db.ts",
+      "language": "typescript",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/ibadge-dev-api.ts",
+      "path": "src/lib/ibadge-dev-api.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/ibadge-events-sql.ts",
+      "path": "src/lib/ibadge-events-sql.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/ibadge-upstream.ts",
+      "path": "src/lib/ibadge-upstream.ts",
+      "language": "typescript",
+      "lastTouchedSha": "2f0d8e6389ddebf76bb19e733a679349a8b669cb",
+      "lastTouchedAt": "2026-04-13T14:17:44-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/kiosk-data.ts",
+      "path": "src/lib/kiosk-data.ts",
+      "language": "typescript",
+      "lastTouchedSha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "lastTouchedAt": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/kiosk-types.ts",
+      "path": "src/lib/kiosk-types.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/kiosk-utils.ts",
+      "path": "src/lib/kiosk-utils.ts",
+      "language": "typescript",
+      "lastTouchedSha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "lastTouchedAt": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/review-pdf.ts",
+      "path": "src/lib/review-pdf.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/storage.ts",
+      "path": "src/lib/storage.ts",
+      "language": "typescript",
+      "lastTouchedSha": "cc8f31b1f9d6d7961937d40075b6d14c0f18598b",
+      "lastTouchedAt": "2026-04-27T18:03:47-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/utils.ts",
+      "path": "src/lib/utils.ts",
+      "language": "typescript",
+      "lastTouchedSha": "3cab3ca92579b1531f43a6b590f3eb8911789528",
+      "lastTouchedAt": "2026-01-19T13:06:15-06:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:src/lib/uuid.ts",
+      "path": "src/lib/uuid.ts",
+      "language": "typescript",
+      "lastTouchedSha": "49847f140b2f28ed5fef0cbd0294dbcee9fef82b",
+      "lastTouchedAt": "2026-04-14T12:09:45-05:00"
+    },
+    {
+      "type": "Module",
+      "id": "module:tailwind.config.ts",
+      "path": "tailwind.config.ts",
+      "language": "typescript",
+      "lastTouchedSha": "dc5406881c14469d941f0b411b73d1a4ade51dae",
+      "lastTouchedAt": "2026-04-16T13:28:55-05:00"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:imports:static:1",
+      "type": "imports",
+      "from": "module:server/src/index.ts",
+      "to": "external:express",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "express"
+      }
+    },
+    {
+      "id": "edge:imports:static:2",
+      "type": "imports",
+      "from": "module:server/src/index.ts",
+      "to": "external:cors",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "cors"
+      }
+    },
+    {
+      "id": "edge:imports:static:3",
+      "type": "imports",
+      "from": "module:server/src/index.ts",
+      "to": "external:cookie-parser",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "cookie-parser"
+      }
+    },
+    {
+      "id": "edge:imports:static:4",
+      "type": "imports",
+      "from": "module:server/src/index.ts",
+      "to": "external:dotenv",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "dotenv"
+      }
+    },
+    {
+      "id": "edge:imports:static:5",
+      "type": "imports",
+      "from": "module:server/src/index.ts",
+      "to": "external:jsonwebtoken",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "jsonwebtoken"
+      }
+    },
+    {
+      "id": "edge:imports:static:6",
+      "type": "imports",
+      "from": "module:server/src/index.ts",
+      "to": "external:path",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "path"
+      }
+    },
+    {
+      "id": "edge:imports:static:7",
+      "type": "imports",
+      "from": "module:src/app/admin/access/page.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:8",
+      "type": "imports",
+      "from": "module:src/app/admin/access/page.tsx",
+      "to": "external:@/components/pin-entry-form",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/pin-entry-form"
+      }
+    },
+    {
+      "id": "edge:imports:static:9",
+      "type": "imports",
+      "from": "module:src/app/admin/page.tsx",
+      "to": "external:@/components/admin-page",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/admin-page"
+      }
+    },
+    {
+      "id": "edge:imports:static:10",
+      "type": "imports",
+      "from": "module:src/app/admin/review/page.tsx",
+      "to": "external:@/components/review-page",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/review-page"
+      }
+    },
+    {
+      "id": "edge:imports:static:11",
+      "type": "imports",
+      "from": "module:src/app/api/admin/pin/verify/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:12",
+      "type": "imports",
+      "from": "module:src/app/api/admin/pin/verify/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:13",
+      "type": "imports",
+      "from": "module:src/app/api/devices/current/event/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:14",
+      "type": "imports",
+      "from": "module:src/app/api/devices/current/event/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:15",
+      "type": "imports",
+      "from": "module:src/app/api/devices/current/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:16",
+      "type": "imports",
+      "from": "module:src/app/api/devices/current/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:17",
+      "type": "imports",
+      "from": "module:src/app/api/devices/register/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:18",
+      "type": "imports",
+      "from": "module:src/app/api/devices/register/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:19",
+      "type": "imports",
+      "from": "module:src/app/api/employees/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:20",
+      "type": "imports",
+      "from": "module:src/app/api/employees/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:21",
+      "type": "imports",
+      "from": "module:src/app/api/events/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:22",
+      "type": "imports",
+      "from": "module:src/app/api/events/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:23",
+      "type": "imports",
+      "from": "module:src/app/api/reports/export/[format]/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:24",
+      "type": "imports",
+      "from": "module:src/app/api/reports/export/[format]/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:25",
+      "type": "imports",
+      "from": "module:src/app/api/reports/export/[format]/route.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:26",
+      "type": "imports",
+      "from": "module:src/app/api/scans/review/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:27",
+      "type": "imports",
+      "from": "module:src/app/api/scans/review/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:28",
+      "type": "imports",
+      "from": "module:src/app/api/scans/review/route.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:29",
+      "type": "imports",
+      "from": "module:src/app/api/scans/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:30",
+      "type": "imports",
+      "from": "module:src/app/api/scans/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:31",
+      "type": "imports",
+      "from": "module:src/app/api/scans/route.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:32",
+      "type": "imports",
+      "from": "module:src/app/api/scans/sync-batch/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:33",
+      "type": "imports",
+      "from": "module:src/app/api/scans/sync-batch/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:34",
+      "type": "imports",
+      "from": "module:src/app/api/scans/sync-batch/route.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:35",
+      "type": "imports",
+      "from": "module:src/app/api/sync/refresh/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:36",
+      "type": "imports",
+      "from": "module:src/app/api/sync/refresh/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:37",
+      "type": "imports",
+      "from": "module:src/app/api/sync/retry/route.ts",
+      "to": "external:@/lib/ibadge-db",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-db"
+      }
+    },
+    {
+      "id": "edge:imports:static:38",
+      "type": "imports",
+      "from": "module:src/app/api/sync/retry/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:39",
+      "type": "imports",
+      "from": "module:src/app/layout.tsx",
+      "to": "external:next",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next"
+      }
+    },
+    {
+      "id": "edge:imports:static:40",
+      "type": "imports",
+      "from": "module:src/app/layout.tsx",
+      "to": "external:next/script",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/script"
+      }
+    },
+    {
+      "id": "edge:imports:static:41",
+      "type": "imports",
+      "from": "module:src/app/layout.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:42",
+      "type": "imports",
+      "from": "module:src/app/layout.tsx",
+      "to": "external:@/components/theme-provider",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/theme-provider"
+      }
+    },
+    {
+      "id": "edge:imports:static:43",
+      "type": "imports",
+      "from": "module:src/app/layout.tsx",
+      "to": "module:src/app/globals.css",
+      "attrs": {
+        "kind": "static",
+        "resolved": true,
+        "specifier": "./globals.css"
+      }
+    },
+    {
+      "id": "edge:imports:static:44",
+      "type": "imports",
+      "from": "module:src/app/login/page.tsx",
+      "to": "external:next/link",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/link"
+      }
+    },
+    {
+      "id": "edge:imports:static:45",
+      "type": "imports",
+      "from": "module:src/app/login/page.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:46",
+      "type": "imports",
+      "from": "module:src/app/login/page.tsx",
+      "to": "external:@/components/ui/input",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/input"
+      }
+    },
+    {
+      "id": "edge:imports:static:47",
+      "type": "imports",
+      "from": "module:src/app/manifest.ts",
+      "to": "external:next",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next"
+      }
+    },
+    {
+      "id": "edge:imports:static:48",
+      "type": "imports",
+      "from": "module:src/app/offline/page.tsx",
+      "to": "external:next/link",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/link"
+      }
+    },
+    {
+      "id": "edge:imports:static:49",
+      "type": "imports",
+      "from": "module:src/app/offline/page.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:50",
+      "type": "imports",
+      "from": "module:src/app/page.tsx",
+      "to": "external:@/components/kiosk-page",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/kiosk-page"
+      }
+    },
+    {
+      "id": "edge:imports:static:51",
+      "type": "imports",
+      "from": "module:src/app/registration/page.tsx",
+      "to": "external:@/components/kiosk-page",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/kiosk-page"
+      }
+    },
+    {
+      "id": "edge:imports:static:52",
+      "type": "imports",
+      "from": "module:src/components/admin-access-button.tsx",
+      "to": "external:next/navigation",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/navigation"
+      }
+    },
+    {
+      "id": "edge:imports:static:53",
+      "type": "imports",
+      "from": "module:src/components/admin-access-button.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:54",
+      "type": "imports",
+      "from": "module:src/components/admin-access-button.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:55",
+      "type": "imports",
+      "from": "module:src/components/admin-access-button.tsx",
+      "to": "external:@/lib/admin-access",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/admin-access"
+      }
+    },
+    {
+      "id": "edge:imports:static:56",
+      "type": "imports",
+      "from": "module:src/components/admin-guard.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:57",
+      "type": "imports",
+      "from": "module:src/components/admin-guard.tsx",
+      "to": "external:next/navigation",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/navigation"
+      }
+    },
+    {
+      "id": "edge:imports:static:58",
+      "type": "imports",
+      "from": "module:src/components/admin-guard.tsx",
+      "to": "external:@/lib/admin-access",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/admin-access"
+      }
+    },
+    {
+      "id": "edge:imports:static:59",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:next/link",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/link"
+      }
+    },
+    {
+      "id": "edge:imports:static:60",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:61",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:62",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/components/admin-guard",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/admin-guard"
+      }
+    },
+    {
+      "id": "edge:imports:static:63",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:64",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/components/ui/input",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/input"
+      }
+    },
+    {
+      "id": "edge:imports:static:65",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/lib/api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/api"
+      }
+    },
+    {
+      "id": "edge:imports:static:66",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/lib/kiosk-data",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-data"
+      }
+    },
+    {
+      "id": "edge:imports:static:67",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:68",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:69",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:70",
+      "type": "imports",
+      "from": "module:src/components/admin-page.tsx",
+      "to": "external:@/components/theme-provider",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/theme-provider"
+      }
+    },
+    {
+      "id": "edge:imports:static:71",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:next/image",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/image"
+      }
+    },
+    {
+      "id": "edge:imports:static:72",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:73",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:74",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/components/admin-access-button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/admin-access-button"
+      }
+    },
+    {
+      "id": "edge:imports:static:75",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:76",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/components/ui/input",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/input"
+      }
+    },
+    {
+      "id": "edge:imports:static:77",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/lib/app-config",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/app-config"
+      }
+    },
+    {
+      "id": "edge:imports:static:78",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:79",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/lib/kiosk-data",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-data"
+      }
+    },
+    {
+      "id": "edge:imports:static:80",
+      "type": "imports",
+      "from": "module:src/components/kiosk-page.tsx",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:81",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:82",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:next/navigation",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/navigation"
+      }
+    },
+    {
+      "id": "edge:imports:static:83",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:next/link",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/link"
+      }
+    },
+    {
+      "id": "edge:imports:static:84",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:85",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:@/lib/admin-access",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/admin-access"
+      }
+    },
+    {
+      "id": "edge:imports:static:86",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:@/lib/storage",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/storage"
+      }
+    },
+    {
+      "id": "edge:imports:static:87",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:88",
+      "type": "imports",
+      "from": "module:src/components/pin-entry-form.tsx",
+      "to": "external:@/components/ui/input",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/input"
+      }
+    },
+    {
+      "id": "edge:imports:static:89",
+      "type": "imports",
+      "from": "module:src/components/pwa-register.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:90",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:next/link",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "next/link"
+      }
+    },
+    {
+      "id": "edge:imports:static:91",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:92",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:93",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/components/admin-guard",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/admin-guard"
+      }
+    },
+    {
+      "id": "edge:imports:static:94",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:95",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/components/ui/input",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/input"
+      }
+    },
+    {
+      "id": "edge:imports:static:96",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/lib/api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/api"
+      }
+    },
+    {
+      "id": "edge:imports:static:97",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:98",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/lib/kiosk-data",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-data"
+      }
+    },
+    {
+      "id": "edge:imports:static:99",
+      "type": "imports",
+      "from": "module:src/components/review-page.tsx",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:100",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-column-header.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:101",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-column-header.tsx",
+      "to": "external:@tanstack/react-table",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@tanstack/react-table"
+      }
+    },
+    {
+      "id": "edge:imports:static:102",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-column-header.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:103",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-column-header.tsx",
+      "to": "external:@/components/ui/dropdown-menu",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/dropdown-menu"
+      }
+    },
+    {
+      "id": "edge:imports:static:104",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-pagination.tsx",
+      "to": "external:@tanstack/react-table",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@tanstack/react-table"
+      }
+    },
+    {
+      "id": "edge:imports:static:105",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-pagination.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:106",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-pagination.tsx",
+      "to": "external:@/components/ui/select",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/select"
+      }
+    },
+    {
+      "id": "edge:imports:static:107",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-pagination.tsx",
+      "to": "external:@/components/ui/separator",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/separator"
+      }
+    },
+    {
+      "id": "edge:imports:static:108",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-view-options.tsx",
+      "to": "external:@tanstack/react-table",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@tanstack/react-table"
+      }
+    },
+    {
+      "id": "edge:imports:static:109",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-view-options.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:110",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table-view-options.tsx",
+      "to": "external:@/components/ui/dropdown-menu",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/dropdown-menu"
+      }
+    },
+    {
+      "id": "edge:imports:static:111",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:112",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table.tsx",
+      "to": "external:@tanstack/react-table",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@tanstack/react-table"
+      }
+    },
+    {
+      "id": "edge:imports:static:113",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table.tsx",
+      "to": "external:@/components/ui/table",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/table"
+      }
+    },
+    {
+      "id": "edge:imports:static:114",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table.tsx",
+      "to": "module:src/components/tables/data-table-pagination.tsx",
+      "attrs": {
+        "kind": "static",
+        "resolved": true,
+        "specifier": "./data-table-pagination"
+      }
+    },
+    {
+      "id": "edge:imports:static:115",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table.tsx",
+      "to": "module:src/components/tables/data-table-view-options.tsx",
+      "attrs": {
+        "kind": "static",
+        "resolved": true,
+        "specifier": "./data-table-view-options"
+      }
+    },
+    {
+      "id": "edge:imports:static:116",
+      "type": "imports",
+      "from": "module:src/components/tables/data-table.tsx",
+      "to": "external:@/components/ui/input",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/input"
+      }
+    },
+    {
+      "id": "edge:imports:static:117",
+      "type": "imports",
+      "from": "module:src/components/theme-provider.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:118",
+      "type": "imports",
+      "from": "module:src/components/theme-toggle.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:119",
+      "type": "imports",
+      "from": "module:src/components/theme-toggle.tsx",
+      "to": "external:@/components/ui/button",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/components/ui/button"
+      }
+    },
+    {
+      "id": "edge:imports:static:120",
+      "type": "imports",
+      "from": "module:src/components/ui/button.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:121",
+      "type": "imports",
+      "from": "module:src/components/ui/button.tsx",
+      "to": "external:@radix-ui/react-slot",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@radix-ui/react-slot"
+      }
+    },
+    {
+      "id": "edge:imports:static:122",
+      "type": "imports",
+      "from": "module:src/components/ui/button.tsx",
+      "to": "external:class-variance-authority",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "class-variance-authority"
+      }
+    },
+    {
+      "id": "edge:imports:static:123",
+      "type": "imports",
+      "from": "module:src/components/ui/button.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:124",
+      "type": "imports",
+      "from": "module:src/components/ui/dropdown-menu.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:125",
+      "type": "imports",
+      "from": "module:src/components/ui/dropdown-menu.tsx",
+      "to": "external:@radix-ui/react-dropdown-menu",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@radix-ui/react-dropdown-menu"
+      }
+    },
+    {
+      "id": "edge:imports:static:126",
+      "type": "imports",
+      "from": "module:src/components/ui/dropdown-menu.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:127",
+      "type": "imports",
+      "from": "module:src/components/ui/dropdown-menu.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:128",
+      "type": "imports",
+      "from": "module:src/components/ui/input.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:129",
+      "type": "imports",
+      "from": "module:src/components/ui/input.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:130",
+      "type": "imports",
+      "from": "module:src/components/ui/select.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:131",
+      "type": "imports",
+      "from": "module:src/components/ui/select.tsx",
+      "to": "external:@radix-ui/react-select",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@radix-ui/react-select"
+      }
+    },
+    {
+      "id": "edge:imports:static:132",
+      "type": "imports",
+      "from": "module:src/components/ui/select.tsx",
+      "to": "external:lucide-react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "lucide-react"
+      }
+    },
+    {
+      "id": "edge:imports:static:133",
+      "type": "imports",
+      "from": "module:src/components/ui/select.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:134",
+      "type": "imports",
+      "from": "module:src/components/ui/separator.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:135",
+      "type": "imports",
+      "from": "module:src/components/ui/separator.tsx",
+      "to": "external:@radix-ui/react-separator",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@radix-ui/react-separator"
+      }
+    },
+    {
+      "id": "edge:imports:static:136",
+      "type": "imports",
+      "from": "module:src/components/ui/separator.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:137",
+      "type": "imports",
+      "from": "module:src/components/ui/table.tsx",
+      "to": "external:react",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "react"
+      }
+    },
+    {
+      "id": "edge:imports:static:138",
+      "type": "imports",
+      "from": "module:src/components/ui/table.tsx",
+      "to": "external:@/lib/utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:139",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/admin/pin/verify/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:140",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/current/event/route.ts",
+      "to": "external:@/lib/ibadge-dev-api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-dev-api"
+      }
+    },
+    {
+      "id": "edge:imports:static:141",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/current/event/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:142",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/current/event/route.ts",
+      "to": "external:@/lib/uuid",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/uuid"
+      }
+    },
+    {
+      "id": "edge:imports:static:143",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/current/route.ts",
+      "to": "external:@/lib/ibadge-dev-api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-dev-api"
+      }
+    },
+    {
+      "id": "edge:imports:static:144",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/current/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:145",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/current/route.ts",
+      "to": "external:@/lib/uuid",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/uuid"
+      }
+    },
+    {
+      "id": "edge:imports:static:146",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/register/route.ts",
+      "to": "external:@/lib/ibadge-dev-api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-dev-api"
+      }
+    },
+    {
+      "id": "edge:imports:static:147",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/register/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:148",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/devices/register/route.ts",
+      "to": "external:@/lib/uuid",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/uuid"
+      }
+    },
+    {
+      "id": "edge:imports:static:149",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/events/route.ts",
+      "to": "external:@/lib/ibadge-dev-api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-dev-api"
+      }
+    },
+    {
+      "id": "edge:imports:static:150",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/events/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:151",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/reports/export/[format]/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:152",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/scans/review/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:153",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/scans/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:154",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/scans/sync-batch/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:155",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/sync/refresh/route.ts",
+      "to": "external:@/lib/ibadge-dev-api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-dev-api"
+      }
+    },
+    {
+      "id": "edge:imports:static:156",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/sync/refresh/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:157",
+      "type": "imports",
+      "from": "module:src/dev-stubs/api/sync/retry/route.ts",
+      "to": "external:@/lib/ibadge-upstream",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/ibadge-upstream"
+      }
+    },
+    {
+      "id": "edge:imports:static:158",
+      "type": "imports",
+      "from": "module:src/lib/admin-access.ts",
+      "to": "external:@/lib/storage",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/storage"
+      }
+    },
+    {
+      "id": "edge:imports:static:159",
+      "type": "imports",
+      "from": "module:src/lib/admin-access.ts",
+      "to": "external:@/lib/api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/api"
+      }
+    },
+    {
+      "id": "edge:imports:static:160",
+      "type": "imports",
+      "from": "module:src/lib/api.ts",
+      "to": "external:@/lib/app-config",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/app-config"
+      }
+    },
+    {
+      "id": "edge:imports:static:161",
+      "type": "imports",
+      "from": "module:src/lib/api.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:162",
+      "type": "imports",
+      "from": "module:src/lib/api.ts",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:163",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:node:child_process",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:child_process"
+      }
+    },
+    {
+      "id": "edge:imports:static:164",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:node:fs",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:fs"
+      }
+    },
+    {
+      "id": "edge:imports:static:165",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:node:path",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:path"
+      }
+    },
+    {
+      "id": "edge:imports:static:166",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:node:util",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:util"
+      }
+    },
+    {
+      "id": "edge:imports:static:167",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:bcryptjs",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "bcryptjs"
+      }
+    },
+    {
+      "id": "edge:imports:static:168",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:169",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:@/lib/review-pdf",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/review-pdf"
+      }
+    },
+    {
+      "id": "edge:imports:static:170",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:171",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-db.ts",
+      "to": "external:@/lib/uuid",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/uuid"
+      }
+    },
+    {
+      "id": "edge:imports:static:172",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-dev-api.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:173",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-dev-api.ts",
+      "to": "external:@/lib/uuid",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/uuid"
+      }
+    },
+    {
+      "id": "edge:imports:static:174",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-events-sql.ts",
+      "to": "external:node:child_process",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:child_process"
+      }
+    },
+    {
+      "id": "edge:imports:static:175",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-events-sql.ts",
+      "to": "external:node:fs",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:fs"
+      }
+    },
+    {
+      "id": "edge:imports:static:176",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-events-sql.ts",
+      "to": "external:node:path",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:path"
+      }
+    },
+    {
+      "id": "edge:imports:static:177",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-events-sql.ts",
+      "to": "external:node:util",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:util"
+      }
+    },
+    {
+      "id": "edge:imports:static:178",
+      "type": "imports",
+      "from": "module:src/lib/ibadge-events-sql.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:179",
+      "type": "imports",
+      "from": "module:src/lib/kiosk-data.ts",
+      "to": "external:@/lib/api",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/api"
+      }
+    },
+    {
+      "id": "edge:imports:static:180",
+      "type": "imports",
+      "from": "module:src/lib/kiosk-data.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:181",
+      "type": "imports",
+      "from": "module:src/lib/kiosk-data.ts",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:182",
+      "type": "imports",
+      "from": "module:src/lib/kiosk-data.ts",
+      "to": "external:@/lib/uuid",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/uuid"
+      }
+    },
+    {
+      "id": "edge:imports:static:183",
+      "type": "imports",
+      "from": "module:src/lib/kiosk-data.ts",
+      "to": "external:@/lib/storage",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/storage"
+      }
+    },
+    {
+      "id": "edge:imports:static:184",
+      "type": "imports",
+      "from": "module:src/lib/kiosk-utils.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:185",
+      "type": "imports",
+      "from": "module:src/lib/review-pdf.ts",
+      "to": "external:node:fs",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:fs"
+      }
+    },
+    {
+      "id": "edge:imports:static:186",
+      "type": "imports",
+      "from": "module:src/lib/review-pdf.ts",
+      "to": "external:node:path",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "node:path"
+      }
+    },
+    {
+      "id": "edge:imports:static:187",
+      "type": "imports",
+      "from": "module:src/lib/review-pdf.ts",
+      "to": "external:pdf-lib",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "pdf-lib"
+      }
+    },
+    {
+      "id": "edge:imports:static:188",
+      "type": "imports",
+      "from": "module:src/lib/review-pdf.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:189",
+      "type": "imports",
+      "from": "module:src/lib/review-pdf.ts",
+      "to": "external:@/lib/kiosk-utils",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-utils"
+      }
+    },
+    {
+      "id": "edge:imports:static:190",
+      "type": "imports",
+      "from": "module:src/lib/storage.ts",
+      "to": "external:@/lib/kiosk-types",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "@/lib/kiosk-types"
+      }
+    },
+    {
+      "id": "edge:imports:static:191",
+      "type": "imports",
+      "from": "module:src/lib/utils.ts",
+      "to": "external:clsx",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "clsx"
+      }
+    },
+    {
+      "id": "edge:imports:static:192",
+      "type": "imports",
+      "from": "module:src/lib/utils.ts",
+      "to": "external:tailwind-merge",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "tailwind-merge"
+      }
+    },
+    {
+      "id": "edge:imports:static:193",
+      "type": "imports",
+      "from": "module:tailwind.config.ts",
+      "to": "external:tailwindcss",
+      "attrs": {
+        "kind": "static",
+        "resolved": false,
+        "specifier": "tailwindcss"
+      }
+    }
+  ],
+  "filesScanned": 70,
+  "filesSkipped": 0
+}
