@@ -1,0 +1,17 @@
+{
+  "refinementApplied": false,
+  "addedNodes": [],
+  "addedEdges": [],
+  "llmFindings": [],
+  "skipped": {
+    "findingType": "llm_refinement_skipped",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:llm_refinement_skipped:runner_failed",
+    "title": "LLM refinement skipped (runner_failed)",
+    "body": "Unknown file extension \".ts\" for C:\\DevSolutions\\claudecmd\\packages\\pty-manager\\src\\index.ts",
+    "evidence": {
+      "reason": "runner_failed",
+      "detail": "Unknown file extension \".ts\" for C:\\DevSolutions\\claudecmd\\packages\\pty-manager\\src\\index.ts"
+    }
+  }
+}
