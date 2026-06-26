@@ -1,0 +1,45 @@
+{
+  "$schema": "https://ccc.local/schemas/stack-graph/v1.json",
+  "builderVersion": "0.0.1",
+  "createdAt": "2026-06-26T09:00:02.749Z",
+  "repo": {
+    "id": "290bbae3-0f52-49d7-ae54-84041a17318a",
+    "path": "C:\\Users\\stace\\.ccc\\projects\\330a9c03-0b1a-45b0-ae90-71a5f05477ea",
+    "name": "iBadge",
+    "commitSha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+    "branch": "main"
+  },
+  "counts": {
+    "nodes": 107,
+    "edges": 520,
+    "nodesByType": {
+      "Module": 70,
+      "Service": 3,
+      "PipelineStage": 32,
+      "DecisionRecord": 2
+    },
+    "edgesByType": {
+      "imports": 193,
+      "calls": 3,
+      "invokes": 324
+    }
+  },
+  "findings": {
+    "total": 104,
+    "bySeverity": {
+      "warn": 36,
+      "info": 68
+    },
+    "byType": {
+      "phantom_import": 1,
+      "orphan_module": 68,
+      "gate_uncovered": 35
+    }
+  },
+  "refinement": {
+    "applied": false,
+    "addedNodes": 0,
+    "addedEdges": 0,
+    "skipped": "llm_refinement_skipped"
+  }
+}
