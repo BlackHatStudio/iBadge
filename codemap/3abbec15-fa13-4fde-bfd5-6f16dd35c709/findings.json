@@ -1,0 +1,945 @@
+[
+  {
+    "findingType": "phantom_import",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:phantom_import:module:src/app/layout.tsx-_module:src/app/globals.css",
+    "title": "Phantom import: module:src/app/layout.tsx → module:src/app/globals.css",
+    "edgeIds": [
+      "edge:imports:static:43"
+    ],
+    "nodeIds": [
+      "module:src/app/layout.tsx"
+    ],
+    "evidence": {
+      "from": "module:src/app/layout.tsx",
+      "to": "module:src/app/globals.css"
+    }
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:deployment/config/runtime-config.template.js",
+    "title": "Orphan module: module:deployment/config/runtime-config.template.js",
+    "nodeIds": [
+      "module:deployment/config/runtime-config.template.js"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:public/runtime-config.js",
+    "title": "Orphan module: module:public/runtime-config.js",
+    "nodeIds": [
+      "module:public/runtime-config.js"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:public/sw.js",
+    "title": "Orphan module: module:public/sw.js",
+    "nodeIds": [
+      "module:public/sw.js"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:server/src/index.ts",
+    "title": "Orphan module: module:server/src/index.ts",
+    "nodeIds": [
+      "module:server/src/index.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/admin/access/page.tsx",
+    "title": "Orphan module: module:src/app/admin/access/page.tsx",
+    "nodeIds": [
+      "module:src/app/admin/access/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/admin/page.tsx",
+    "title": "Orphan module: module:src/app/admin/page.tsx",
+    "nodeIds": [
+      "module:src/app/admin/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/admin/review/page.tsx",
+    "title": "Orphan module: module:src/app/admin/review/page.tsx",
+    "nodeIds": [
+      "module:src/app/admin/review/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/admin/pin/verify/route.ts",
+    "title": "Orphan module: module:src/app/api/admin/pin/verify/route.ts",
+    "nodeIds": [
+      "module:src/app/api/admin/pin/verify/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/devices/current/event/route.ts",
+    "title": "Orphan module: module:src/app/api/devices/current/event/route.ts",
+    "nodeIds": [
+      "module:src/app/api/devices/current/event/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/devices/current/route.ts",
+    "title": "Orphan module: module:src/app/api/devices/current/route.ts",
+    "nodeIds": [
+      "module:src/app/api/devices/current/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/devices/register/route.ts",
+    "title": "Orphan module: module:src/app/api/devices/register/route.ts",
+    "nodeIds": [
+      "module:src/app/api/devices/register/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/employees/route.ts",
+    "title": "Orphan module: module:src/app/api/employees/route.ts",
+    "nodeIds": [
+      "module:src/app/api/employees/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/events/route.ts",
+    "title": "Orphan module: module:src/app/api/events/route.ts",
+    "nodeIds": [
+      "module:src/app/api/events/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/reports/export/_format_/route.ts",
+    "title": "Orphan module: module:src/app/api/reports/export/[format]/route.ts",
+    "nodeIds": [
+      "module:src/app/api/reports/export/[format]/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/scans/review/route.ts",
+    "title": "Orphan module: module:src/app/api/scans/review/route.ts",
+    "nodeIds": [
+      "module:src/app/api/scans/review/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/scans/route.ts",
+    "title": "Orphan module: module:src/app/api/scans/route.ts",
+    "nodeIds": [
+      "module:src/app/api/scans/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/scans/sync-batch/route.ts",
+    "title": "Orphan module: module:src/app/api/scans/sync-batch/route.ts",
+    "nodeIds": [
+      "module:src/app/api/scans/sync-batch/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/sync/refresh/route.ts",
+    "title": "Orphan module: module:src/app/api/sync/refresh/route.ts",
+    "nodeIds": [
+      "module:src/app/api/sync/refresh/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/api/sync/retry/route.ts",
+    "title": "Orphan module: module:src/app/api/sync/retry/route.ts",
+    "nodeIds": [
+      "module:src/app/api/sync/retry/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/layout.tsx",
+    "title": "Orphan module: module:src/app/layout.tsx",
+    "nodeIds": [
+      "module:src/app/layout.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/login/page.tsx",
+    "title": "Orphan module: module:src/app/login/page.tsx",
+    "nodeIds": [
+      "module:src/app/login/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/manifest.ts",
+    "title": "Orphan module: module:src/app/manifest.ts",
+    "nodeIds": [
+      "module:src/app/manifest.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/offline/page.tsx",
+    "title": "Orphan module: module:src/app/offline/page.tsx",
+    "nodeIds": [
+      "module:src/app/offline/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/page.tsx",
+    "title": "Orphan module: module:src/app/page.tsx",
+    "nodeIds": [
+      "module:src/app/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/app/registration/page.tsx",
+    "title": "Orphan module: module:src/app/registration/page.tsx",
+    "nodeIds": [
+      "module:src/app/registration/page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/admin-access-button.tsx",
+    "title": "Orphan module: module:src/components/admin-access-button.tsx",
+    "nodeIds": [
+      "module:src/components/admin-access-button.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/admin-guard.tsx",
+    "title": "Orphan module: module:src/components/admin-guard.tsx",
+    "nodeIds": [
+      "module:src/components/admin-guard.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/admin-page.tsx",
+    "title": "Orphan module: module:src/components/admin-page.tsx",
+    "nodeIds": [
+      "module:src/components/admin-page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/kiosk-page.tsx",
+    "title": "Orphan module: module:src/components/kiosk-page.tsx",
+    "nodeIds": [
+      "module:src/components/kiosk-page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/pin-entry-form.tsx",
+    "title": "Orphan module: module:src/components/pin-entry-form.tsx",
+    "nodeIds": [
+      "module:src/components/pin-entry-form.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/pwa-register.tsx",
+    "title": "Orphan module: module:src/components/pwa-register.tsx",
+    "nodeIds": [
+      "module:src/components/pwa-register.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/review-page.tsx",
+    "title": "Orphan module: module:src/components/review-page.tsx",
+    "nodeIds": [
+      "module:src/components/review-page.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/tables/data-table-column-header.tsx",
+    "title": "Orphan module: module:src/components/tables/data-table-column-header.tsx",
+    "nodeIds": [
+      "module:src/components/tables/data-table-column-header.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/tables/data-table.tsx",
+    "title": "Orphan module: module:src/components/tables/data-table.tsx",
+    "nodeIds": [
+      "module:src/components/tables/data-table.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/theme-provider.tsx",
+    "title": "Orphan module: module:src/components/theme-provider.tsx",
+    "nodeIds": [
+      "module:src/components/theme-provider.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/theme-toggle.tsx",
+    "title": "Orphan module: module:src/components/theme-toggle.tsx",
+    "nodeIds": [
+      "module:src/components/theme-toggle.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/ui/button.tsx",
+    "title": "Orphan module: module:src/components/ui/button.tsx",
+    "nodeIds": [
+      "module:src/components/ui/button.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/ui/dropdown-menu.tsx",
+    "title": "Orphan module: module:src/components/ui/dropdown-menu.tsx",
+    "nodeIds": [
+      "module:src/components/ui/dropdown-menu.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/ui/input.tsx",
+    "title": "Orphan module: module:src/components/ui/input.tsx",
+    "nodeIds": [
+      "module:src/components/ui/input.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/ui/select.tsx",
+    "title": "Orphan module: module:src/components/ui/select.tsx",
+    "nodeIds": [
+      "module:src/components/ui/select.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/ui/separator.tsx",
+    "title": "Orphan module: module:src/components/ui/separator.tsx",
+    "nodeIds": [
+      "module:src/components/ui/separator.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/components/ui/table.tsx",
+    "title": "Orphan module: module:src/components/ui/table.tsx",
+    "nodeIds": [
+      "module:src/components/ui/table.tsx"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/admin/pin/verify/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/admin/pin/verify/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/admin/pin/verify/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/devices/current/event/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/devices/current/event/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/devices/current/event/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/devices/current/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/devices/current/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/devices/current/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/devices/register/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/devices/register/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/devices/register/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/events/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/events/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/events/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/reports/export/_format_/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/reports/export/[format]/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/reports/export/[format]/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/scans/review/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/scans/review/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/scans/review/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/scans/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/scans/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/scans/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/scans/sync-batch/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/scans/sync-batch/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/scans/sync-batch/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/sync/refresh/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/sync/refresh/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/sync/refresh/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/dev-stubs/api/sync/retry/route.ts",
+    "title": "Orphan module: module:src/dev-stubs/api/sync/retry/route.ts",
+    "nodeIds": [
+      "module:src/dev-stubs/api/sync/retry/route.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/admin-access.ts",
+    "title": "Orphan module: module:src/lib/admin-access.ts",
+    "nodeIds": [
+      "module:src/lib/admin-access.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/api.ts",
+    "title": "Orphan module: module:src/lib/api.ts",
+    "nodeIds": [
+      "module:src/lib/api.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/app-config.ts",
+    "title": "Orphan module: module:src/lib/app-config.ts",
+    "nodeIds": [
+      "module:src/lib/app-config.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/ibadge-db.ts",
+    "title": "Orphan module: module:src/lib/ibadge-db.ts",
+    "nodeIds": [
+      "module:src/lib/ibadge-db.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/ibadge-dev-api.ts",
+    "title": "Orphan module: module:src/lib/ibadge-dev-api.ts",
+    "nodeIds": [
+      "module:src/lib/ibadge-dev-api.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/ibadge-events-sql.ts",
+    "title": "Orphan module: module:src/lib/ibadge-events-sql.ts",
+    "nodeIds": [
+      "module:src/lib/ibadge-events-sql.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/ibadge-upstream.ts",
+    "title": "Orphan module: module:src/lib/ibadge-upstream.ts",
+    "nodeIds": [
+      "module:src/lib/ibadge-upstream.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/kiosk-data.ts",
+    "title": "Orphan module: module:src/lib/kiosk-data.ts",
+    "nodeIds": [
+      "module:src/lib/kiosk-data.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/kiosk-types.ts",
+    "title": "Orphan module: module:src/lib/kiosk-types.ts",
+    "nodeIds": [
+      "module:src/lib/kiosk-types.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/kiosk-utils.ts",
+    "title": "Orphan module: module:src/lib/kiosk-utils.ts",
+    "nodeIds": [
+      "module:src/lib/kiosk-utils.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/review-pdf.ts",
+    "title": "Orphan module: module:src/lib/review-pdf.ts",
+    "nodeIds": [
+      "module:src/lib/review-pdf.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/storage.ts",
+    "title": "Orphan module: module:src/lib/storage.ts",
+    "nodeIds": [
+      "module:src/lib/storage.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/utils.ts",
+    "title": "Orphan module: module:src/lib/utils.ts",
+    "nodeIds": [
+      "module:src/lib/utils.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:src/lib/uuid.ts",
+    "title": "Orphan module: module:src/lib/uuid.ts",
+    "nodeIds": [
+      "module:src/lib/uuid.ts"
+    ]
+  },
+  {
+    "findingType": "orphan_module",
+    "severity": "info",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:orphan_module:module:tailwind.config.ts",
+    "title": "Orphan module: module:tailwind.config.ts",
+    "nodeIds": [
+      "module:tailwind.config.ts"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:service:express:GET_/health",
+    "title": "No quality gate covers Service: service:express:GET /health",
+    "nodeIds": [
+      "service:express:GET /health"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:service:express:POST_/auth/login",
+    "title": "No quality gate covers Service: service:express:POST /auth/login",
+    "nodeIds": [
+      "service:express:POST /auth/login"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:service:express:GET_/api/protected",
+    "title": "No quality gate covers Service: service:express:GET /api/protected",
+    "nodeIds": [
+      "service:express:GET /api/protected"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:public/sw.js_anonymous_",
+    "title": "No quality gate covers PipelineStage: pipeline:public/sw.js#<anonymous>",
+    "nodeIds": [
+      "pipeline:public/sw.js#<anonymous>"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/admin-guard.tsx_AdminGuard",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/admin-guard.tsx#AdminGuard",
+    "nodeIds": [
+      "pipeline:src/components/admin-guard.tsx#AdminGuard"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/admin-page.tsx_AdminPageInner",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/admin-page.tsx#AdminPageInner",
+    "nodeIds": [
+      "pipeline:src/components/admin-page.tsx#AdminPageInner"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/admin-page.tsx_anonymous_",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/admin-page.tsx#<anonymous>",
+    "nodeIds": [
+      "pipeline:src/components/admin-page.tsx#<anonymous>"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/kiosk-page.tsx_KioskPage",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/kiosk-page.tsx#KioskPage",
+    "nodeIds": [
+      "pipeline:src/components/kiosk-page.tsx#KioskPage"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/kiosk-page.tsx_anonymous_",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/kiosk-page.tsx#<anonymous>",
+    "nodeIds": [
+      "pipeline:src/components/kiosk-page.tsx#<anonymous>"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/pin-entry-form.tsx_PinEntryForm",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/pin-entry-form.tsx#PinEntryForm",
+    "nodeIds": [
+      "pipeline:src/components/pin-entry-form.tsx#PinEntryForm"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/pin-entry-form.tsx_anonymous_",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/pin-entry-form.tsx#<anonymous>",
+    "nodeIds": [
+      "pipeline:src/components/pin-entry-form.tsx#<anonymous>"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/review-page.tsx_ReviewPageInner",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/review-page.tsx#ReviewPageInner",
+    "nodeIds": [
+      "pipeline:src/components/review-page.tsx#ReviewPageInner"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/review-page.tsx_anonymous_",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/review-page.tsx#<anonymous>",
+    "nodeIds": [
+      "pipeline:src/components/review-page.tsx#<anonymous>"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/review-page.tsx_bootstrap",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/review-page.tsx#bootstrap",
+    "nodeIds": [
+      "pipeline:src/components/review-page.tsx#bootstrap"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/tables/data-table.tsx_DataTable",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/tables/data-table.tsx#DataTable",
+    "nodeIds": [
+      "pipeline:src/components/tables/data-table.tsx#DataTable"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/components/theme-provider.tsx_ThemeProvider",
+    "title": "No quality gate covers PipelineStage: pipeline:src/components/theme-provider.tsx#ThemeProvider",
+    "nodeIds": [
+      "pipeline:src/components/theme-provider.tsx#ThemeProvider"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/dev-stubs/api/devices/current/route.ts_PUT",
+    "title": "No quality gate covers PipelineStage: pipeline:src/dev-stubs/api/devices/current/route.ts#PUT",
+    "nodeIds": [
+      "pipeline:src/dev-stubs/api/devices/current/route.ts#PUT"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/dev-stubs/api/devices/register/route.ts_POST",
+    "title": "No quality gate covers PipelineStage: pipeline:src/dev-stubs/api/devices/register/route.ts#POST",
+    "nodeIds": [
+      "pipeline:src/dev-stubs/api/devices/register/route.ts#POST"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/ibadge-db.ts_ensureAdminConfigRow",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#ensureAdminConfigRow",
+    "nodeIds": [
+      "pipeline:src/lib/ibadge-db.ts#ensureAdminConfigRow"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/ibadge-db.ts_findExistingEventDuplicate",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#findExistingEventDuplicate",
+    "nodeIds": [
+      "pipeline:src/lib/ibadge-db.ts#findExistingEventDuplicate"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/ibadge-db.ts_upsertEmployeeCardholder",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#upsertEmployeeCardholder",
+    "nodeIds": [
+      "pipeline:src/lib/ibadge-db.ts#upsertEmployeeCardholder"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/ibadge-db.ts_insertScanRecord",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/ibadge-db.ts#insertScanRecord",
+    "nodeIds": [
+      "pipeline:src/lib/ibadge-db.ts#insertScanRecord"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-data.ts_normalizeReviewScan",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#normalizeReviewScan",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-data.ts#normalizeReviewScan"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-data.ts_bootstrapKiosk",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#bootstrapKiosk",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-data.ts#bootstrapKiosk"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-data.ts_persistQueuedScan",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#persistQueuedScan",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-data.ts#persistQueuedScan"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-data.ts_markScanAsSynced",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#markScanAsSynced",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-data.ts#markScanAsSynced"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-data.ts_retryPendingQueue",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-data.ts#retryPendingQueue",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-data.ts#retryPendingQueue"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-utils.ts_localDateString",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-utils.ts#localDateString",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-utils.ts#localDateString"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/kiosk-utils.ts_matchesReviewFilters",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/kiosk-utils.ts#matchesReviewFilters",
+    "nodeIds": [
+      "pipeline:src/lib/kiosk-utils.ts#matchesReviewFilters"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/review-pdf.ts_buildReviewPdfBuffer",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#buildReviewPdfBuffer",
+    "nodeIds": [
+      "pipeline:src/lib/review-pdf.ts#buildReviewPdfBuffer"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/review-pdf.ts_drawHeaderBand",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#drawHeaderBand",
+    "nodeIds": [
+      "pipeline:src/lib/review-pdf.ts#drawHeaderBand"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/review-pdf.ts_drawTableHeaderRow",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#drawTableHeaderRow",
+    "nodeIds": [
+      "pipeline:src/lib/review-pdf.ts#drawTableHeaderRow"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/review-pdf.ts_drawRowLines",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#drawRowLines",
+    "nodeIds": [
+      "pipeline:src/lib/review-pdf.ts#drawRowLines"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/review-pdf.ts_startNewPage",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/review-pdf.ts#startNewPage",
+    "nodeIds": [
+      "pipeline:src/lib/review-pdf.ts#startNewPage"
+    ]
+  },
+  {
+    "findingType": "gate_uncovered",
+    "severity": "warn",
+    "sourceKey": "stackgraph:290bbae3-0f52-49d7-ae54-84041a17318a:gate_uncovered:pipeline:src/lib/storage.ts_anonymous_",
+    "title": "No quality gate covers PipelineStage: pipeline:src/lib/storage.ts#<anonymous>",
+    "nodeIds": [
+      "pipeline:src/lib/storage.ts#<anonymous>"
+    ]
+  }
+]

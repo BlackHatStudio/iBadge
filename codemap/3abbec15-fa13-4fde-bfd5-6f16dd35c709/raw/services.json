@@ -1,0 +1,76 @@
+{
+  "nodes": [
+    {
+      "type": "Service",
+      "id": "service:express:GET /health",
+      "transport": "express",
+      "path": "GET /health",
+      "method": "GET",
+      "modulePath": "server/src/index.ts",
+      "attrs": {
+        "urlPath": "/health",
+        "receiver": "app"
+      }
+    },
+    {
+      "type": "Service",
+      "id": "service:express:POST /auth/login",
+      "transport": "express",
+      "path": "POST /auth/login",
+      "method": "POST",
+      "modulePath": "server/src/index.ts",
+      "attrs": {
+        "urlPath": "/auth/login",
+        "receiver": "app"
+      }
+    },
+    {
+      "type": "Service",
+      "id": "service:express:GET /api/protected",
+      "transport": "express",
+      "path": "GET /api/protected",
+      "method": "GET",
+      "modulePath": "server/src/index.ts",
+      "attrs": {
+        "urlPath": "/api/protected",
+        "receiver": "app"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:calls:express:1",
+      "type": "calls",
+      "from": "module:server/src/index.ts",
+      "to": "service:express:GET /health",
+      "attrs": {
+        "transport": "express",
+        "method": "GET",
+        "urlPath": "/health"
+      }
+    },
+    {
+      "id": "edge:calls:express:2",
+      "type": "calls",
+      "from": "module:server/src/index.ts",
+      "to": "service:express:POST /auth/login",
+      "attrs": {
+        "transport": "express",
+        "method": "POST",
+        "urlPath": "/auth/login"
+      }
+    },
+    {
+      "id": "edge:calls:express:3",
+      "type": "calls",
+      "from": "module:server/src/index.ts",
+      "to": "service:express:GET /api/protected",
+      "attrs": {
+        "transport": "express",
+        "method": "GET",
+        "urlPath": "/api/protected"
+      }
+    }
+  ],
+  "filesScanned": 70
+}
