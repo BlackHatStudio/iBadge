@@ -43,5 +43,14 @@
     "lastHeartbeat": "2026-06-19T17:00:38.883Z",
     "touchedFiles": [],
     "status": "exited"
+  },
+  {
+    "sessionId": "9158cd3e-3cb8-4be9-9aa3-2b64ecd7d9ca",
+    "agentName": null,
+    "prompt": "",
+    "startedAt": "2026-07-15T11:30:08.313Z",
+    "lastHeartbeat": "2026-07-15T11:30:38.321Z",
+    "touchedFiles": [],
+    "status": "active"
   }
 ]

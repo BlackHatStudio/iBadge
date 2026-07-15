@@ -1,6 +1,571 @@
 {
   "byPath": [
     {
+      "path": "wiki/summaries/quarterly-2026-Q2.md",
+      "sha": "6539ccae6924f4252a61a342abe9bb76e9b77625",
+      "date": "2026-07-01T06:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/findings.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/graph.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/index.html",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/llm/refinement.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/raw/adrs.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/raw/artifacts.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/raw/git-attribution.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/raw/services.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/raw/stages.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/raw/ts-imports.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/f2ce8dbe-3c00-42b1-bda2-9bf4d53e9e8d/summary.json",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "wiki/summaries/monthly-2026-06.md",
+      "sha": "b60519626b6d8b04f6f4e95e5d85ddc05c33a650",
+      "date": "2026-07-01T05:17:42-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/findings.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/graph.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/index.html",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/llm/refinement.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/raw/adrs.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/raw/artifacts.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/raw/git-attribution.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/raw/services.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/raw/stages.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/raw/ts-imports.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/a7d2f756-c692-4513-ab4c-1ee23d5ef420/summary.json",
+      "sha": "e5e19d43361dfdaf586b6794475294e4ac0d54f9",
+      "date": "2026-06-29T04:08:56-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/findings.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/graph.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/index.html",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/llm/refinement.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/raw/adrs.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/raw/artifacts.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/raw/git-attribution.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/raw/services.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/raw/stages.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/raw/ts-imports.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3abbec15-fa13-4fde-bfd5-6f16dd35c709/summary.json",
+      "sha": "843ccb60b9f6ef1b36c705d7adacc53a60568a1d",
+      "date": "2026-06-28T04:08:55-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/findings.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/graph.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/index.html",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/llm/refinement.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/raw/adrs.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/raw/artifacts.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/raw/git-attribution.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/raw/services.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/raw/stages.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/raw/ts-imports.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/3b4de2fe-b26b-47c3-a176-4995a9018b5b/summary.json",
+      "sha": "c86446fd761e29a4eeea4099f86d86994d8bed7d",
+      "date": "2026-06-27T04:10:58-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/findings.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/graph.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/index.html",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/llm/refinement.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/raw/adrs.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/raw/artifacts.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/raw/git-attribution.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/raw/services.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/raw/stages.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/raw/ts-imports.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/839c2509-0785-4975-822d-4a2a4d116950/summary.json",
+      "sha": "2cce4b3a52fd77f07af732bfb00b06c68ee09905",
+      "date": "2026-06-26T04:10:54-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/findings.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/graph.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/index.html",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/llm/refinement.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/raw/adrs.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/raw/artifacts.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/raw/git-attribution.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/raw/services.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/raw/stages.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/raw/ts-imports.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/aee906cf-7615-4024-af39-545e3f37fd8d/summary.json",
+      "sha": "bc09d533af1f06c9aeb879da2c44a03e9e071d29",
+      "date": "2026-06-25T04:10:45-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/findings.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/graph.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/index.html",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/llm/refinement.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/raw/adrs.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/raw/artifacts.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/raw/git-attribution.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/raw/services.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/raw/stages.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/raw/ts-imports.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/939bab37-d117-4bdd-a719-d994203a6279/summary.json",
+      "sha": "5c457c58e00297d2f0e5b7bbaa4fd7835a2e4cc7",
+      "date": "2026-06-24T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/findings.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/graph.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/index.html",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/llm/refinement.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/raw/adrs.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/raw/artifacts.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/raw/git-attribution.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/raw/services.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/raw/stages.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/raw/ts-imports.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/b9be56ee-b4b2-4485-bd6e-b53c73908c00/summary.json",
+      "sha": "3eff165d50dc75861f679afe77ded2a14e58f619",
+      "date": "2026-06-23T04:09:41-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/findings.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/graph.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/index.html",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/llm/refinement.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/adrs.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/artifacts.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/git-attribution.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/services.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/stages.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/raw/ts-imports.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/9fa526f7-a47a-45ec-9d54-aaf638d5930f/summary.json",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "wiki/summaries/weekly-2026-W24.md",
+      "sha": "4258a5b987d03238e673435eb16cb0dbac1413ff",
+      "date": "2026-06-22T04:09:40-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/findings.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/graph.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/index.html",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/llm/refinement.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/adrs.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/artifacts.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/git-attribution.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/services.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/stages.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/raw/ts-imports.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
+      "path": "codemap/b651c57b-bb64-4a9b-af4a-41c7af9fc997/summary.json",
+      "sha": "42d037752067e9655b0d9275a29614e29ac92587",
+      "date": "2026-06-21T04:09:39-05:00"
+    },
+    {
       "path": "codemap/60f42d00-be8a-4e4f-8172-20635e689b19/findings.json",
       "sha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
       "date": "2026-06-20T04:09:39-05:00"
@@ -731,6 +1296,6 @@
       "date": "2026-01-19T13:06:15-06:00"
     }
   ],
-  "commitsScanned": 36,
-  "attributedCount": 146
+  "commitsScanned": 47,
+  "attributedCount": 259
 }

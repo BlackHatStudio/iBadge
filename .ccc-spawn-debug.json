@@ -1,12 +1,12 @@
 {
-  "sessionId": "307fdc98-f6c9-49dc-8b1e-855879387993",
-  "sessionConfigDir": "/home/ccc/.ccc/sessions/307fdc98-f6c9-49dc-8b1e-855879387993",
-  "cwd": "/home/ccc/.ccc/projects/330a9c03-0b1a-45b0-ae90-71a5f05477ea",
-  "cwdHash": "-home-ccc--ccc-projects-330a9c03-0b1a-45b0-ae90-71a5f05477ea",
-  "persistentClaudeDir": "/home/ccc/.claude",
-  "persistentCwdDir": "/home/ccc/.claude/projects/-home-ccc--ccc-projects-330a9c03-0b1a-45b0-ae90-71a5f05477ea",
-  "projectsLink": "/home/ccc/.ccc/sessions/307fdc98-f6c9-49dc-8b1e-855879387993/projects",
-  "projectsLinkTarget": "/home/ccc/.claude/projects",
+  "sessionId": "9158cd3e-3cb8-4be9-9aa3-2b64ecd7d9ca",
+  "sessionConfigDir": "C:\\Users\\stace\\.ccc\\claude-homes\\00000000-0000-0000-0000-000000000000",
+  "cwd": "C:\\Users\\stace\\.ccc\\projects\\330a9c03-0b1a-45b0-ae90-71a5f05477ea",
+  "cwdHash": "C--Users-stace--ccc-projects-330a9c03-0b1a-45b0-ae90-71a5f05477ea",
+  "persistentClaudeDir": "C:\\Users\\stace\\.ccc\\claude-homes\\00000000-0000-0000-0000-000000000000",
+  "persistentCwdDir": "C:\\Users\\stace\\.ccc\\claude-homes\\00000000-0000-0000-0000-000000000000\\projects\\C--Users-stace--ccc-projects-330a9c03-0b1a-45b0-ae90-71a5f05477ea",
+  "projectsLink": "C:\\Users\\stace\\.ccc\\claude-homes\\00000000-0000-0000-0000-000000000000\\projects",
+  "projectsLinkTarget": "real-dir",
   "projectsLinkExists": true,
   "conversationsInCwdDir": []
 }

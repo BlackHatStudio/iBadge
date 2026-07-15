@@ -1,12 +1,12 @@
 {
   "$schema": "https://ccc.local/schemas/stack-graph/v1.json",
   "builderVersion": "0.0.1",
-  "createdAt": "2026-06-21T09:00:02.704Z",
+  "createdAt": "2026-07-02T09:00:03.026Z",
   "repo": {
     "id": "290bbae3-0f52-49d7-ae54-84041a17318a",
     "path": "C:\\Users\\stace\\.ccc\\projects\\330a9c03-0b1a-45b0-ae90-71a5f05477ea",
     "name": "iBadge",
-    "commitSha": "b8b0692b808dfa1e063e4d87136819acbf2dc460",
+    "commitSha": "6539ccae6924f4252a61a342abe9bb76e9b77625",
     "branch": "main"
   },
   "counts": {
