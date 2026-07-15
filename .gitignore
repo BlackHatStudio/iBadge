@@ -52,3 +52,6 @@ next-env.d.ts
 .next-stale-*/
 .npm-cache/
 /*.log
+
+# Claude Code local permission overrides (machine/session-specific)
+.claude/settings.local.json
